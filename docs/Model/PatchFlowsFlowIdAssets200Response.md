@@ -1,0 +1,11 @@
+# PatchFlowsFlowIdAssets200Response
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**success** | **bool** |  | [optional]
+**validation_errors** | **array<string,mixed>[]** |  | [optional]
+**error** | **mixed** | Error details returned by the provider. May be a string or a JSON object. | [optional]
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

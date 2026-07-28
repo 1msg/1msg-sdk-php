@@ -1,0 +1,40 @@
+{
+    "name": "1msg/chat-api",
+    "version": "1.0.0",
+    "description": "Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/",
+    "keywords": [
+        "openapitools",
+        "openapi-generator",
+        "openapi",
+        "php",
+        "sdk",
+        "rest",
+        "api"
+    ],
+    "homepage": "https://github.com/1msg/chat-api-php",
+    "license": "UNLICENSED",
+    "authors": [
+        {
+            "name": "1msg",
+            "homepage": "https://1msg.io"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "guzzlehttp/guzzle": "^7.3",
+        "guzzlehttp/psr7": "^1.7 || ^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0 || ^9.0",
+        "friendsofphp/php-cs-fixer": "^3.5"
+    },
+    "autoload": {
+        "psr-4": { "OneMsgChatApi\\" : "lib/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "OneMsgChatApi\\Test\\" : "test/" }
+    }
+}
