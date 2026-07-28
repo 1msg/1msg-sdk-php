@@ -11,7 +11,7 @@
         "rest",
         "api"
     ],
-    "homepage": "https://github.com/1msg/chat-api-php",
+    "homepage": "https://github.com/1msg/1msg-sdk-php",
     "license": "UNLICENSED",
     "authors": [
         {
@@ -32,9 +32,13 @@
         "friendsofphp/php-cs-fixer": "^3.5"
     },
     "autoload": {
-        "psr-4": { "OneMsgChatApi\\" : "lib/" }
+        "psr-4": {
+            "OneMsgChatApi\\": "lib/"
+        }
     },
     "autoload-dev": {
-        "psr-4": { "OneMsgChatApi\\Test\\" : "test/" }
+        "psr-4": {
+            "OneMsgChatApi\\Test\\": "test/"
+        }
     }
 }
