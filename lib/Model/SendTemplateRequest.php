@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Model;
+namespace OneMsgSdk\Model;
 
 use \ArrayAccess;
-use \OneMsgChatApi\ObjectSerializer;
+use \OneMsgSdk\ObjectSerializer;
 
 /**
  * SendTemplateRequest Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class SendTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $openAPITypes = [
         'template' => 'string',
-        'language' => '\OneMsgChatApi\Model\SendTemplateRequestLanguage',
+        'language' => '\OneMsgSdk\Model\SendTemplateRequestLanguage',
         'namespace' => 'string',
         'params' => 'mixed[]',
         'phone' => 'string',
@@ -369,7 +369,7 @@ class SendTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets language
      *
-     * @return \OneMsgChatApi\Model\SendTemplateRequestLanguage|null
+     * @return \OneMsgSdk\Model\SendTemplateRequestLanguage|null
      */
     public function getLanguage()
     {
@@ -379,7 +379,7 @@ class SendTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets language
      *
-     * @param \OneMsgChatApi\Model\SendTemplateRequestLanguage|null $language language
+     * @param \OneMsgSdk\Model\SendTemplateRequestLanguage|null $language language
      *
      * @return self
      */

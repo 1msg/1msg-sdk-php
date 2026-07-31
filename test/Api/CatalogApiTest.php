@@ -4,7 +4,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Please update the test case below to test the endpoint.
  */
 
-namespace OneMsgChatApi\Test\Api;
+namespace OneMsgSdk\Test\Api;
 
-use \OneMsgChatApi\Configuration;
-use \OneMsgChatApi\ApiException;
-use \OneMsgChatApi\ObjectSerializer;
+use \OneMsgSdk\Configuration;
+use \OneMsgSdk\ApiException;
+use \OneMsgSdk\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
 
 /**
  * CatalogApiTest Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */

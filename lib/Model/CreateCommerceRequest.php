@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Model;
+namespace OneMsgSdk\Model;
 
 use \ArrayAccess;
-use \OneMsgChatApi\ObjectSerializer;
+use \OneMsgSdk\ObjectSerializer;
 
 /**
  * CreateCommerceRequest Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class CreateCommerceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $openAPITypes = [
-        'params' => '\OneMsgChatApi\Model\CreateCommerceRequestParams'
+        'params' => '\OneMsgSdk\Model\CreateCommerceRequestParams'
     ];
 
     /**
@@ -296,7 +296,7 @@ class CreateCommerceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets params
      *
-     * @return \OneMsgChatApi\Model\CreateCommerceRequestParams
+     * @return \OneMsgSdk\Model\CreateCommerceRequestParams
      */
     public function getParams()
     {
@@ -306,7 +306,7 @@ class CreateCommerceRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets params
      *
-     * @param \OneMsgChatApi\Model\CreateCommerceRequestParams $params params
+     * @param \OneMsgSdk\Model\CreateCommerceRequestParams $params params
      *
      * @return self
      */

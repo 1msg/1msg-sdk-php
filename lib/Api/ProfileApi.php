@@ -4,7 +4,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Api;
+namespace OneMsgSdk\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -37,17 +37,17 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OneMsgChatApi\ApiException;
-use OneMsgChatApi\Configuration;
-use OneMsgChatApi\FormDataProcessor;
-use OneMsgChatApi\HeaderSelector;
-use OneMsgChatApi\ObjectSerializer;
+use OneMsgSdk\ApiException;
+use OneMsgSdk\Configuration;
+use OneMsgSdk\FormDataProcessor;
+use OneMsgSdk\HeaderSelector;
+use OneMsgSdk\ObjectSerializer;
 
 /**
  * ProfileApi Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -137,9 +137,9 @@ class ProfileApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMe'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\ProfileInfo|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\ProfileInfo|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function getMe($token, string $contentType = self::contentTypes['getMe'][0])
     {
@@ -155,9 +155,9 @@ class ProfileApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMe'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\ProfileInfo|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\ProfileInfo|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getMeWithHttpInfo($token, string $contentType = self::contentTypes['getMe'][0])
     {
@@ -189,19 +189,19 @@ class ProfileApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ProfileInfo',
+                        '\OneMsgSdk\Model\ProfileInfo',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -223,7 +223,7 @@ class ProfileApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\ProfileInfo',
+                '\OneMsgSdk\Model\ProfileInfo',
                 $request,
                 $response,
             );
@@ -232,7 +232,7 @@ class ProfileApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ProfileInfo',
+                        '\OneMsgSdk\Model\ProfileInfo',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -240,7 +240,7 @@ class ProfileApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -248,7 +248,7 @@ class ProfileApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -294,7 +294,7 @@ class ProfileApi
      */
     public function getMeAsyncWithHttpInfo($token, string $contentType = self::contentTypes['getMe'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\ProfileInfo';
+        $returnType = '\OneMsgSdk\Model\ProfileInfo';
         $request = $this->getMeRequest($token, $contentType);
 
         return $this->client
@@ -437,12 +437,12 @@ class ProfileApi
      * Update profile info
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\UpdateMeRequest|null $update_me_request update_me_request (optional)
+     * @param  \OneMsgSdk\Model\UpdateMeRequest|null $update_me_request update_me_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateMe'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array<string,mixed>|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function updateMe($token, $update_me_request = null, string $contentType = self::contentTypes['updateMe'][0])
     {
@@ -456,12 +456,12 @@ class ProfileApi
      * Update profile info
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\UpdateMeRequest|null $update_me_request (optional)
+     * @param  \OneMsgSdk\Model\UpdateMeRequest|null $update_me_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateMe'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of array<string,mixed>|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateMeWithHttpInfo($token, $update_me_request = null, string $contentType = self::contentTypes['updateMe'][0])
     {
@@ -499,19 +499,19 @@ class ProfileApi
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 422:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -550,7 +550,7 @@ class ProfileApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -558,7 +558,7 @@ class ProfileApi
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -566,7 +566,7 @@ class ProfileApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -584,7 +584,7 @@ class ProfileApi
      * Update profile info
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\UpdateMeRequest|null $update_me_request (optional)
+     * @param  \OneMsgSdk\Model\UpdateMeRequest|null $update_me_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -606,7 +606,7 @@ class ProfileApi
      * Update profile info
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\UpdateMeRequest|null $update_me_request (optional)
+     * @param  \OneMsgSdk\Model\UpdateMeRequest|null $update_me_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -657,7 +657,7 @@ class ProfileApi
      * Create request for operation 'updateMe'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\UpdateMeRequest|null $update_me_request (optional)
+     * @param  \OneMsgSdk\Model\UpdateMeRequest|null $update_me_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

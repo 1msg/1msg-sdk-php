@@ -4,7 +4,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Api;
+namespace OneMsgSdk\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -37,17 +37,17 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OneMsgChatApi\ApiException;
-use OneMsgChatApi\Configuration;
-use OneMsgChatApi\FormDataProcessor;
-use OneMsgChatApi\HeaderSelector;
-use OneMsgChatApi\ObjectSerializer;
+use OneMsgSdk\ApiException;
+use OneMsgSdk\Configuration;
+use OneMsgSdk\FormDataProcessor;
+use OneMsgSdk\HeaderSelector;
+use OneMsgSdk\ObjectSerializer;
 
 /**
  * WebhooksApi Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -137,9 +137,9 @@ class WebhooksApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWebhook'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\GetWebhook200Response|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\GetWebhook200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function getWebhook($token, string $contentType = self::contentTypes['getWebhook'][0])
     {
@@ -155,9 +155,9 @@ class WebhooksApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWebhook'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\GetWebhook200Response|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\GetWebhook200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getWebhookWithHttpInfo($token, string $contentType = self::contentTypes['getWebhook'][0])
     {
@@ -189,19 +189,19 @@ class WebhooksApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\GetWebhook200Response',
+                        '\OneMsgSdk\Model\GetWebhook200Response',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -223,7 +223,7 @@ class WebhooksApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\GetWebhook200Response',
+                '\OneMsgSdk\Model\GetWebhook200Response',
                 $request,
                 $response,
             );
@@ -232,7 +232,7 @@ class WebhooksApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\GetWebhook200Response',
+                        '\OneMsgSdk\Model\GetWebhook200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -240,7 +240,7 @@ class WebhooksApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -248,7 +248,7 @@ class WebhooksApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -294,7 +294,7 @@ class WebhooksApi
      */
     public function getWebhookAsyncWithHttpInfo($token, string $contentType = self::contentTypes['getWebhook'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\GetWebhook200Response';
+        $returnType = '\OneMsgSdk\Model\GetWebhook200Response';
         $request = $this->getWebhookRequest($token, $contentType);
 
         return $this->client
@@ -437,12 +437,12 @@ class WebhooksApi
      * Set webhook URL
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\GetWebhook200Response|null $get_webhook200_response get_webhook200_response (optional)
+     * @param  \OneMsgSdk\Model\GetWebhook200Response|null $get_webhook200_response get_webhook200_response (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setWebhook'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array<string,mixed>|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function setWebhook($token, $get_webhook200_response = null, string $contentType = self::contentTypes['setWebhook'][0])
     {
@@ -456,12 +456,12 @@ class WebhooksApi
      * Set webhook URL
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\GetWebhook200Response|null $get_webhook200_response (optional)
+     * @param  \OneMsgSdk\Model\GetWebhook200Response|null $get_webhook200_response (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setWebhook'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of array<string,mixed>|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function setWebhookWithHttpInfo($token, $get_webhook200_response = null, string $contentType = self::contentTypes['setWebhook'][0])
     {
@@ -499,13 +499,13 @@ class WebhooksApi
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -544,7 +544,7 @@ class WebhooksApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -552,7 +552,7 @@ class WebhooksApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -570,7 +570,7 @@ class WebhooksApi
      * Set webhook URL
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\GetWebhook200Response|null $get_webhook200_response (optional)
+     * @param  \OneMsgSdk\Model\GetWebhook200Response|null $get_webhook200_response (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -592,7 +592,7 @@ class WebhooksApi
      * Set webhook URL
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\GetWebhook200Response|null $get_webhook200_response (optional)
+     * @param  \OneMsgSdk\Model\GetWebhook200Response|null $get_webhook200_response (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -643,7 +643,7 @@ class WebhooksApi
      * Create request for operation 'setWebhook'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\GetWebhook200Response|null $get_webhook200_response (optional)
+     * @param  \OneMsgSdk\Model\GetWebhook200Response|null $get_webhook200_response (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

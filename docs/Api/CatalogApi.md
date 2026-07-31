@@ -1,4 +1,4 @@
-# OneMsgChatApi\CatalogApi
+# OneMsgSdk\CatalogApi
 
 Catalog and cart commerce settings (&#x60;GET&#x60;/&#x60;POST /commerce&#x60;)
 
@@ -13,7 +13,7 @@ All URIs are relative to https://api.1msg.io, except if the operation defines an
 ## `createCommerce()`
 
 ```php
-createCommerce($token, $create_commerce_request): \OneMsgChatApi\Model\CreateCommerce200Response
+createCommerce($token, $create_commerce_request): \OneMsgSdk\Model\CreateCommerce200Response
 ```
 
 Set Commerce Settings
@@ -28,19 +28,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\CatalogApi(
+$apiInstance = new OneMsgSdk\Api\CatalogApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$create_commerce_request = {"params":{"is_cart_enabled":true,"is_catalog_visible":true}}; // \OneMsgChatApi\Model\CreateCommerceRequest
+$create_commerce_request = {"params":{"is_cart_enabled":true,"is_catalog_visible":true}}; // \OneMsgSdk\Model\CreateCommerceRequest
 
 try {
     $result = $apiInstance->createCommerce($token, $create_commerce_request);
@@ -55,11 +55,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **create_commerce_request** | [**\OneMsgChatApi\Model\CreateCommerceRequest**](../Model/CreateCommerceRequest.md)|  | |
+| **create_commerce_request** | [**\OneMsgSdk\Model\CreateCommerceRequest**](../Model/CreateCommerceRequest.md)|  | |
 
 ### Return type
 
-[**\OneMsgChatApi\Model\CreateCommerce200Response**](../Model/CreateCommerce200Response.md)
+[**\OneMsgSdk\Model\CreateCommerce200Response**](../Model/CreateCommerce200Response.md)
 
 ### Authorization
 
@@ -77,7 +77,7 @@ try {
 ## `getCommerce()`
 
 ```php
-getCommerce($token): \OneMsgChatApi\Model\GetCommerce200ResponseInner[]
+getCommerce($token): \OneMsgSdk\Model\GetCommerce200ResponseInner[]
 ```
 
 Get Commerce Settings
@@ -92,12 +92,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\CatalogApi(
+$apiInstance = new OneMsgSdk\Api\CatalogApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -121,7 +121,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\GetCommerce200ResponseInner[]**](../Model/GetCommerce200ResponseInner.md)
+[**\OneMsgSdk\Model\GetCommerce200ResponseInner[]**](../Model/GetCommerce200ResponseInner.md)
 
 ### Authorization
 

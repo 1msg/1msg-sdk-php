@@ -1,4 +1,4 @@
-# OneMsgChatApi\TemplatesApi
+# OneMsgSdk\TemplatesApi
 
 Get and manage message templates
 
@@ -28,19 +28,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\TemplatesApi(
+$apiInstance = new OneMsgSdk\Api\TemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$add_template_request = new \OneMsgChatApi\Model\AddTemplateRequest(); // \OneMsgChatApi\Model\AddTemplateRequest
+$add_template_request = new \OneMsgSdk\Model\AddTemplateRequest(); // \OneMsgSdk\Model\AddTemplateRequest
 
 try {
     $result = $apiInstance->addTemplate($token, $add_template_request);
@@ -55,7 +55,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **add_template_request** | [**\OneMsgChatApi\Model\AddTemplateRequest**](../Model/AddTemplateRequest.md)|  | [optional] |
+| **add_template_request** | [**\OneMsgSdk\Model\AddTemplateRequest**](../Model/AddTemplateRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -77,7 +77,7 @@ try {
 ## `listTemplates()`
 
 ```php
-listTemplates($token): \OneMsgChatApi\Model\ListTemplates200Response
+listTemplates($token): \OneMsgSdk\Model\ListTemplates200Response
 ```
 
 Get templates list
@@ -90,12 +90,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\TemplatesApi(
+$apiInstance = new OneMsgSdk\Api\TemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -119,7 +119,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\ListTemplates200Response**](../Model/ListTemplates200Response.md)
+[**\OneMsgSdk\Model\ListTemplates200Response**](../Model/ListTemplates200Response.md)
 
 ### Authorization
 
@@ -150,12 +150,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\TemplatesApi(
+$apiInstance = new OneMsgSdk\Api\TemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -214,19 +214,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\TemplatesApi(
+$apiInstance = new OneMsgSdk\Api\TemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$send_template_request = {"template":"test_buttons_2","language":{"policy":"deterministic","code":"ru"},"namespace":"41123797_e45e_4f06_a2fa_443b27c6f5ec","params":[],"phone":"{{testPhone}}"}; // \OneMsgChatApi\Model\SendTemplateRequest
+$send_template_request = {"template":"test_buttons_2","language":{"policy":"deterministic","code":"ru"},"namespace":"41123797_e45e_4f06_a2fa_443b27c6f5ec","params":[],"phone":"{{testPhone}}"}; // \OneMsgSdk\Model\SendTemplateRequest
 
 try {
     $result = $apiInstance->sendTemplate($token, $send_template_request);
@@ -241,7 +241,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **send_template_request** | [**\OneMsgChatApi\Model\SendTemplateRequest**](../Model/SendTemplateRequest.md)|  | [optional] |
+| **send_template_request** | [**\OneMsgSdk\Model\SendTemplateRequest**](../Model/SendTemplateRequest.md)|  | [optional] |
 
 ### Return type
 

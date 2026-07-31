@@ -1,4 +1,4 @@
-# OneMsgChatApi\MessagingApi
+# OneMsgSdk\MessagingApi
 
 Send messages, files, templates, and other content
 
@@ -34,7 +34,7 @@ All URIs are relative to https://api.1msg.io, except if the operation defines an
 ## `createReadMessage()`
 
 ```php
-createReadMessage($token, $message_id, $msg_id, $typing_indicator): \OneMsgChatApi\Model\CreateReadMessage200Response
+createReadMessage($token, $message_id, $msg_id, $typing_indicator): \OneMsgSdk\Model\CreateReadMessage200Response
 ```
 
 Mark message as read
@@ -47,12 +47,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -82,7 +82,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\CreateReadMessage200Response**](../Model/CreateReadMessage200Response.md)
+[**\OneMsgSdk\Model\CreateReadMessage200Response**](../Model/CreateReadMessage200Response.md)
 
 ### Authorization
 
@@ -113,12 +113,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -161,7 +161,7 @@ void (empty response body)
 ## `deleteMedia()`
 
 ```php
-deleteMedia($token, $media_id): \OneMsgChatApi\Model\SuccessResponse
+deleteMedia($token, $media_id): \OneMsgSdk\Model\SuccessResponse
 ```
 
 Delete media from WABA storage
@@ -176,12 +176,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -207,7 +207,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\SuccessResponse**](../Model/SuccessResponse.md)
+[**\OneMsgSdk\Model\SuccessResponse**](../Model/SuccessResponse.md)
 
 ### Authorization
 
@@ -225,7 +225,7 @@ try {
 ## `deleteMediaLegacy()`
 
 ```php
-deleteMediaLegacy($token, $delete_media_legacy_request): \OneMsgChatApi\Model\SuccessResponse
+deleteMediaLegacy($token, $delete_media_legacy_request): \OneMsgSdk\Model\SuccessResponse
 ```
 
 Delete media from WABA storage (deprecated alias)
@@ -240,19 +240,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$delete_media_legacy_request = new \OneMsgChatApi\Model\DeleteMediaLegacyRequest(); // \OneMsgChatApi\Model\DeleteMediaLegacyRequest
+$delete_media_legacy_request = new \OneMsgSdk\Model\DeleteMediaLegacyRequest(); // \OneMsgSdk\Model\DeleteMediaLegacyRequest
 
 try {
     $result = $apiInstance->deleteMediaLegacy($token, $delete_media_legacy_request);
@@ -267,11 +267,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **delete_media_legacy_request** | [**\OneMsgChatApi\Model\DeleteMediaLegacyRequest**](../Model/DeleteMediaLegacyRequest.md)|  | |
+| **delete_media_legacy_request** | [**\OneMsgSdk\Model\DeleteMediaLegacyRequest**](../Model/DeleteMediaLegacyRequest.md)|  | |
 
 ### Return type
 
-[**\OneMsgChatApi\Model\SuccessResponse**](../Model/SuccessResponse.md)
+[**\OneMsgSdk\Model\SuccessResponse**](../Model/SuccessResponse.md)
 
 ### Authorization
 
@@ -289,7 +289,7 @@ try {
 ## `getMmLiteStatus()`
 
 ```php
-getMmLiteStatus($token): \OneMsgChatApi\Model\GetMmLiteStatus200Response
+getMmLiteStatus($token): \OneMsgSdk\Model\GetMmLiteStatus200Response
 ```
 
 Get MM Lite availability and status
@@ -302,12 +302,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -331,7 +331,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\GetMmLiteStatus200Response**](../Model/GetMmLiteStatus200Response.md)
+[**\OneMsgSdk\Model\GetMmLiteStatus200Response**](../Model/GetMmLiteStatus200Response.md)
 
 ### Authorization
 
@@ -349,7 +349,7 @@ try {
 ## `listMessages()`
 
 ```php
-listMessages($token): \OneMsgChatApi\Model\ListMessages200Response
+listMessages($token): \OneMsgSdk\Model\ListMessages200Response
 ```
 
 Get messages list
@@ -362,12 +362,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -391,7 +391,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\ListMessages200Response**](../Model/ListMessages200Response.md)
+[**\OneMsgSdk\Model\ListMessages200Response**](../Model/ListMessages200Response.md)
 
 ### Authorization
 
@@ -409,7 +409,7 @@ try {
 ## `retrieveMedia()`
 
 ```php
-retrieveMedia($token, $media_id): \OneMsgChatApi\Model\RetrieveMedia200Response
+retrieveMedia($token, $media_id): \OneMsgSdk\Model\RetrieveMedia200Response
 ```
 
 Retrieve uploaded media metadata
@@ -424,12 +424,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -455,7 +455,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\RetrieveMedia200Response**](../Model/RetrieveMedia200Response.md)
+[**\OneMsgSdk\Model\RetrieveMedia200Response**](../Model/RetrieveMedia200Response.md)
 
 ### Authorization
 
@@ -473,7 +473,7 @@ try {
 ## `sendAddressMessage()`
 
 ```php
-sendAddressMessage($token, $send_address_message_request): \OneMsgChatApi\Model\MessageSentResponse
+sendAddressMessage($token, $send_address_message_request): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send address request message
@@ -488,19 +488,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$send_address_message_request = {"phone":6531650115,"body":"Thanks for your order! Tell us what address you’d like this delivered to.","country":"SG"}; // \OneMsgChatApi\Model\SendAddressMessageRequest
+$send_address_message_request = {"phone":6531650115,"body":"Thanks for your order! Tell us what address you’d like this delivered to.","country":"SG"}; // \OneMsgSdk\Model\SendAddressMessageRequest
 
 try {
     $result = $apiInstance->sendAddressMessage($token, $send_address_message_request);
@@ -515,11 +515,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **send_address_message_request** | [**\OneMsgChatApi\Model\SendAddressMessageRequest**](../Model/SendAddressMessageRequest.md)|  | |
+| **send_address_message_request** | [**\OneMsgSdk\Model\SendAddressMessageRequest**](../Model/SendAddressMessageRequest.md)|  | |
 
 ### Return type
 
-[**\OneMsgChatApi\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
 
 ### Authorization
 
@@ -537,7 +537,7 @@ try {
 ## `sendButton()`
 
 ```php
-sendButton($token, $send_button_request): \OneMsgChatApi\Model\MessageSentResponse
+sendButton($token, $send_button_request): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send Reply Buttons Message
@@ -550,19 +550,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$send_button_request = {"phone":"{{testPhone}}","body":"This is a buttons message","footer":"Footer","sections":[{"type":"reply","reply":{"id":"1","title":"Button 1"}}]}; // \OneMsgChatApi\Model\SendButtonRequest
+$send_button_request = {"phone":"{{testPhone}}","body":"This is a buttons message","footer":"Footer","sections":[{"type":"reply","reply":{"id":"1","title":"Button 1"}}]}; // \OneMsgSdk\Model\SendButtonRequest
 
 try {
     $result = $apiInstance->sendButton($token, $send_button_request);
@@ -577,11 +577,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **send_button_request** | [**\OneMsgChatApi\Model\SendButtonRequest**](../Model/SendButtonRequest.md)|  | [optional] |
+| **send_button_request** | [**\OneMsgSdk\Model\SendButtonRequest**](../Model/SendButtonRequest.md)|  | [optional] |
 
 ### Return type
 
-[**\OneMsgChatApi\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
 
 ### Authorization
 
@@ -599,7 +599,7 @@ try {
 ## `sendCarousel()`
 
 ```php
-sendCarousel($token, $params, $body, $quoted_msg_id, $chat_id, $phone): \OneMsgChatApi\Model\MessageSentResponse
+sendCarousel($token, $params, $body, $quoted_msg_id, $chat_id, $phone): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send Carousel
@@ -614,12 +614,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -653,7 +653,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
 
 ### Authorization
 
@@ -671,7 +671,7 @@ try {
 ## `sendContact()`
 
 ```php
-sendContact($token, $send_contact_request): \OneMsgChatApi\Model\MessageSentResponse
+sendContact($token, $send_contact_request): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send a Contact
@@ -684,19 +684,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$send_contact_request = {"phone":"{{testPhone}}","contacts":[{"name":{"formatted_name":"John Doe","first_name":"John","last_name":"Doe","middle_name":"","suffix":"","prefix":""},"birthday":"","addresses":[],"emails":[],"org":{"company":"","department":"","title":""},"phones":[{"phone":"+1234567890","type":"HOME","wa_id":""}],"urls":[]}]}; // \OneMsgChatApi\Model\SendContactRequest
+$send_contact_request = {"phone":"{{testPhone}}","contacts":[{"name":{"formatted_name":"John Doe","first_name":"John","last_name":"Doe","middle_name":"","suffix":"","prefix":""},"birthday":"","addresses":[],"emails":[],"org":{"company":"","department":"","title":""},"phones":[{"phone":"+1234567890","type":"HOME","wa_id":""}],"urls":[]}]}; // \OneMsgSdk\Model\SendContactRequest
 
 try {
     $result = $apiInstance->sendContact($token, $send_contact_request);
@@ -711,11 +711,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **send_contact_request** | [**\OneMsgChatApi\Model\SendContactRequest**](../Model/SendContactRequest.md)|  | [optional] |
+| **send_contact_request** | [**\OneMsgSdk\Model\SendContactRequest**](../Model/SendContactRequest.md)|  | [optional] |
 
 ### Return type
 
-[**\OneMsgChatApi\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
 
 ### Authorization
 
@@ -733,7 +733,7 @@ try {
 ## `sendCtaUrl()`
 
 ```php
-sendCtaUrl($token, $send_cta_url_request): \OneMsgChatApi\Model\MessageSentResponse
+sendCtaUrl($token, $send_cta_url_request): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send CTA URL interactive message
@@ -748,19 +748,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$send_cta_url_request = new \OneMsgChatApi\Model\SendCtaUrlRequest(); // \OneMsgChatApi\Model\SendCtaUrlRequest
+$send_cta_url_request = new \OneMsgSdk\Model\SendCtaUrlRequest(); // \OneMsgSdk\Model\SendCtaUrlRequest
 
 try {
     $result = $apiInstance->sendCtaUrl($token, $send_cta_url_request);
@@ -775,11 +775,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **send_cta_url_request** | [**\OneMsgChatApi\Model\SendCtaUrlRequest**](../Model/SendCtaUrlRequest.md)|  | |
+| **send_cta_url_request** | [**\OneMsgSdk\Model\SendCtaUrlRequest**](../Model/SendCtaUrlRequest.md)|  | |
 
 ### Return type
 
-[**\OneMsgChatApi\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
 
 ### Authorization
 
@@ -797,7 +797,7 @@ try {
 ## `sendFile()`
 
 ```php
-sendFile($token, $body, $filename, $media_id, $media_type, $voice, $caption, $quoted_msg_id, $chat_id, $phone): \OneMsgChatApi\Model\MessageSentResponse
+sendFile($token, $body, $filename, $media_id, $media_type, $voice, $caption, $quoted_msg_id, $chat_id, $phone): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send a File
@@ -812,12 +812,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -859,7 +859,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
 
 ### Authorization
 
@@ -877,7 +877,7 @@ try {
 ## `sendFlow()`
 
 ```php
-sendFlow($token, $body, $flow_id, $flow_token, $flow_cta, $header, $footer, $flow_action, $flow_action_payload, $flow_message_version, $mode, $flow_action_data, $flow_action_screen, $quoted_msg_id, $chat_id, $phone): \OneMsgChatApi\Model\MessageSentResponse
+sendFlow($token, $body, $flow_id, $flow_token, $flow_cta, $header, $footer, $flow_action, $flow_action_payload, $flow_message_version, $mode, $flow_action_data, $flow_action_screen, $quoted_msg_id, $chat_id, $phone): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send WhatsApp Flow Message
@@ -892,12 +892,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -908,7 +908,7 @@ $body = 'body_example'; // string | Flow message body text
 $flow_id = 'flow_id_example'; // string | Published Flow ID
 $flow_token = 'flow_token_example'; // string | Flow token generated by the business
 $flow_cta = 'flow_cta_example'; // string | CTA button text
-$header = new \OneMsgChatApi\Model\SendFlowRequestHeader(); // \OneMsgChatApi\Model\SendFlowRequestHeader
+$header = new \OneMsgSdk\Model\SendFlowRequestHeader(); // \OneMsgSdk\Model\SendFlowRequestHeader
 $footer = 'footer_example'; // string | Footer text
 $flow_action = 'flow_action_example'; // string | Flow action type
 $flow_action_payload = array('key' => new \stdClass); // object | Required for flowAction=navigate (screen is required). Ignored for data_exchange. If data is provided, it must be a non-empty object.
@@ -937,7 +937,7 @@ try {
 | **flow_id** | **string**| Published Flow ID | |
 | **flow_token** | **string**| Flow token generated by the business | |
 | **flow_cta** | **string**| CTA button text | |
-| **header** | [**\OneMsgChatApi\Model\SendFlowRequestHeader**](../Model/SendFlowRequestHeader.md)|  | [optional] |
+| **header** | [**\OneMsgSdk\Model\SendFlowRequestHeader**](../Model/SendFlowRequestHeader.md)|  | [optional] |
 | **footer** | **string**| Footer text | [optional] |
 | **flow_action** | **string**| Flow action type | [optional] |
 | **flow_action_payload** | [**object**](../Model/object.md)| Required for flowAction&#x3D;navigate (screen is required). Ignored for data_exchange. If data is provided, it must be a non-empty object. | [optional] |
@@ -951,7 +951,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
 
 ### Authorization
 
@@ -969,7 +969,7 @@ try {
 ## `sendList()`
 
 ```php
-sendList($token, $send_list_request): \OneMsgChatApi\Model\MessageSentResponse
+sendList($token, $send_list_request): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send List Message
@@ -982,19 +982,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$send_list_request = {"phone":"{{testPhone}}","body":"This is a list message","buttonText":"Click me","action":"Action","sections":[{"title":"Section 1","rows":[{"id":"1","title":"Row 1","description":"Description for Row 1"}]}]}; // \OneMsgChatApi\Model\SendListRequest
+$send_list_request = {"phone":"{{testPhone}}","body":"This is a list message","buttonText":"Click me","action":"Action","sections":[{"title":"Section 1","rows":[{"id":"1","title":"Row 1","description":"Description for Row 1"}]}]}; // \OneMsgSdk\Model\SendListRequest
 
 try {
     $result = $apiInstance->sendList($token, $send_list_request);
@@ -1009,11 +1009,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **send_list_request** | [**\OneMsgChatApi\Model\SendListRequest**](../Model/SendListRequest.md)|  | [optional] |
+| **send_list_request** | [**\OneMsgSdk\Model\SendListRequest**](../Model/SendListRequest.md)|  | [optional] |
 
 ### Return type
 
-[**\OneMsgChatApi\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
 
 ### Authorization
 
@@ -1031,7 +1031,7 @@ try {
 ## `sendLocation()`
 
 ```php
-sendLocation($token, $lat, $lng, $address, $name, $quoted_msg_id, $chat_id, $phone): \OneMsgChatApi\Model\MessageSentResponse
+sendLocation($token, $lat, $lng, $address, $name, $quoted_msg_id, $chat_id, $phone): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send a Location
@@ -1046,12 +1046,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -1089,7 +1089,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
 
 ### Authorization
 
@@ -1107,7 +1107,7 @@ try {
 ## `sendLocationRequest()`
 
 ```php
-sendLocationRequest($token, $send_location_request_request): \OneMsgChatApi\Model\MessageSentResponse
+sendLocationRequest($token, $send_location_request_request): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send Location Request Message
@@ -1120,19 +1120,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$send_location_request_request = {"phone":"{{testPhone}}","body":"Text"}; // \OneMsgChatApi\Model\SendLocationRequestRequest
+$send_location_request_request = {"phone":"{{testPhone}}","body":"Text"}; // \OneMsgSdk\Model\SendLocationRequestRequest
 
 try {
     $result = $apiInstance->sendLocationRequest($token, $send_location_request_request);
@@ -1147,11 +1147,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **send_location_request_request** | [**\OneMsgChatApi\Model\SendLocationRequestRequest**](../Model/SendLocationRequestRequest.md)|  | [optional] |
+| **send_location_request_request** | [**\OneMsgSdk\Model\SendLocationRequestRequest**](../Model/SendLocationRequestRequest.md)|  | [optional] |
 
 ### Return type
 
-[**\OneMsgChatApi\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
 
 ### Authorization
 
@@ -1169,7 +1169,7 @@ try {
 ## `sendMessage()`
 
 ```php
-sendMessage($token, $body, $quoted_msg_id, $chat_id, $phone): \OneMsgChatApi\Model\MessageSentResponse
+sendMessage($token, $body, $quoted_msg_id, $chat_id, $phone): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send a Message
@@ -1184,12 +1184,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -1221,7 +1221,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
 
 ### Authorization
 
@@ -1239,7 +1239,7 @@ try {
 ## `sendOrderDetails()`
 
 ```php
-sendOrderDetails($token, $send_order_details_request): \OneMsgChatApi\Model\MessageSentResponse
+sendOrderDetails($token, $send_order_details_request): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send order details (India payments template)
@@ -1254,19 +1254,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$send_order_details_request = {"phone":919876543210,"template":"order_details_utility","namespace":"your_namespace_uuid","language":{"code":"en"},"referenceId":"order-123","currency":"INR","order":{"status":"pending","items":[{"retailer_id":"SKU-1","name":"Item","amount":{"offset":100,"value":50000},"quantity":1}],"subtotal":{"offset":100,"value":50000}}}; // \OneMsgChatApi\Model\SendOrderDetailsRequest
+$send_order_details_request = {"phone":919876543210,"template":"order_details_utility","namespace":"your_namespace_uuid","language":{"code":"en"},"referenceId":"order-123","currency":"INR","order":{"status":"pending","items":[{"retailer_id":"SKU-1","name":"Item","amount":{"offset":100,"value":50000},"quantity":1}],"subtotal":{"offset":100,"value":50000}}}; // \OneMsgSdk\Model\SendOrderDetailsRequest
 
 try {
     $result = $apiInstance->sendOrderDetails($token, $send_order_details_request);
@@ -1281,11 +1281,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **send_order_details_request** | [**\OneMsgChatApi\Model\SendOrderDetailsRequest**](../Model/SendOrderDetailsRequest.md)|  | |
+| **send_order_details_request** | [**\OneMsgSdk\Model\SendOrderDetailsRequest**](../Model/SendOrderDetailsRequest.md)|  | |
 
 ### Return type
 
-[**\OneMsgChatApi\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
 
 ### Authorization
 
@@ -1303,7 +1303,7 @@ try {
 ## `sendPaymentRequest()`
 
 ```php
-sendPaymentRequest($token, $send_payment_request_request): \OneMsgChatApi\Model\MessageSentResponse
+sendPaymentRequest($token, $send_payment_request_request): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send payment request (regional)
@@ -1318,19 +1318,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$send_payment_request_request = new \OneMsgChatApi\Model\SendPaymentRequestRequest(); // \OneMsgChatApi\Model\SendPaymentRequestRequest
+$send_payment_request_request = new \OneMsgSdk\Model\SendPaymentRequestRequest(); // \OneMsgSdk\Model\SendPaymentRequestRequest
 
 try {
     $result = $apiInstance->sendPaymentRequest($token, $send_payment_request_request);
@@ -1345,11 +1345,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **send_payment_request_request** | [**\OneMsgChatApi\Model\SendPaymentRequestRequest**](../Model/SendPaymentRequestRequest.md)|  | |
+| **send_payment_request_request** | [**\OneMsgSdk\Model\SendPaymentRequestRequest**](../Model/SendPaymentRequestRequest.md)|  | |
 
 ### Return type
 
-[**\OneMsgChatApi\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
 
 ### Authorization
 
@@ -1367,7 +1367,7 @@ try {
 ## `sendProduct()`
 
 ```php
-sendProduct($token, $request_body): \OneMsgChatApi\Model\MessageSentResponse
+sendProduct($token, $request_body): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send a Product
@@ -1380,12 +1380,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -1411,7 +1411,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
 
 ### Authorization
 
@@ -1429,7 +1429,7 @@ try {
 ## `sendReaction()`
 
 ```php
-sendReaction($token, $send_reaction_request): \OneMsgChatApi\Model\MessageSentResponse
+sendReaction($token, $send_reaction_request): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send Reaction
@@ -1442,19 +1442,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$send_reaction_request = {"phone":"{{testPhone}}","body":"😀","quotedMsgId":"{{lastMessageId}}"}; // \OneMsgChatApi\Model\SendReactionRequest
+$send_reaction_request = {"phone":"{{testPhone}}","body":"😀","quotedMsgId":"{{lastMessageId}}"}; // \OneMsgSdk\Model\SendReactionRequest
 
 try {
     $result = $apiInstance->sendReaction($token, $send_reaction_request);
@@ -1469,11 +1469,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **send_reaction_request** | [**\OneMsgChatApi\Model\SendReactionRequest**](../Model/SendReactionRequest.md)|  | [optional] |
+| **send_reaction_request** | [**\OneMsgSdk\Model\SendReactionRequest**](../Model/SendReactionRequest.md)|  | [optional] |
 
 ### Return type
 
-[**\OneMsgChatApi\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
 
 ### Authorization
 
@@ -1491,7 +1491,7 @@ try {
 ## `sendSticker()`
 
 ```php
-sendSticker($token, $send_sticker_request): \OneMsgChatApi\Model\MessageSentResponse
+sendSticker($token, $send_sticker_request): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send sticker message
@@ -1506,19 +1506,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\MessagingApi(
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$send_sticker_request = new \OneMsgChatApi\Model\SendStickerRequest(); // \OneMsgChatApi\Model\SendStickerRequest
+$send_sticker_request = new \OneMsgSdk\Model\SendStickerRequest(); // \OneMsgSdk\Model\SendStickerRequest
 
 try {
     $result = $apiInstance->sendSticker($token, $send_sticker_request);
@@ -1533,11 +1533,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **send_sticker_request** | [**\OneMsgChatApi\Model\SendStickerRequest**](../Model/SendStickerRequest.md)|  | |
+| **send_sticker_request** | [**\OneMsgSdk\Model\SendStickerRequest**](../Model/SendStickerRequest.md)|  | |
 
 ### Return type
 
-[**\OneMsgChatApi\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
 
 ### Authorization
 

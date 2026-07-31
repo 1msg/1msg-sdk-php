@@ -4,7 +4,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,14 +26,14 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi;
+namespace OneMsgSdk;
 
 /**
  * Configuration Class Doc Comment
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -101,7 +101,7 @@ class Configuration
      *
      * @var string
      */
-    protected $userAgent = 'OpenAPI-Generator/1.0.0/PHP';
+    protected $userAgent = 'OpenAPI-Generator/1.1.0/PHP';
 
     /**
      * Debug switch (default set to false)
@@ -487,11 +487,11 @@ class Configuration
      */
     public static function toDebugReport()
     {
-        $report  = 'PHP SDK (OneMsgChatApi) Debug Report:' . PHP_EOL;
+        $report  = 'PHP SDK (OneMsgSdk) Debug Report:' . PHP_EOL;
         $report .= '    OS: ' . php_uname() . PHP_EOL;
         $report .= '    PHP Version: ' . PHP_VERSION . PHP_EOL;
         $report .= '    The version of the OpenAPI document: 1.0.0' . PHP_EOL;
-        $report .= '    SDK Package Version: 1.0.0' . PHP_EOL;
+        $report .= '    SDK Package Version: 1.1.0' . PHP_EOL;
         $report .= '    Temp Folder Path: ' . self::getDefaultConfiguration()->getTempFolderPath() . PHP_EOL;
 
         return $report;

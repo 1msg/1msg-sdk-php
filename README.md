@@ -7,7 +7,7 @@ auth, quick start, and every public operation available in the client.
 
 | | |
 |---|---|
-| **Composer** | [`1msg/chat-api`](https://github.com/1msg/1msg-sdk-php) |
+| **Composer** | [`1msg/sdk`](https://github.com/1msg/1msg-sdk-php) |
 | **Source** | [github.com/1msg/1msg-sdk-php](https://github.com/1msg/1msg-sdk-php) |
 | **API docs** | [docs.1msg.io](https://docs.1msg.io/) |
 | **Platform** | [platform.1msg.io](https://platform.1msg.io/) |
@@ -22,7 +22,7 @@ auth, quick start, and every public operation available in the client.
 
 ```bash
 composer config repositories.1msg vcs https://github.com/1msg/1msg-sdk-php
-composer require 1msg/chat-api:^1.0.0
+composer require 1msg/sdk:^1.1.0
 ```
 
 ## Requirements
@@ -41,10 +41,10 @@ Use environment variables (`MSG_API_TOKEN`, `MSG_INSTANCE_ID`). Never commit tok
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()
     ->setHost('https://api.1msg.io/' . getenv('MSG_INSTANCE_ID'));
 
-$messaging = new OneMsgChatApi\Api\MessagingApi(
+$messaging = new OneMsgSdk\Api\MessagingApi(
     new GuzzleHttp\Client(),
     $config
 );
@@ -93,7 +93,7 @@ WebhooksApi    // webhooks
 
 ## Package notes
 
-Composer package is `1msg/chat-api`. Source repo is `1msg/1msg-sdk-php`. Namespace is `OneMsgChatApi`.
+Composer package is `1msg/sdk`. Source repo is `1msg/1msg-sdk-php`. Namespace is `OneMsgSdk`.
 
 ## API reference
 

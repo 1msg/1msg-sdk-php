@@ -4,7 +4,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,13 +26,13 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi;
+namespace OneMsgSdk;
 
 /**
  * HeaderSelector Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */

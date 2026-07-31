@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OneMsgChatApi\Test\Model;
+namespace OneMsgSdk\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -36,7 +36,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @category    Class
  * @description DeleteFlowsFlowId200Response
- * @package     OneMsgChatApi
+ * @package     OneMsgSdk
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */

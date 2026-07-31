@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **body** | **string** |  |
-**header** | [**\OneMsgChatApi\Model\SendFlowRequest1Header**](SendFlowRequest1Header.md) |  | [optional]
+**header** | [**\OneMsgSdk\Model\SendFlowRequest1Header**](SendFlowRequest1Header.md) |  | [optional]
 **footer** | **string** |  | [optional]
 **flow_id** | **string** |  |
 **flow_token** | **string** |  |

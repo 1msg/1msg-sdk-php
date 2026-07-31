@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Model;
+namespace OneMsgSdk\Model;
 
 use \ArrayAccess;
-use \OneMsgChatApi\ObjectSerializer;
+use \OneMsgSdk\ObjectSerializer;
 
 /**
  * SendFlowRequest1 Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class SendFlowRequest1 implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $openAPITypes = [
         'body' => 'string',
-        'header' => '\OneMsgChatApi\Model\SendFlowRequest1Header',
+        'header' => '\OneMsgSdk\Model\SendFlowRequest1Header',
         'footer' => 'string',
         'flow_id' => 'string',
         'flow_token' => 'string',
@@ -478,7 +478,7 @@ class SendFlowRequest1 implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets header
      *
-     * @return \OneMsgChatApi\Model\SendFlowRequest1Header|null
+     * @return \OneMsgSdk\Model\SendFlowRequest1Header|null
      */
     public function getHeader()
     {
@@ -488,7 +488,7 @@ class SendFlowRequest1 implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets header
      *
-     * @param \OneMsgChatApi\Model\SendFlowRequest1Header|null $header header
+     * @param \OneMsgSdk\Model\SendFlowRequest1Header|null $header header
      *
      * @return self
      */

@@ -1,4 +1,4 @@
-# AGENTS.md — 1msg/chat-api
+# AGENTS.md — 1msg/sdk
 
 > **Purpose:** exhaustive machine-readable integration guide for AI coding agents.
 > **Human docs:** [README.md](./README.md)
@@ -6,11 +6,11 @@
 ## Identity
 
 ```yaml
-package: "1msg/chat-api"
+package: "1msg/sdk"
 registry: https://github.com/1msg/1msg-sdk-php
 repository: https://github.com/1msg/1msg-sdk-php
 language: PHP
-version: 1.0.0
+version: 1.1.0
 public_only: true
 never_mention: chat-api
 ```
@@ -19,7 +19,7 @@ never_mention: chat-api
 
 ```text
 Need WhatsApp messaging from PHP?
-  └─ yes → composer require 1msg/chat-api
+  └─ yes → composer require 1msg/sdk
        └─ MessagingApi + Configuration::setHost(baseUrl/instanceId)
             ├─ text reply → sendMessage(token, body, chatId|phone)
             ├─ file/media → sendFile / uploadMedia
@@ -702,6 +702,6 @@ responses: 200, 401, 500
 openapi_title: 1MSG WhatsApp Business API (Public)
 openapi_version: 1.0.0
 operations: 60
-package: 1msg/chat-api
+package: 1msg/sdk
 registry: Composer
 

@@ -4,7 +4,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Api;
+namespace OneMsgSdk\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -37,17 +37,17 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OneMsgChatApi\ApiException;
-use OneMsgChatApi\Configuration;
-use OneMsgChatApi\FormDataProcessor;
-use OneMsgChatApi\HeaderSelector;
-use OneMsgChatApi\ObjectSerializer;
+use OneMsgSdk\ApiException;
+use OneMsgSdk\Configuration;
+use OneMsgSdk\FormDataProcessor;
+use OneMsgSdk\HeaderSelector;
+use OneMsgSdk\ObjectSerializer;
 
 /**
  * UsersApi Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -138,12 +138,12 @@ class UsersApi
      * Block WhatsApp user
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\BlockUserRequest $block_user_request block_user_request (required)
+     * @param  \OneMsgSdk\Model\BlockUserRequest $block_user_request block_user_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['blockUser'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\SuccessResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\SuccessResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function blockUser($token, $block_user_request, string $contentType = self::contentTypes['blockUser'][0])
     {
@@ -157,12 +157,12 @@ class UsersApi
      * Block WhatsApp user
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\BlockUserRequest $block_user_request (required)
+     * @param  \OneMsgSdk\Model\BlockUserRequest $block_user_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['blockUser'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\SuccessResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\SuccessResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function blockUserWithHttpInfo($token, $block_user_request, string $contentType = self::contentTypes['blockUser'][0])
     {
@@ -194,25 +194,25 @@ class UsersApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\SuccessResponse',
+                        '\OneMsgSdk\Model\SuccessResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -234,7 +234,7 @@ class UsersApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\SuccessResponse',
+                '\OneMsgSdk\Model\SuccessResponse',
                 $request,
                 $response,
             );
@@ -243,7 +243,7 @@ class UsersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\SuccessResponse',
+                        '\OneMsgSdk\Model\SuccessResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -251,7 +251,7 @@ class UsersApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -259,7 +259,7 @@ class UsersApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -267,7 +267,7 @@ class UsersApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -285,7 +285,7 @@ class UsersApi
      * Block WhatsApp user
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\BlockUserRequest $block_user_request (required)
+     * @param  \OneMsgSdk\Model\BlockUserRequest $block_user_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['blockUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -307,7 +307,7 @@ class UsersApi
      * Block WhatsApp user
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\BlockUserRequest $block_user_request (required)
+     * @param  \OneMsgSdk\Model\BlockUserRequest $block_user_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['blockUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -315,7 +315,7 @@ class UsersApi
      */
     public function blockUserAsyncWithHttpInfo($token, $block_user_request, string $contentType = self::contentTypes['blockUser'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\SuccessResponse';
+        $returnType = '\OneMsgSdk\Model\SuccessResponse';
         $request = $this->blockUserRequest($token, $block_user_request, $contentType);
 
         return $this->client
@@ -358,7 +358,7 @@ class UsersApi
      * Create request for operation 'blockUser'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\BlockUserRequest $block_user_request (required)
+     * @param  \OneMsgSdk\Model\BlockUserRequest $block_user_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['blockUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -475,9 +475,9 @@ class UsersApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBlockedUsers'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\ListBlockedUsers200Response|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\ListBlockedUsers200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function listBlockedUsers($token, string $contentType = self::contentTypes['listBlockedUsers'][0])
     {
@@ -493,9 +493,9 @@ class UsersApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBlockedUsers'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\ListBlockedUsers200Response|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\ListBlockedUsers200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function listBlockedUsersWithHttpInfo($token, string $contentType = self::contentTypes['listBlockedUsers'][0])
     {
@@ -527,19 +527,19 @@ class UsersApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ListBlockedUsers200Response',
+                        '\OneMsgSdk\Model\ListBlockedUsers200Response',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -561,7 +561,7 @@ class UsersApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\ListBlockedUsers200Response',
+                '\OneMsgSdk\Model\ListBlockedUsers200Response',
                 $request,
                 $response,
             );
@@ -570,7 +570,7 @@ class UsersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ListBlockedUsers200Response',
+                        '\OneMsgSdk\Model\ListBlockedUsers200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -578,7 +578,7 @@ class UsersApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -586,7 +586,7 @@ class UsersApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -632,7 +632,7 @@ class UsersApi
      */
     public function listBlockedUsersAsyncWithHttpInfo($token, string $contentType = self::contentTypes['listBlockedUsers'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\ListBlockedUsers200Response';
+        $returnType = '\OneMsgSdk\Model\ListBlockedUsers200Response';
         $request = $this->listBlockedUsersRequest($token, $contentType);
 
         return $this->client
@@ -775,12 +775,12 @@ class UsersApi
      * Unblock WhatsApp user
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\BlockUserRequest $block_user_request block_user_request (required)
+     * @param  \OneMsgSdk\Model\BlockUserRequest $block_user_request block_user_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unblockUser'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\SuccessResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\SuccessResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function unblockUser($token, $block_user_request, string $contentType = self::contentTypes['unblockUser'][0])
     {
@@ -794,12 +794,12 @@ class UsersApi
      * Unblock WhatsApp user
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\BlockUserRequest $block_user_request (required)
+     * @param  \OneMsgSdk\Model\BlockUserRequest $block_user_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unblockUser'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\SuccessResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\SuccessResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function unblockUserWithHttpInfo($token, $block_user_request, string $contentType = self::contentTypes['unblockUser'][0])
     {
@@ -831,25 +831,25 @@ class UsersApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\SuccessResponse',
+                        '\OneMsgSdk\Model\SuccessResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -871,7 +871,7 @@ class UsersApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\SuccessResponse',
+                '\OneMsgSdk\Model\SuccessResponse',
                 $request,
                 $response,
             );
@@ -880,7 +880,7 @@ class UsersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\SuccessResponse',
+                        '\OneMsgSdk\Model\SuccessResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -888,7 +888,7 @@ class UsersApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -896,7 +896,7 @@ class UsersApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -904,7 +904,7 @@ class UsersApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -922,7 +922,7 @@ class UsersApi
      * Unblock WhatsApp user
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\BlockUserRequest $block_user_request (required)
+     * @param  \OneMsgSdk\Model\BlockUserRequest $block_user_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unblockUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -944,7 +944,7 @@ class UsersApi
      * Unblock WhatsApp user
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\BlockUserRequest $block_user_request (required)
+     * @param  \OneMsgSdk\Model\BlockUserRequest $block_user_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unblockUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -952,7 +952,7 @@ class UsersApi
      */
     public function unblockUserAsyncWithHttpInfo($token, $block_user_request, string $contentType = self::contentTypes['unblockUser'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\SuccessResponse';
+        $returnType = '\OneMsgSdk\Model\SuccessResponse';
         $request = $this->unblockUserRequest($token, $block_user_request, $contentType);
 
         return $this->client
@@ -995,7 +995,7 @@ class UsersApi
      * Create request for operation 'unblockUser'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\BlockUserRequest $block_user_request (required)
+     * @param  \OneMsgSdk\Model\BlockUserRequest $block_user_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unblockUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

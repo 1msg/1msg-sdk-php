@@ -4,7 +4,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Api;
+namespace OneMsgSdk\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -37,17 +37,17 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OneMsgChatApi\ApiException;
-use OneMsgChatApi\Configuration;
-use OneMsgChatApi\FormDataProcessor;
-use OneMsgChatApi\HeaderSelector;
-use OneMsgChatApi\ObjectSerializer;
+use OneMsgSdk\ApiException;
+use OneMsgSdk\Configuration;
+use OneMsgSdk\FormDataProcessor;
+use OneMsgSdk\HeaderSelector;
+use OneMsgSdk\ObjectSerializer;
 
 /**
  * FlowsApi Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -165,9 +165,9 @@ class FlowsApi
      * @param  string|null $waba_account_id waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlows'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\CreateGroups200Response
+     * @return \OneMsgSdk\Model\CreateGroups200Response
      */
     public function createFlows($token, $waba_account_id = null, string $contentType = self::contentTypes['createFlows'][0])
     {
@@ -184,9 +184,9 @@ class FlowsApi
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlows'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\CreateGroups200Response, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\CreateGroups200Response, HTTP status code, HTTP response headers (array of strings)
      */
     public function createFlowsWithHttpInfo($token, $waba_account_id = null, string $contentType = self::contentTypes['createFlows'][0])
     {
@@ -218,7 +218,7 @@ class FlowsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\CreateGroups200Response',
+                        '\OneMsgSdk\Model\CreateGroups200Response',
                         $request,
                         $response,
                     );
@@ -240,7 +240,7 @@ class FlowsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\CreateGroups200Response',
+                '\OneMsgSdk\Model\CreateGroups200Response',
                 $request,
                 $response,
             );
@@ -249,7 +249,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\CreateGroups200Response',
+                        '\OneMsgSdk\Model\CreateGroups200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -297,7 +297,7 @@ class FlowsApi
      */
     public function createFlowsAsyncWithHttpInfo($token, $waba_account_id = null, string $contentType = self::contentTypes['createFlows'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\CreateGroups200Response';
+        $returnType = '\OneMsgSdk\Model\CreateGroups200Response';
         $request = $this->createFlowsRequest($token, $waba_account_id, $contentType);
 
         return $this->client
@@ -455,7 +455,7 @@ class FlowsApi
      * @param  string|null $waba_account_id waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlowsFlowIdDeprecate'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array<string,mixed>
      */
@@ -475,7 +475,7 @@ class FlowsApi
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlowsFlowIdDeprecate'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of array<string,mixed>, HTTP status code, HTTP response headers (array of strings)
      */
@@ -764,7 +764,7 @@ class FlowsApi
      * @param  string|null $waba_account_id waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlowsFlowIdPublish'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array<string,mixed>
      */
@@ -784,7 +784,7 @@ class FlowsApi
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlowsFlowIdPublish'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of array<string,mixed>, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1073,9 +1073,9 @@ class FlowsApi
      * @param  string|null $waba_account_id waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFlowsFlowId'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\DeleteFlowsFlowId200Response
+     * @return \OneMsgSdk\Model\DeleteFlowsFlowId200Response
      */
     public function deleteFlowsFlowId($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['deleteFlowsFlowId'][0])
     {
@@ -1093,9 +1093,9 @@ class FlowsApi
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFlowsFlowId'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\DeleteFlowsFlowId200Response, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\DeleteFlowsFlowId200Response, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteFlowsFlowIdWithHttpInfo($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['deleteFlowsFlowId'][0])
     {
@@ -1127,7 +1127,7 @@ class FlowsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\DeleteFlowsFlowId200Response',
+                        '\OneMsgSdk\Model\DeleteFlowsFlowId200Response',
                         $request,
                         $response,
                     );
@@ -1149,7 +1149,7 @@ class FlowsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\DeleteFlowsFlowId200Response',
+                '\OneMsgSdk\Model\DeleteFlowsFlowId200Response',
                 $request,
                 $response,
             );
@@ -1158,7 +1158,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\DeleteFlowsFlowId200Response',
+                        '\OneMsgSdk\Model\DeleteFlowsFlowId200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1208,7 +1208,7 @@ class FlowsApi
      */
     public function deleteFlowsFlowIdAsyncWithHttpInfo($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['deleteFlowsFlowId'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\DeleteFlowsFlowId200Response';
+        $returnType = '\OneMsgSdk\Model\DeleteFlowsFlowId200Response';
         $request = $this->deleteFlowsFlowIdRequest($flow_id, $token, $waba_account_id, $contentType);
 
         return $this->client
@@ -1382,9 +1382,9 @@ class FlowsApi
      * @param  string|null $waba_account_id waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlowsFlowId'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\CreateGroups200Response
+     * @return \OneMsgSdk\Model\CreateGroups200Response
      */
     public function getFlowsFlowId($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['getFlowsFlowId'][0])
     {
@@ -1402,9 +1402,9 @@ class FlowsApi
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlowsFlowId'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\CreateGroups200Response, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\CreateGroups200Response, HTTP status code, HTTP response headers (array of strings)
      */
     public function getFlowsFlowIdWithHttpInfo($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['getFlowsFlowId'][0])
     {
@@ -1436,7 +1436,7 @@ class FlowsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\CreateGroups200Response',
+                        '\OneMsgSdk\Model\CreateGroups200Response',
                         $request,
                         $response,
                     );
@@ -1458,7 +1458,7 @@ class FlowsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\CreateGroups200Response',
+                '\OneMsgSdk\Model\CreateGroups200Response',
                 $request,
                 $response,
             );
@@ -1467,7 +1467,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\CreateGroups200Response',
+                        '\OneMsgSdk\Model\CreateGroups200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1517,7 +1517,7 @@ class FlowsApi
      */
     public function getFlowsFlowIdAsyncWithHttpInfo($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['getFlowsFlowId'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\CreateGroups200Response';
+        $returnType = '\OneMsgSdk\Model\CreateGroups200Response';
         $request = $this->getFlowsFlowIdRequest($flow_id, $token, $waba_account_id, $contentType);
 
         return $this->client
@@ -1691,7 +1691,7 @@ class FlowsApi
      * @param  string|null $waba_account_id waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlowsFlowIdPreview'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array<string,mixed>
      */
@@ -1711,7 +1711,7 @@ class FlowsApi
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlowsFlowIdPreview'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of array<string,mixed>, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1998,9 +1998,9 @@ class FlowsApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWhatsappBusinessEncryption'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\GetWhatsappBusinessEncryption200Response|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\GetWhatsappBusinessEncryption200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function getWhatsappBusinessEncryption($token, string $contentType = self::contentTypes['getWhatsappBusinessEncryption'][0])
     {
@@ -2016,9 +2016,9 @@ class FlowsApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWhatsappBusinessEncryption'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\GetWhatsappBusinessEncryption200Response|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\GetWhatsappBusinessEncryption200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getWhatsappBusinessEncryptionWithHttpInfo($token, string $contentType = self::contentTypes['getWhatsappBusinessEncryption'][0])
     {
@@ -2050,19 +2050,19 @@ class FlowsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\GetWhatsappBusinessEncryption200Response',
+                        '\OneMsgSdk\Model\GetWhatsappBusinessEncryption200Response',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -2084,7 +2084,7 @@ class FlowsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\GetWhatsappBusinessEncryption200Response',
+                '\OneMsgSdk\Model\GetWhatsappBusinessEncryption200Response',
                 $request,
                 $response,
             );
@@ -2093,7 +2093,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\GetWhatsappBusinessEncryption200Response',
+                        '\OneMsgSdk\Model\GetWhatsappBusinessEncryption200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2101,7 +2101,7 @@ class FlowsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2109,7 +2109,7 @@ class FlowsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2155,7 +2155,7 @@ class FlowsApi
      */
     public function getWhatsappBusinessEncryptionAsyncWithHttpInfo($token, string $contentType = self::contentTypes['getWhatsappBusinessEncryption'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\GetWhatsappBusinessEncryption200Response';
+        $returnType = '\OneMsgSdk\Model\GetWhatsappBusinessEncryption200Response';
         $request = $this->getWhatsappBusinessEncryptionRequest($token, $contentType);
 
         return $this->client
@@ -2301,9 +2301,9 @@ class FlowsApi
      * @param  string|null $waba_account_id waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlows'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\ListFlows200Response
+     * @return \OneMsgSdk\Model\ListFlows200Response
      */
     public function listFlows($token, $waba_account_id = null, string $contentType = self::contentTypes['listFlows'][0])
     {
@@ -2320,9 +2320,9 @@ class FlowsApi
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlows'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\ListFlows200Response, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\ListFlows200Response, HTTP status code, HTTP response headers (array of strings)
      */
     public function listFlowsWithHttpInfo($token, $waba_account_id = null, string $contentType = self::contentTypes['listFlows'][0])
     {
@@ -2354,7 +2354,7 @@ class FlowsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ListFlows200Response',
+                        '\OneMsgSdk\Model\ListFlows200Response',
                         $request,
                         $response,
                     );
@@ -2376,7 +2376,7 @@ class FlowsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\ListFlows200Response',
+                '\OneMsgSdk\Model\ListFlows200Response',
                 $request,
                 $response,
             );
@@ -2385,7 +2385,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ListFlows200Response',
+                        '\OneMsgSdk\Model\ListFlows200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2433,7 +2433,7 @@ class FlowsApi
      */
     public function listFlowsAsyncWithHttpInfo($token, $waba_account_id = null, string $contentType = self::contentTypes['listFlows'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\ListFlows200Response';
+        $returnType = '\OneMsgSdk\Model\ListFlows200Response';
         $request = $this->listFlowsRequest($token, $waba_account_id, $contentType);
 
         return $this->client
@@ -2591,9 +2591,9 @@ class FlowsApi
      * @param  string|null $waba_account_id waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchFlowsFlowIdAssets'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\PatchFlowsFlowIdAssets200Response
+     * @return \OneMsgSdk\Model\PatchFlowsFlowIdAssets200Response
      */
     public function patchFlowsFlowIdAssets($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdAssets'][0])
     {
@@ -2611,9 +2611,9 @@ class FlowsApi
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchFlowsFlowIdAssets'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\PatchFlowsFlowIdAssets200Response, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\PatchFlowsFlowIdAssets200Response, HTTP status code, HTTP response headers (array of strings)
      */
     public function patchFlowsFlowIdAssetsWithHttpInfo($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdAssets'][0])
     {
@@ -2645,7 +2645,7 @@ class FlowsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\PatchFlowsFlowIdAssets200Response',
+                        '\OneMsgSdk\Model\PatchFlowsFlowIdAssets200Response',
                         $request,
                         $response,
                     );
@@ -2667,7 +2667,7 @@ class FlowsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\PatchFlowsFlowIdAssets200Response',
+                '\OneMsgSdk\Model\PatchFlowsFlowIdAssets200Response',
                 $request,
                 $response,
             );
@@ -2676,7 +2676,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\PatchFlowsFlowIdAssets200Response',
+                        '\OneMsgSdk\Model\PatchFlowsFlowIdAssets200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2726,7 +2726,7 @@ class FlowsApi
      */
     public function patchFlowsFlowIdAssetsAsyncWithHttpInfo($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdAssets'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\PatchFlowsFlowIdAssets200Response';
+        $returnType = '\OneMsgSdk\Model\PatchFlowsFlowIdAssets200Response';
         $request = $this->patchFlowsFlowIdAssetsRequest($flow_id, $token, $waba_account_id, $contentType);
 
         return $this->client
@@ -2900,7 +2900,7 @@ class FlowsApi
      * @param  string|null $waba_account_id waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchFlowsFlowIdMetadata'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array<string,mixed>
      */
@@ -2920,7 +2920,7 @@ class FlowsApi
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchFlowsFlowIdMetadata'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of array<string,mixed>, HTTP status code, HTTP response headers (array of strings)
      */
@@ -3205,12 +3205,12 @@ class FlowsApi
      * Set business encryption public key
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SetWhatsappBusinessEncryptionRequest $set_whatsapp_business_encryption_request set_whatsapp_business_encryption_request (required)
+     * @param  \OneMsgSdk\Model\SetWhatsappBusinessEncryptionRequest $set_whatsapp_business_encryption_request set_whatsapp_business_encryption_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setWhatsappBusinessEncryption'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\CreateCommerce200Response|\OneMsgChatApi\Model\CreateReadMessage401Response|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\CreateCommerce200Response|\OneMsgSdk\Model\CreateReadMessage401Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function setWhatsappBusinessEncryption($token, $set_whatsapp_business_encryption_request, string $contentType = self::contentTypes['setWhatsappBusinessEncryption'][0])
     {
@@ -3224,12 +3224,12 @@ class FlowsApi
      * Set business encryption public key
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SetWhatsappBusinessEncryptionRequest $set_whatsapp_business_encryption_request (required)
+     * @param  \OneMsgSdk\Model\SetWhatsappBusinessEncryptionRequest $set_whatsapp_business_encryption_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setWhatsappBusinessEncryption'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\CreateCommerce200Response|\OneMsgChatApi\Model\CreateReadMessage401Response|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\CreateCommerce200Response|\OneMsgSdk\Model\CreateReadMessage401Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function setWhatsappBusinessEncryptionWithHttpInfo($token, $set_whatsapp_business_encryption_request, string $contentType = self::contentTypes['setWhatsappBusinessEncryption'][0])
     {
@@ -3261,25 +3261,25 @@ class FlowsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\CreateCommerce200Response',
+                        '\OneMsgSdk\Model\CreateCommerce200Response',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\CreateReadMessage401Response',
+                        '\OneMsgSdk\Model\CreateReadMessage401Response',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -3301,7 +3301,7 @@ class FlowsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\CreateCommerce200Response',
+                '\OneMsgSdk\Model\CreateCommerce200Response',
                 $request,
                 $response,
             );
@@ -3310,7 +3310,7 @@ class FlowsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\CreateCommerce200Response',
+                        '\OneMsgSdk\Model\CreateCommerce200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3318,7 +3318,7 @@ class FlowsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\CreateReadMessage401Response',
+                        '\OneMsgSdk\Model\CreateReadMessage401Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3326,7 +3326,7 @@ class FlowsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3334,7 +3334,7 @@ class FlowsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3352,7 +3352,7 @@ class FlowsApi
      * Set business encryption public key
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SetWhatsappBusinessEncryptionRequest $set_whatsapp_business_encryption_request (required)
+     * @param  \OneMsgSdk\Model\SetWhatsappBusinessEncryptionRequest $set_whatsapp_business_encryption_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setWhatsappBusinessEncryption'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3374,7 +3374,7 @@ class FlowsApi
      * Set business encryption public key
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SetWhatsappBusinessEncryptionRequest $set_whatsapp_business_encryption_request (required)
+     * @param  \OneMsgSdk\Model\SetWhatsappBusinessEncryptionRequest $set_whatsapp_business_encryption_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setWhatsappBusinessEncryption'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3382,7 +3382,7 @@ class FlowsApi
      */
     public function setWhatsappBusinessEncryptionAsyncWithHttpInfo($token, $set_whatsapp_business_encryption_request, string $contentType = self::contentTypes['setWhatsappBusinessEncryption'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\CreateCommerce200Response';
+        $returnType = '\OneMsgSdk\Model\CreateCommerce200Response';
         $request = $this->setWhatsappBusinessEncryptionRequest($token, $set_whatsapp_business_encryption_request, $contentType);
 
         return $this->client
@@ -3425,7 +3425,7 @@ class FlowsApi
      * Create request for operation 'setWhatsappBusinessEncryption'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SetWhatsappBusinessEncryptionRequest $set_whatsapp_business_encryption_request (required)
+     * @param  \OneMsgSdk\Model\SetWhatsappBusinessEncryptionRequest $set_whatsapp_business_encryption_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setWhatsappBusinessEncryption'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

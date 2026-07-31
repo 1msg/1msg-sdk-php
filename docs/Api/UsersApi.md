@@ -1,4 +1,4 @@
-# OneMsgChatApi\UsersApi
+# OneMsgSdk\UsersApi
 
 Block, unblock, and list blocked WhatsApp users
 
@@ -14,7 +14,7 @@ All URIs are relative to https://api.1msg.io, except if the operation defines an
 ## `blockUser()`
 
 ```php
-blockUser($token, $block_user_request): \OneMsgChatApi\Model\SuccessResponse
+blockUser($token, $block_user_request): \OneMsgSdk\Model\SuccessResponse
 ```
 
 Block WhatsApp user
@@ -27,19 +27,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\UsersApi(
+$apiInstance = new OneMsgSdk\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$block_user_request = new \OneMsgChatApi\Model\BlockUserRequest(); // \OneMsgChatApi\Model\BlockUserRequest
+$block_user_request = new \OneMsgSdk\Model\BlockUserRequest(); // \OneMsgSdk\Model\BlockUserRequest
 
 try {
     $result = $apiInstance->blockUser($token, $block_user_request);
@@ -54,11 +54,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **block_user_request** | [**\OneMsgChatApi\Model\BlockUserRequest**](../Model/BlockUserRequest.md)|  | |
+| **block_user_request** | [**\OneMsgSdk\Model\BlockUserRequest**](../Model/BlockUserRequest.md)|  | |
 
 ### Return type
 
-[**\OneMsgChatApi\Model\SuccessResponse**](../Model/SuccessResponse.md)
+[**\OneMsgSdk\Model\SuccessResponse**](../Model/SuccessResponse.md)
 
 ### Authorization
 
@@ -76,7 +76,7 @@ try {
 ## `listBlockedUsers()`
 
 ```php
-listBlockedUsers($token): \OneMsgChatApi\Model\ListBlockedUsers200Response
+listBlockedUsers($token): \OneMsgSdk\Model\ListBlockedUsers200Response
 ```
 
 List blocked WhatsApp users
@@ -91,12 +91,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\UsersApi(
+$apiInstance = new OneMsgSdk\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -120,7 +120,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\ListBlockedUsers200Response**](../Model/ListBlockedUsers200Response.md)
+[**\OneMsgSdk\Model\ListBlockedUsers200Response**](../Model/ListBlockedUsers200Response.md)
 
 ### Authorization
 
@@ -138,7 +138,7 @@ try {
 ## `unblockUser()`
 
 ```php
-unblockUser($token, $block_user_request): \OneMsgChatApi\Model\SuccessResponse
+unblockUser($token, $block_user_request): \OneMsgSdk\Model\SuccessResponse
 ```
 
 Unblock WhatsApp user
@@ -151,19 +151,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\UsersApi(
+$apiInstance = new OneMsgSdk\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$block_user_request = new \OneMsgChatApi\Model\BlockUserRequest(); // \OneMsgChatApi\Model\BlockUserRequest
+$block_user_request = new \OneMsgSdk\Model\BlockUserRequest(); // \OneMsgSdk\Model\BlockUserRequest
 
 try {
     $result = $apiInstance->unblockUser($token, $block_user_request);
@@ -178,11 +178,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **block_user_request** | [**\OneMsgChatApi\Model\BlockUserRequest**](../Model/BlockUserRequest.md)|  | |
+| **block_user_request** | [**\OneMsgSdk\Model\BlockUserRequest**](../Model/BlockUserRequest.md)|  | |
 
 ### Return type
 
-[**\OneMsgChatApi\Model\SuccessResponse**](../Model/SuccessResponse.md)
+[**\OneMsgSdk\Model\SuccessResponse**](../Model/SuccessResponse.md)
 
 ### Authorization
 

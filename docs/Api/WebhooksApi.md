@@ -1,4 +1,4 @@
-# OneMsgChatApi\WebhooksApi
+# OneMsgSdk\WebhooksApi
 
 Client webhook URL configuration
 
@@ -13,7 +13,7 @@ All URIs are relative to https://api.1msg.io, except if the operation defines an
 ## `getWebhook()`
 
 ```php
-getWebhook($token): \OneMsgChatApi\Model\GetWebhook200Response
+getWebhook($token): \OneMsgSdk\Model\GetWebhook200Response
 ```
 
 Get webhook URL
@@ -28,12 +28,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\WebhooksApi(
+$apiInstance = new OneMsgSdk\Api\WebhooksApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -57,7 +57,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\GetWebhook200Response**](../Model/GetWebhook200Response.md)
+[**\OneMsgSdk\Model\GetWebhook200Response**](../Model/GetWebhook200Response.md)
 
 ### Authorization
 
@@ -90,19 +90,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\WebhooksApi(
+$apiInstance = new OneMsgSdk\Api\WebhooksApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$get_webhook200_response = new \OneMsgChatApi\Model\GetWebhook200Response(); // \OneMsgChatApi\Model\GetWebhook200Response
+$get_webhook200_response = new \OneMsgSdk\Model\GetWebhook200Response(); // \OneMsgSdk\Model\GetWebhook200Response
 
 try {
     $result = $apiInstance->setWebhook($token, $get_webhook200_response);
@@ -117,7 +117,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **get_webhook200_response** | [**\OneMsgChatApi\Model\GetWebhook200Response**](../Model/GetWebhook200Response.md)|  | [optional] |
+| **get_webhook200_response** | [**\OneMsgSdk\Model\GetWebhook200Response**](../Model/GetWebhook200Response.md)|  | [optional] |
 
 ### Return type
 

@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Model;
+namespace OneMsgSdk\Model;
 
 use \ArrayAccess;
-use \OneMsgChatApi\ObjectSerializer;
+use \OneMsgSdk\ObjectSerializer;
 
 /**
  * SendOrderDetailsRequest Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -62,12 +62,12 @@ class SendOrderDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'chat_id' => 'string',
         'template' => 'string',
         'namespace' => 'string',
-        'language' => '\OneMsgChatApi\Model\SendOrderDetailsRequestLanguage',
+        'language' => '\OneMsgSdk\Model\SendOrderDetailsRequestLanguage',
         'params' => 'array<string,mixed>[]',
         'reference_id' => 'string',
         'currency' => 'string',
         'payment_settings' => 'array<string,mixed>',
-        'order' => '\OneMsgChatApi\Model\SendOrderDetailsRequestOrder'
+        'order' => '\OneMsgSdk\Model\SendOrderDetailsRequestOrder'
     ];
 
     /**
@@ -476,7 +476,7 @@ class SendOrderDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets language
      *
-     * @return \OneMsgChatApi\Model\SendOrderDetailsRequestLanguage
+     * @return \OneMsgSdk\Model\SendOrderDetailsRequestLanguage
      */
     public function getLanguage()
     {
@@ -486,7 +486,7 @@ class SendOrderDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets language
      *
-     * @param \OneMsgChatApi\Model\SendOrderDetailsRequestLanguage $language language
+     * @param \OneMsgSdk\Model\SendOrderDetailsRequestLanguage $language language
      *
      * @return self
      */
@@ -611,7 +611,7 @@ class SendOrderDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets order
      *
-     * @return \OneMsgChatApi\Model\SendOrderDetailsRequestOrder
+     * @return \OneMsgSdk\Model\SendOrderDetailsRequestOrder
      */
     public function getOrder()
     {
@@ -621,7 +621,7 @@ class SendOrderDetailsRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets order
      *
-     * @param \OneMsgChatApi\Model\SendOrderDetailsRequestOrder $order order
+     * @param \OneMsgSdk\Model\SendOrderDetailsRequestOrder $order order
      *
      * @return self
      */

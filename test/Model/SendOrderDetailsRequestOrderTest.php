@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OneMsgChatApi\Test\Model;
+namespace OneMsgSdk\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -36,7 +36,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @category    Class
  * @description Order payload for the ORDER_DETAILS button. Typical fields: status, items[], subtotal, tax, shipping, discount. Amount objects use &#x60;{ \&quot;offset\&quot;: 100, \&quot;value\&quot;: &lt;minor_units&gt; }&#x60; (e.g. value 50000 with offset 100 &#x3D; ₹500.00).
- * @package     OneMsgChatApi
+ * @package     OneMsgSdk
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */

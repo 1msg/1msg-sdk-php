@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,17 +27,17 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Model;
+namespace OneMsgSdk\Model;
 
 use \ArrayAccess;
-use \OneMsgChatApi\ObjectSerializer;
+use \OneMsgSdk\ObjectSerializer;
 
 /**
  * SendMessageRequest Class Doc Comment
  *
  * @category Class
  * @description Request body for sending a text message
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>

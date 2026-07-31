@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,17 +27,17 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Model;
+namespace OneMsgSdk\Model;
 
 use \ArrayAccess;
-use \OneMsgChatApi\ObjectSerializer;
+use \OneMsgSdk\ObjectSerializer;
 
 /**
  * SendOrderDetailsRequestOrder Class Doc Comment
  *
  * @category Class
  * @description Order payload for the ORDER_DETAILS button. Typical fields: status, items[], subtotal, tax, shipping, discount. Amount objects use &#x60;{ \&quot;offset\&quot;: 100, \&quot;value\&quot;: &lt;minor_units&gt; }&#x60; (e.g. value 50000 with offset 100 &#x3D; ₹500.00).
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,8 +60,8 @@ class SendOrderDetailsRequestOrder implements ModelInterface, ArrayAccess, \Json
      */
     protected static $openAPITypes = [
         'status' => 'string',
-        'items' => '\OneMsgChatApi\Model\SendOrderDetailsRequestOrderItemsInner[]',
-        'subtotal' => '\OneMsgChatApi\Model\SendOrderDetailsRequestOrderItemsInnerAmount',
+        'items' => '\OneMsgSdk\Model\SendOrderDetailsRequestOrderItemsInner[]',
+        'subtotal' => '\OneMsgSdk\Model\SendOrderDetailsRequestOrderItemsInnerAmount',
         'tax' => 'array<string,mixed>',
         'shipping' => 'array<string,mixed>',
         'discount' => 'array<string,mixed>'
@@ -359,7 +359,7 @@ class SendOrderDetailsRequestOrder implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets items
      *
-     * @return \OneMsgChatApi\Model\SendOrderDetailsRequestOrderItemsInner[]
+     * @return \OneMsgSdk\Model\SendOrderDetailsRequestOrderItemsInner[]
      */
     public function getItems()
     {
@@ -369,7 +369,7 @@ class SendOrderDetailsRequestOrder implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets items
      *
-     * @param \OneMsgChatApi\Model\SendOrderDetailsRequestOrderItemsInner[] $items Line items
+     * @param \OneMsgSdk\Model\SendOrderDetailsRequestOrderItemsInner[] $items Line items
      *
      * @return self
      */
@@ -386,7 +386,7 @@ class SendOrderDetailsRequestOrder implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets subtotal
      *
-     * @return \OneMsgChatApi\Model\SendOrderDetailsRequestOrderItemsInnerAmount|null
+     * @return \OneMsgSdk\Model\SendOrderDetailsRequestOrderItemsInnerAmount|null
      */
     public function getSubtotal()
     {
@@ -396,7 +396,7 @@ class SendOrderDetailsRequestOrder implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets subtotal
      *
-     * @param \OneMsgChatApi\Model\SendOrderDetailsRequestOrderItemsInnerAmount|null $subtotal subtotal
+     * @param \OneMsgSdk\Model\SendOrderDetailsRequestOrderItemsInnerAmount|null $subtotal subtotal
      *
      * @return self
      */

@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Model;
+namespace OneMsgSdk\Model;
 
 use \ArrayAccess;
-use \OneMsgChatApi\ObjectSerializer;
+use \OneMsgSdk\ObjectSerializer;
 
 /**
  * SendListRequestSectionsInner Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class SendListRequestSectionsInner implements ModelInterface, ArrayAccess, \Json
      */
     protected static $openAPITypes = [
         'title' => 'string',
-        'rows' => '\OneMsgChatApi\Model\SendListRequestSectionsInnerRowsInner[]'
+        'rows' => '\OneMsgSdk\Model\SendListRequestSectionsInnerRowsInner[]'
     ];
 
     /**
@@ -327,7 +327,7 @@ class SendListRequestSectionsInner implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets rows
      *
-     * @return \OneMsgChatApi\Model\SendListRequestSectionsInnerRowsInner[]|null
+     * @return \OneMsgSdk\Model\SendListRequestSectionsInnerRowsInner[]|null
      */
     public function getRows()
     {
@@ -337,7 +337,7 @@ class SendListRequestSectionsInner implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets rows
      *
-     * @param \OneMsgChatApi\Model\SendListRequestSectionsInnerRowsInner[]|null $rows rows
+     * @param \OneMsgSdk\Model\SendListRequestSectionsInnerRowsInner[]|null $rows rows
      *
      * @return self
      */

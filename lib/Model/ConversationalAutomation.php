@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Model;
+namespace OneMsgSdk\Model;
 
 use \ArrayAccess;
-use \OneMsgChatApi\ObjectSerializer;
+use \OneMsgSdk\ObjectSerializer;
 
 /**
  * ConversationalAutomation Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class ConversationalAutomation implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPITypes = [
         'enable_welcome_message' => 'bool',
         'prompts' => 'string[]',
-        'commands' => '\OneMsgChatApi\Model\ConversationalAutomationCommandsInner[]'
+        'commands' => '\OneMsgSdk\Model\ConversationalAutomationCommandsInner[]'
     ];
 
     /**
@@ -373,7 +373,7 @@ class ConversationalAutomation implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets commands
      *
-     * @return \OneMsgChatApi\Model\ConversationalAutomationCommandsInner[]|null
+     * @return \OneMsgSdk\Model\ConversationalAutomationCommandsInner[]|null
      */
     public function getCommands()
     {
@@ -383,7 +383,7 @@ class ConversationalAutomation implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets commands
      *
-     * @param \OneMsgChatApi\Model\ConversationalAutomationCommandsInner[]|null $commands Slash commands shown in WhatsApp
+     * @param \OneMsgSdk\Model\ConversationalAutomationCommandsInner[]|null $commands Slash commands shown in WhatsApp
      *
      * @return self
      */

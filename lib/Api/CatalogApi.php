@@ -4,7 +4,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Api;
+namespace OneMsgSdk\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -37,17 +37,17 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OneMsgChatApi\ApiException;
-use OneMsgChatApi\Configuration;
-use OneMsgChatApi\FormDataProcessor;
-use OneMsgChatApi\HeaderSelector;
-use OneMsgChatApi\ObjectSerializer;
+use OneMsgSdk\ApiException;
+use OneMsgSdk\Configuration;
+use OneMsgSdk\FormDataProcessor;
+use OneMsgSdk\HeaderSelector;
+use OneMsgSdk\ObjectSerializer;
 
 /**
  * CatalogApi Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -135,12 +135,12 @@ class CatalogApi
      * Set Commerce Settings
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\CreateCommerceRequest $create_commerce_request create_commerce_request (required)
+     * @param  \OneMsgSdk\Model\CreateCommerceRequest $create_commerce_request create_commerce_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommerce'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\CreateCommerce200Response|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\CreateCommerce200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function createCommerce($token, $create_commerce_request, string $contentType = self::contentTypes['createCommerce'][0])
     {
@@ -154,12 +154,12 @@ class CatalogApi
      * Set Commerce Settings
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\CreateCommerceRequest $create_commerce_request (required)
+     * @param  \OneMsgSdk\Model\CreateCommerceRequest $create_commerce_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommerce'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\CreateCommerce200Response|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\CreateCommerce200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function createCommerceWithHttpInfo($token, $create_commerce_request, string $contentType = self::contentTypes['createCommerce'][0])
     {
@@ -191,19 +191,19 @@ class CatalogApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\CreateCommerce200Response',
+                        '\OneMsgSdk\Model\CreateCommerce200Response',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -225,7 +225,7 @@ class CatalogApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\CreateCommerce200Response',
+                '\OneMsgSdk\Model\CreateCommerce200Response',
                 $request,
                 $response,
             );
@@ -234,7 +234,7 @@ class CatalogApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\CreateCommerce200Response',
+                        '\OneMsgSdk\Model\CreateCommerce200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -242,7 +242,7 @@ class CatalogApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -250,7 +250,7 @@ class CatalogApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -268,7 +268,7 @@ class CatalogApi
      * Set Commerce Settings
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\CreateCommerceRequest $create_commerce_request (required)
+     * @param  \OneMsgSdk\Model\CreateCommerceRequest $create_commerce_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommerce'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -290,7 +290,7 @@ class CatalogApi
      * Set Commerce Settings
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\CreateCommerceRequest $create_commerce_request (required)
+     * @param  \OneMsgSdk\Model\CreateCommerceRequest $create_commerce_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommerce'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -298,7 +298,7 @@ class CatalogApi
      */
     public function createCommerceAsyncWithHttpInfo($token, $create_commerce_request, string $contentType = self::contentTypes['createCommerce'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\CreateCommerce200Response';
+        $returnType = '\OneMsgSdk\Model\CreateCommerce200Response';
         $request = $this->createCommerceRequest($token, $create_commerce_request, $contentType);
 
         return $this->client
@@ -341,7 +341,7 @@ class CatalogApi
      * Create request for operation 'createCommerce'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\CreateCommerceRequest $create_commerce_request (required)
+     * @param  \OneMsgSdk\Model\CreateCommerceRequest $create_commerce_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCommerce'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -458,9 +458,9 @@ class CatalogApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCommerce'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\GetCommerce200ResponseInner[]|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\GetCommerce200ResponseInner[]|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function getCommerce($token, string $contentType = self::contentTypes['getCommerce'][0])
     {
@@ -476,9 +476,9 @@ class CatalogApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCommerce'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\GetCommerce200ResponseInner[]|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\GetCommerce200ResponseInner[]|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getCommerceWithHttpInfo($token, string $contentType = self::contentTypes['getCommerce'][0])
     {
@@ -510,19 +510,19 @@ class CatalogApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\GetCommerce200ResponseInner[]',
+                        '\OneMsgSdk\Model\GetCommerce200ResponseInner[]',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -544,7 +544,7 @@ class CatalogApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\GetCommerce200ResponseInner[]',
+                '\OneMsgSdk\Model\GetCommerce200ResponseInner[]',
                 $request,
                 $response,
             );
@@ -553,7 +553,7 @@ class CatalogApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\GetCommerce200ResponseInner[]',
+                        '\OneMsgSdk\Model\GetCommerce200ResponseInner[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -561,7 +561,7 @@ class CatalogApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -569,7 +569,7 @@ class CatalogApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -615,7 +615,7 @@ class CatalogApi
      */
     public function getCommerceAsyncWithHttpInfo($token, string $contentType = self::contentTypes['getCommerce'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\GetCommerce200ResponseInner[]';
+        $returnType = '\OneMsgSdk\Model\GetCommerce200ResponseInner[]';
         $request = $this->getCommerceRequest($token, $contentType);
 
         return $this->client

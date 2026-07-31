@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Model;
+namespace OneMsgSdk\Model;
 
 use \ArrayAccess;
-use \OneMsgChatApi\ObjectSerializer;
+use \OneMsgSdk\ObjectSerializer;
 
 /**
  * SendButtonRequestSectionsInner Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class SendButtonRequestSectionsInner implements ModelInterface, ArrayAccess, \Js
      */
     protected static $openAPITypes = [
         'type' => 'string',
-        'reply' => '\OneMsgChatApi\Model\SendButtonRequestSectionsInnerReply'
+        'reply' => '\OneMsgSdk\Model\SendButtonRequestSectionsInnerReply'
     ];
 
     /**
@@ -327,7 +327,7 @@ class SendButtonRequestSectionsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets reply
      *
-     * @return \OneMsgChatApi\Model\SendButtonRequestSectionsInnerReply|null
+     * @return \OneMsgSdk\Model\SendButtonRequestSectionsInnerReply|null
      */
     public function getReply()
     {
@@ -337,7 +337,7 @@ class SendButtonRequestSectionsInner implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets reply
      *
-     * @param \OneMsgChatApi\Model\SendButtonRequestSectionsInnerReply|null $reply reply
+     * @param \OneMsgSdk\Model\SendButtonRequestSectionsInnerReply|null $reply reply
      *
      * @return self
      */

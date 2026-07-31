@@ -1,4 +1,4 @@
-# OneMsgChatApi\ChannelApi
+# OneMsgSdk\ChannelApi
 
 Channel status and automation settings
 
@@ -14,7 +14,7 @@ All URIs are relative to https://api.1msg.io, except if the operation defines an
 ## `getConversationalAutomation()`
 
 ```php
-getConversationalAutomation($token): \OneMsgChatApi\Model\ConversationalAutomation
+getConversationalAutomation($token): \OneMsgSdk\Model\ConversationalAutomation
 ```
 
 Get conversational automation settings
@@ -29,12 +29,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\ChannelApi(
+$apiInstance = new OneMsgSdk\Api\ChannelApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -58,7 +58,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\ConversationalAutomation**](../Model/ConversationalAutomation.md)
+[**\OneMsgSdk\Model\ConversationalAutomation**](../Model/ConversationalAutomation.md)
 
 ### Authorization
 
@@ -91,12 +91,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\ChannelApi(
+$apiInstance = new OneMsgSdk\Api\ChannelApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -153,19 +153,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\ChannelApi(
+$apiInstance = new OneMsgSdk\Api\ChannelApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$conversational_automation = {"enable_welcome_message":true,"prompts":["How can I help?"],"commands":[{"command_name":"help","command_description":"Get support options"}]}; // \OneMsgChatApi\Model\ConversationalAutomation
+$conversational_automation = {"enable_welcome_message":true,"prompts":["How can I help?"],"commands":[{"command_name":"help","command_description":"Get support options"}]}; // \OneMsgSdk\Model\ConversationalAutomation
 
 try {
     $result = $apiInstance->setConversationalAutomation($token, $conversational_automation);
@@ -180,7 +180,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **conversational_automation** | [**\OneMsgChatApi\Model\ConversationalAutomation**](../Model/ConversationalAutomation.md)|  | |
+| **conversational_automation** | [**\OneMsgSdk\Model\ConversationalAutomation**](../Model/ConversationalAutomation.md)|  | |
 
 ### Return type
 

@@ -4,7 +4,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Api;
+namespace OneMsgSdk\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -37,17 +37,17 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OneMsgChatApi\ApiException;
-use OneMsgChatApi\Configuration;
-use OneMsgChatApi\FormDataProcessor;
-use OneMsgChatApi\HeaderSelector;
-use OneMsgChatApi\ObjectSerializer;
+use OneMsgSdk\ApiException;
+use OneMsgSdk\Configuration;
+use OneMsgSdk\FormDataProcessor;
+use OneMsgSdk\HeaderSelector;
+use OneMsgSdk\ObjectSerializer;
 
 /**
  * MessagingApi Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -209,9 +209,9 @@ class MessagingApi
      * @param  bool|null $typing_indicator Show WhatsApp typing indicator (max 25s or until reply) (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReadMessage'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\CreateReadMessage200Response|\OneMsgChatApi\Model\CreateReadMessage401Response
+     * @return \OneMsgSdk\Model\CreateReadMessage200Response|\OneMsgSdk\Model\CreateReadMessage401Response
      */
     public function createReadMessage($token, $message_id = null, $msg_id = null, $typing_indicator = false, string $contentType = self::contentTypes['createReadMessage'][0])
     {
@@ -230,9 +230,9 @@ class MessagingApi
      * @param  bool|null $typing_indicator Show WhatsApp typing indicator (max 25s or until reply) (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReadMessage'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\CreateReadMessage200Response|\OneMsgChatApi\Model\CreateReadMessage401Response, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\CreateReadMessage200Response|\OneMsgSdk\Model\CreateReadMessage401Response, HTTP status code, HTTP response headers (array of strings)
      */
     public function createReadMessageWithHttpInfo($token, $message_id = null, $msg_id = null, $typing_indicator = false, string $contentType = self::contentTypes['createReadMessage'][0])
     {
@@ -264,13 +264,13 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\CreateReadMessage200Response',
+                        '\OneMsgSdk\Model\CreateReadMessage200Response',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\CreateReadMessage401Response',
+                        '\OneMsgSdk\Model\CreateReadMessage401Response',
                         $request,
                         $response,
                     );
@@ -292,7 +292,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\CreateReadMessage200Response',
+                '\OneMsgSdk\Model\CreateReadMessage200Response',
                 $request,
                 $response,
             );
@@ -301,7 +301,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\CreateReadMessage200Response',
+                        '\OneMsgSdk\Model\CreateReadMessage200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -309,7 +309,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\CreateReadMessage401Response',
+                        '\OneMsgSdk\Model\CreateReadMessage401Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -361,7 +361,7 @@ class MessagingApi
      */
     public function createReadMessageAsyncWithHttpInfo($token, $message_id = null, $msg_id = null, $typing_indicator = false, string $contentType = self::contentTypes['createReadMessage'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\CreateReadMessage200Response';
+        $returnType = '\OneMsgSdk\Model\CreateReadMessage200Response';
         $request = $this->createReadMessageRequest($token, $message_id, $msg_id, $typing_indicator, $contentType);
 
         return $this->client
@@ -524,7 +524,7 @@ class MessagingApi
      * @param  array<string,mixed>|null $request_body request_body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUploadMedia'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
@@ -542,7 +542,7 @@ class MessagingApi
      * @param  array<string,mixed>|null $request_body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUploadMedia'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
@@ -761,9 +761,9 @@ class MessagingApi
      * @param  string $media_id Numeric WABA media id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMedia'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\SuccessResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\SuccessResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function deleteMedia($token, $media_id, string $contentType = self::contentTypes['deleteMedia'][0])
     {
@@ -780,9 +780,9 @@ class MessagingApi
      * @param  string $media_id Numeric WABA media id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMedia'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\SuccessResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\SuccessResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteMediaWithHttpInfo($token, $media_id, string $contentType = self::contentTypes['deleteMedia'][0])
     {
@@ -814,25 +814,25 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\SuccessResponse',
+                        '\OneMsgSdk\Model\SuccessResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -854,7 +854,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\SuccessResponse',
+                '\OneMsgSdk\Model\SuccessResponse',
                 $request,
                 $response,
             );
@@ -863,7 +863,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\SuccessResponse',
+                        '\OneMsgSdk\Model\SuccessResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -871,7 +871,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -879,7 +879,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -887,7 +887,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -935,7 +935,7 @@ class MessagingApi
      */
     public function deleteMediaAsyncWithHttpInfo($token, $media_id, string $contentType = self::contentTypes['deleteMedia'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\SuccessResponse';
+        $returnType = '\OneMsgSdk\Model\SuccessResponse';
         $request = $this->deleteMediaRequest($token, $media_id, $contentType);
 
         return $this->client
@@ -1094,12 +1094,12 @@ class MessagingApi
      * Delete media from WABA storage (deprecated alias)
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\DeleteMediaLegacyRequest $delete_media_legacy_request delete_media_legacy_request (required)
+     * @param  \OneMsgSdk\Model\DeleteMediaLegacyRequest $delete_media_legacy_request delete_media_legacy_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMediaLegacy'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\SuccessResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\SuccessResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      * @deprecated
      */
     public function deleteMediaLegacy($token, $delete_media_legacy_request, string $contentType = self::contentTypes['deleteMediaLegacy'][0])
@@ -1114,12 +1114,12 @@ class MessagingApi
      * Delete media from WABA storage (deprecated alias)
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\DeleteMediaLegacyRequest $delete_media_legacy_request (required)
+     * @param  \OneMsgSdk\Model\DeleteMediaLegacyRequest $delete_media_legacy_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMediaLegacy'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\SuccessResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\SuccessResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      * @deprecated
      */
     public function deleteMediaLegacyWithHttpInfo($token, $delete_media_legacy_request, string $contentType = self::contentTypes['deleteMediaLegacy'][0])
@@ -1152,25 +1152,25 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\SuccessResponse',
+                        '\OneMsgSdk\Model\SuccessResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -1192,7 +1192,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\SuccessResponse',
+                '\OneMsgSdk\Model\SuccessResponse',
                 $request,
                 $response,
             );
@@ -1201,7 +1201,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\SuccessResponse',
+                        '\OneMsgSdk\Model\SuccessResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1209,7 +1209,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1217,7 +1217,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1225,7 +1225,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1243,7 +1243,7 @@ class MessagingApi
      * Delete media from WABA storage (deprecated alias)
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\DeleteMediaLegacyRequest $delete_media_legacy_request (required)
+     * @param  \OneMsgSdk\Model\DeleteMediaLegacyRequest $delete_media_legacy_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMediaLegacy'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1266,7 +1266,7 @@ class MessagingApi
      * Delete media from WABA storage (deprecated alias)
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\DeleteMediaLegacyRequest $delete_media_legacy_request (required)
+     * @param  \OneMsgSdk\Model\DeleteMediaLegacyRequest $delete_media_legacy_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMediaLegacy'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1275,7 +1275,7 @@ class MessagingApi
      */
     public function deleteMediaLegacyAsyncWithHttpInfo($token, $delete_media_legacy_request, string $contentType = self::contentTypes['deleteMediaLegacy'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\SuccessResponse';
+        $returnType = '\OneMsgSdk\Model\SuccessResponse';
         $request = $this->deleteMediaLegacyRequest($token, $delete_media_legacy_request, $contentType);
 
         return $this->client
@@ -1318,7 +1318,7 @@ class MessagingApi
      * Create request for operation 'deleteMediaLegacy'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\DeleteMediaLegacyRequest $delete_media_legacy_request (required)
+     * @param  \OneMsgSdk\Model\DeleteMediaLegacyRequest $delete_media_legacy_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMediaLegacy'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1436,9 +1436,9 @@ class MessagingApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMmLiteStatus'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\GetMmLiteStatus200Response|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\GetMmLiteStatus200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function getMmLiteStatus($token, string $contentType = self::contentTypes['getMmLiteStatus'][0])
     {
@@ -1454,9 +1454,9 @@ class MessagingApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMmLiteStatus'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\GetMmLiteStatus200Response|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\GetMmLiteStatus200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getMmLiteStatusWithHttpInfo($token, string $contentType = self::contentTypes['getMmLiteStatus'][0])
     {
@@ -1488,19 +1488,19 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\GetMmLiteStatus200Response',
+                        '\OneMsgSdk\Model\GetMmLiteStatus200Response',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -1522,7 +1522,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\GetMmLiteStatus200Response',
+                '\OneMsgSdk\Model\GetMmLiteStatus200Response',
                 $request,
                 $response,
             );
@@ -1531,7 +1531,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\GetMmLiteStatus200Response',
+                        '\OneMsgSdk\Model\GetMmLiteStatus200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1539,7 +1539,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1547,7 +1547,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1593,7 +1593,7 @@ class MessagingApi
      */
     public function getMmLiteStatusAsyncWithHttpInfo($token, string $contentType = self::contentTypes['getMmLiteStatus'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\GetMmLiteStatus200Response';
+        $returnType = '\OneMsgSdk\Model\GetMmLiteStatus200Response';
         $request = $this->getMmLiteStatusRequest($token, $contentType);
 
         return $this->client
@@ -1738,9 +1738,9 @@ class MessagingApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMessages'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\ListMessages200Response
+     * @return \OneMsgSdk\Model\ListMessages200Response
      */
     public function listMessages($token, string $contentType = self::contentTypes['listMessages'][0])
     {
@@ -1756,9 +1756,9 @@ class MessagingApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMessages'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\ListMessages200Response, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\ListMessages200Response, HTTP status code, HTTP response headers (array of strings)
      */
     public function listMessagesWithHttpInfo($token, string $contentType = self::contentTypes['listMessages'][0])
     {
@@ -1790,7 +1790,7 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ListMessages200Response',
+                        '\OneMsgSdk\Model\ListMessages200Response',
                         $request,
                         $response,
                     );
@@ -1812,7 +1812,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\ListMessages200Response',
+                '\OneMsgSdk\Model\ListMessages200Response',
                 $request,
                 $response,
             );
@@ -1821,7 +1821,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ListMessages200Response',
+                        '\OneMsgSdk\Model\ListMessages200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1867,7 +1867,7 @@ class MessagingApi
      */
     public function listMessagesAsyncWithHttpInfo($token, string $contentType = self::contentTypes['listMessages'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\ListMessages200Response';
+        $returnType = '\OneMsgSdk\Model\ListMessages200Response';
         $request = $this->listMessagesRequest($token, $contentType);
 
         return $this->client
@@ -2013,9 +2013,9 @@ class MessagingApi
      * @param  string $media_id media_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['retrieveMedia'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\RetrieveMedia200Response|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\RetrieveMedia200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function retrieveMedia($token, $media_id, string $contentType = self::contentTypes['retrieveMedia'][0])
     {
@@ -2032,9 +2032,9 @@ class MessagingApi
      * @param  string $media_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['retrieveMedia'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\RetrieveMedia200Response|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\RetrieveMedia200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function retrieveMediaWithHttpInfo($token, $media_id, string $contentType = self::contentTypes['retrieveMedia'][0])
     {
@@ -2066,25 +2066,25 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\RetrieveMedia200Response',
+                        '\OneMsgSdk\Model\RetrieveMedia200Response',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -2106,7 +2106,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\RetrieveMedia200Response',
+                '\OneMsgSdk\Model\RetrieveMedia200Response',
                 $request,
                 $response,
             );
@@ -2115,7 +2115,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\RetrieveMedia200Response',
+                        '\OneMsgSdk\Model\RetrieveMedia200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2123,7 +2123,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2131,7 +2131,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2139,7 +2139,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2187,7 +2187,7 @@ class MessagingApi
      */
     public function retrieveMediaAsyncWithHttpInfo($token, $media_id, string $contentType = self::contentTypes['retrieveMedia'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\RetrieveMedia200Response';
+        $returnType = '\OneMsgSdk\Model\RetrieveMedia200Response';
         $request = $this->retrieveMediaRequest($token, $media_id, $contentType);
 
         return $this->client
@@ -2347,12 +2347,12 @@ class MessagingApi
      * Send address request message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendAddressMessageRequest $send_address_message_request send_address_message_request (required)
+     * @param  \OneMsgSdk\Model\SendAddressMessageRequest $send_address_message_request send_address_message_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendAddressMessage'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function sendAddressMessage($token, $send_address_message_request, string $contentType = self::contentTypes['sendAddressMessage'][0])
     {
@@ -2366,12 +2366,12 @@ class MessagingApi
      * Send address request message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendAddressMessageRequest $send_address_message_request (required)
+     * @param  \OneMsgSdk\Model\SendAddressMessageRequest $send_address_message_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendAddressMessage'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendAddressMessageWithHttpInfo($token, $send_address_message_request, string $contentType = self::contentTypes['sendAddressMessage'][0])
     {
@@ -2403,31 +2403,31 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -2449,7 +2449,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\MessageSentResponse',
+                '\OneMsgSdk\Model\MessageSentResponse',
                 $request,
                 $response,
             );
@@ -2458,7 +2458,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2466,7 +2466,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2474,7 +2474,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2482,7 +2482,7 @@ class MessagingApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2490,7 +2490,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2508,7 +2508,7 @@ class MessagingApi
      * Send address request message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendAddressMessageRequest $send_address_message_request (required)
+     * @param  \OneMsgSdk\Model\SendAddressMessageRequest $send_address_message_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendAddressMessage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2530,7 +2530,7 @@ class MessagingApi
      * Send address request message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendAddressMessageRequest $send_address_message_request (required)
+     * @param  \OneMsgSdk\Model\SendAddressMessageRequest $send_address_message_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendAddressMessage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2538,7 +2538,7 @@ class MessagingApi
      */
     public function sendAddressMessageAsyncWithHttpInfo($token, $send_address_message_request, string $contentType = self::contentTypes['sendAddressMessage'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\MessageSentResponse';
+        $returnType = '\OneMsgSdk\Model\MessageSentResponse';
         $request = $this->sendAddressMessageRequest($token, $send_address_message_request, $contentType);
 
         return $this->client
@@ -2581,7 +2581,7 @@ class MessagingApi
      * Create request for operation 'sendAddressMessage'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendAddressMessageRequest $send_address_message_request (required)
+     * @param  \OneMsgSdk\Model\SendAddressMessageRequest $send_address_message_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendAddressMessage'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2696,12 +2696,12 @@ class MessagingApi
      * Send Reply Buttons Message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendButtonRequest|null $send_button_request send_button_request (optional)
+     * @param  \OneMsgSdk\Model\SendButtonRequest|null $send_button_request send_button_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendButton'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function sendButton($token, $send_button_request = null, string $contentType = self::contentTypes['sendButton'][0])
     {
@@ -2715,12 +2715,12 @@ class MessagingApi
      * Send Reply Buttons Message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendButtonRequest|null $send_button_request (optional)
+     * @param  \OneMsgSdk\Model\SendButtonRequest|null $send_button_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendButton'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendButtonWithHttpInfo($token, $send_button_request = null, string $contentType = self::contentTypes['sendButton'][0])
     {
@@ -2752,31 +2752,31 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -2798,7 +2798,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\MessageSentResponse',
+                '\OneMsgSdk\Model\MessageSentResponse',
                 $request,
                 $response,
             );
@@ -2807,7 +2807,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2815,7 +2815,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2823,7 +2823,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2831,7 +2831,7 @@ class MessagingApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2839,7 +2839,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2857,7 +2857,7 @@ class MessagingApi
      * Send Reply Buttons Message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendButtonRequest|null $send_button_request (optional)
+     * @param  \OneMsgSdk\Model\SendButtonRequest|null $send_button_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendButton'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2879,7 +2879,7 @@ class MessagingApi
      * Send Reply Buttons Message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendButtonRequest|null $send_button_request (optional)
+     * @param  \OneMsgSdk\Model\SendButtonRequest|null $send_button_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendButton'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2887,7 +2887,7 @@ class MessagingApi
      */
     public function sendButtonAsyncWithHttpInfo($token, $send_button_request = null, string $contentType = self::contentTypes['sendButton'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\MessageSentResponse';
+        $returnType = '\OneMsgSdk\Model\MessageSentResponse';
         $request = $this->sendButtonRequest($token, $send_button_request, $contentType);
 
         return $this->client
@@ -2930,7 +2930,7 @@ class MessagingApi
      * Create request for operation 'sendButton'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendButtonRequest|null $send_button_request (optional)
+     * @param  \OneMsgSdk\Model\SendButtonRequest|null $send_button_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendButton'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3046,9 +3046,9 @@ class MessagingApi
      * @param  int|null $phone Required if chatId is not set. A phone number starting with the country code. USA example: 12020721369. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendCarousel'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function sendCarousel($token, $params, $body = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendCarousel'][0])
     {
@@ -3069,9 +3069,9 @@ class MessagingApi
      * @param  int|null $phone Required if chatId is not set. A phone number starting with the country code. USA example: 12020721369. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendCarousel'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendCarouselWithHttpInfo($token, $params, $body = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendCarousel'][0])
     {
@@ -3103,31 +3103,31 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -3149,7 +3149,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\MessageSentResponse',
+                '\OneMsgSdk\Model\MessageSentResponse',
                 $request,
                 $response,
             );
@@ -3158,7 +3158,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3166,7 +3166,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3174,7 +3174,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3182,7 +3182,7 @@ class MessagingApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3190,7 +3190,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3246,7 +3246,7 @@ class MessagingApi
      */
     public function sendCarouselAsyncWithHttpInfo($token, $params, $body = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendCarousel'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\MessageSentResponse';
+        $returnType = '\OneMsgSdk\Model\MessageSentResponse';
         $request = $this->sendCarouselRequest($token, $params, $body, $quoted_msg_id, $chat_id, $phone, $contentType);
 
         return $this->client
@@ -3418,12 +3418,12 @@ class MessagingApi
      * Send a Contact
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendContactRequest|null $send_contact_request send_contact_request (optional)
+     * @param  \OneMsgSdk\Model\SendContactRequest|null $send_contact_request send_contact_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendContact'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function sendContact($token, $send_contact_request = null, string $contentType = self::contentTypes['sendContact'][0])
     {
@@ -3437,12 +3437,12 @@ class MessagingApi
      * Send a Contact
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendContactRequest|null $send_contact_request (optional)
+     * @param  \OneMsgSdk\Model\SendContactRequest|null $send_contact_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendContact'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendContactWithHttpInfo($token, $send_contact_request = null, string $contentType = self::contentTypes['sendContact'][0])
     {
@@ -3474,31 +3474,31 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -3520,7 +3520,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\MessageSentResponse',
+                '\OneMsgSdk\Model\MessageSentResponse',
                 $request,
                 $response,
             );
@@ -3529,7 +3529,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3537,7 +3537,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3545,7 +3545,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3553,7 +3553,7 @@ class MessagingApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3561,7 +3561,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3579,7 +3579,7 @@ class MessagingApi
      * Send a Contact
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendContactRequest|null $send_contact_request (optional)
+     * @param  \OneMsgSdk\Model\SendContactRequest|null $send_contact_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendContact'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3601,7 +3601,7 @@ class MessagingApi
      * Send a Contact
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendContactRequest|null $send_contact_request (optional)
+     * @param  \OneMsgSdk\Model\SendContactRequest|null $send_contact_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendContact'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3609,7 +3609,7 @@ class MessagingApi
      */
     public function sendContactAsyncWithHttpInfo($token, $send_contact_request = null, string $contentType = self::contentTypes['sendContact'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\MessageSentResponse';
+        $returnType = '\OneMsgSdk\Model\MessageSentResponse';
         $request = $this->sendContactRequest($token, $send_contact_request, $contentType);
 
         return $this->client
@@ -3652,7 +3652,7 @@ class MessagingApi
      * Create request for operation 'sendContact'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendContactRequest|null $send_contact_request (optional)
+     * @param  \OneMsgSdk\Model\SendContactRequest|null $send_contact_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendContact'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3761,12 +3761,12 @@ class MessagingApi
      * Send CTA URL interactive message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendCtaUrlRequest $send_cta_url_request send_cta_url_request (required)
+     * @param  \OneMsgSdk\Model\SendCtaUrlRequest $send_cta_url_request send_cta_url_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendCtaUrl'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function sendCtaUrl($token, $send_cta_url_request, string $contentType = self::contentTypes['sendCtaUrl'][0])
     {
@@ -3780,12 +3780,12 @@ class MessagingApi
      * Send CTA URL interactive message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendCtaUrlRequest $send_cta_url_request (required)
+     * @param  \OneMsgSdk\Model\SendCtaUrlRequest $send_cta_url_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendCtaUrl'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendCtaUrlWithHttpInfo($token, $send_cta_url_request, string $contentType = self::contentTypes['sendCtaUrl'][0])
     {
@@ -3817,31 +3817,31 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -3863,7 +3863,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\MessageSentResponse',
+                '\OneMsgSdk\Model\MessageSentResponse',
                 $request,
                 $response,
             );
@@ -3872,7 +3872,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3880,7 +3880,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3888,7 +3888,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3896,7 +3896,7 @@ class MessagingApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3904,7 +3904,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3922,7 +3922,7 @@ class MessagingApi
      * Send CTA URL interactive message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendCtaUrlRequest $send_cta_url_request (required)
+     * @param  \OneMsgSdk\Model\SendCtaUrlRequest $send_cta_url_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendCtaUrl'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3944,7 +3944,7 @@ class MessagingApi
      * Send CTA URL interactive message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendCtaUrlRequest $send_cta_url_request (required)
+     * @param  \OneMsgSdk\Model\SendCtaUrlRequest $send_cta_url_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendCtaUrl'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3952,7 +3952,7 @@ class MessagingApi
      */
     public function sendCtaUrlAsyncWithHttpInfo($token, $send_cta_url_request, string $contentType = self::contentTypes['sendCtaUrl'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\MessageSentResponse';
+        $returnType = '\OneMsgSdk\Model\MessageSentResponse';
         $request = $this->sendCtaUrlRequest($token, $send_cta_url_request, $contentType);
 
         return $this->client
@@ -3995,7 +3995,7 @@ class MessagingApi
      * Create request for operation 'sendCtaUrl'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendCtaUrlRequest $send_cta_url_request (required)
+     * @param  \OneMsgSdk\Model\SendCtaUrlRequest $send_cta_url_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendCtaUrl'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4121,9 +4121,9 @@ class MessagingApi
      * @param  int|null $phone phone (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendFile'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function sendFile($token, $body = null, $filename = null, $media_id = null, $media_type = null, $voice = null, $caption = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendFile'][0])
     {
@@ -4148,9 +4148,9 @@ class MessagingApi
      * @param  int|null $phone (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendFile'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendFileWithHttpInfo($token, $body = null, $filename = null, $media_id = null, $media_type = null, $voice = null, $caption = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendFile'][0])
     {
@@ -4182,31 +4182,31 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -4228,7 +4228,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\MessageSentResponse',
+                '\OneMsgSdk\Model\MessageSentResponse',
                 $request,
                 $response,
             );
@@ -4237,7 +4237,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4245,7 +4245,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4253,7 +4253,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4261,7 +4261,7 @@ class MessagingApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4269,7 +4269,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4333,7 +4333,7 @@ class MessagingApi
      */
     public function sendFileAsyncWithHttpInfo($token, $body = null, $filename = null, $media_id = null, $media_type = null, $voice = null, $caption = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendFile'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\MessageSentResponse';
+        $returnType = '\OneMsgSdk\Model\MessageSentResponse';
         $request = $this->sendFileRequest($token, $body, $filename, $media_id, $media_type, $voice, $caption, $quoted_msg_id, $chat_id, $phone, $contentType);
 
         return $this->client
@@ -4518,7 +4518,7 @@ class MessagingApi
      * @param  string $flow_id Published Flow ID (required)
      * @param  string $flow_token Flow token generated by the business (required)
      * @param  string $flow_cta CTA button text (required)
-     * @param  \OneMsgChatApi\Model\SendFlowRequestHeader|null $header header (optional)
+     * @param  \OneMsgSdk\Model\SendFlowRequestHeader|null $header header (optional)
      * @param  string|null $footer Footer text (optional)
      * @param  string|null $flow_action Flow action type (optional)
      * @param  object|null $flow_action_payload Required for flowAction&#x3D;navigate (screen is required). Ignored for data_exchange. If data is provided, it must be a non-empty object. (optional)
@@ -4531,9 +4531,9 @@ class MessagingApi
      * @param  int|null $phone Required if chatId is not set. A phone number starting with the country code. USA example: 12020721369. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendFlow'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function sendFlow($token, $body, $flow_id, $flow_token, $flow_cta, $header = null, $footer = null, $flow_action = null, $flow_action_payload = null, $flow_message_version = null, $mode = null, $flow_action_data = null, $flow_action_screen = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendFlow'][0])
     {
@@ -4551,7 +4551,7 @@ class MessagingApi
      * @param  string $flow_id Published Flow ID (required)
      * @param  string $flow_token Flow token generated by the business (required)
      * @param  string $flow_cta CTA button text (required)
-     * @param  \OneMsgChatApi\Model\SendFlowRequestHeader|null $header (optional)
+     * @param  \OneMsgSdk\Model\SendFlowRequestHeader|null $header (optional)
      * @param  string|null $footer Footer text (optional)
      * @param  string|null $flow_action Flow action type (optional)
      * @param  object|null $flow_action_payload Required for flowAction&#x3D;navigate (screen is required). Ignored for data_exchange. If data is provided, it must be a non-empty object. (optional)
@@ -4564,9 +4564,9 @@ class MessagingApi
      * @param  int|null $phone Required if chatId is not set. A phone number starting with the country code. USA example: 12020721369. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendFlow'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendFlowWithHttpInfo($token, $body, $flow_id, $flow_token, $flow_cta, $header = null, $footer = null, $flow_action = null, $flow_action_payload = null, $flow_message_version = null, $mode = null, $flow_action_data = null, $flow_action_screen = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendFlow'][0])
     {
@@ -4598,31 +4598,31 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -4644,7 +4644,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\MessageSentResponse',
+                '\OneMsgSdk\Model\MessageSentResponse',
                 $request,
                 $response,
             );
@@ -4653,7 +4653,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4661,7 +4661,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4669,7 +4669,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4677,7 +4677,7 @@ class MessagingApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4685,7 +4685,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4707,7 +4707,7 @@ class MessagingApi
      * @param  string $flow_id Published Flow ID (required)
      * @param  string $flow_token Flow token generated by the business (required)
      * @param  string $flow_cta CTA button text (required)
-     * @param  \OneMsgChatApi\Model\SendFlowRequestHeader|null $header (optional)
+     * @param  \OneMsgSdk\Model\SendFlowRequestHeader|null $header (optional)
      * @param  string|null $footer Footer text (optional)
      * @param  string|null $flow_action Flow action type (optional)
      * @param  object|null $flow_action_payload Required for flowAction&#x3D;navigate (screen is required). Ignored for data_exchange. If data is provided, it must be a non-empty object. (optional)
@@ -4743,7 +4743,7 @@ class MessagingApi
      * @param  string $flow_id Published Flow ID (required)
      * @param  string $flow_token Flow token generated by the business (required)
      * @param  string $flow_cta CTA button text (required)
-     * @param  \OneMsgChatApi\Model\SendFlowRequestHeader|null $header (optional)
+     * @param  \OneMsgSdk\Model\SendFlowRequestHeader|null $header (optional)
      * @param  string|null $footer Footer text (optional)
      * @param  string|null $flow_action Flow action type (optional)
      * @param  object|null $flow_action_payload Required for flowAction&#x3D;navigate (screen is required). Ignored for data_exchange. If data is provided, it must be a non-empty object. (optional)
@@ -4761,7 +4761,7 @@ class MessagingApi
      */
     public function sendFlowAsyncWithHttpInfo($token, $body, $flow_id, $flow_token, $flow_cta, $header = null, $footer = null, $flow_action = null, $flow_action_payload = null, $flow_message_version = null, $mode = null, $flow_action_data = null, $flow_action_screen = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendFlow'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\MessageSentResponse';
+        $returnType = '\OneMsgSdk\Model\MessageSentResponse';
         $request = $this->sendFlowRequest($token, $body, $flow_id, $flow_token, $flow_cta, $header, $footer, $flow_action, $flow_action_payload, $flow_message_version, $mode, $flow_action_data, $flow_action_screen, $quoted_msg_id, $chat_id, $phone, $contentType);
 
         return $this->client
@@ -4808,7 +4808,7 @@ class MessagingApi
      * @param  string $flow_id Published Flow ID (required)
      * @param  string $flow_token Flow token generated by the business (required)
      * @param  string $flow_cta CTA button text (required)
-     * @param  \OneMsgChatApi\Model\SendFlowRequestHeader|null $header (optional)
+     * @param  \OneMsgSdk\Model\SendFlowRequestHeader|null $header (optional)
      * @param  string|null $footer Footer text (optional)
      * @param  string|null $flow_action Flow action type (optional)
      * @param  object|null $flow_action_payload Required for flowAction&#x3D;navigate (screen is required). Ignored for data_exchange. If data is provided, it must be a non-empty object. (optional)
@@ -4981,12 +4981,12 @@ class MessagingApi
      * Send List Message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendListRequest|null $send_list_request send_list_request (optional)
+     * @param  \OneMsgSdk\Model\SendListRequest|null $send_list_request send_list_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendList'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function sendList($token, $send_list_request = null, string $contentType = self::contentTypes['sendList'][0])
     {
@@ -5000,12 +5000,12 @@ class MessagingApi
      * Send List Message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendListRequest|null $send_list_request (optional)
+     * @param  \OneMsgSdk\Model\SendListRequest|null $send_list_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendList'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendListWithHttpInfo($token, $send_list_request = null, string $contentType = self::contentTypes['sendList'][0])
     {
@@ -5037,31 +5037,31 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -5083,7 +5083,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\MessageSentResponse',
+                '\OneMsgSdk\Model\MessageSentResponse',
                 $request,
                 $response,
             );
@@ -5092,7 +5092,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5100,7 +5100,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5108,7 +5108,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5116,7 +5116,7 @@ class MessagingApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5124,7 +5124,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5142,7 +5142,7 @@ class MessagingApi
      * Send List Message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendListRequest|null $send_list_request (optional)
+     * @param  \OneMsgSdk\Model\SendListRequest|null $send_list_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5164,7 +5164,7 @@ class MessagingApi
      * Send List Message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendListRequest|null $send_list_request (optional)
+     * @param  \OneMsgSdk\Model\SendListRequest|null $send_list_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5172,7 +5172,7 @@ class MessagingApi
      */
     public function sendListAsyncWithHttpInfo($token, $send_list_request = null, string $contentType = self::contentTypes['sendList'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\MessageSentResponse';
+        $returnType = '\OneMsgSdk\Model\MessageSentResponse';
         $request = $this->sendListRequest($token, $send_list_request, $contentType);
 
         return $this->client
@@ -5215,7 +5215,7 @@ class MessagingApi
      * Create request for operation 'sendList'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendListRequest|null $send_list_request (optional)
+     * @param  \OneMsgSdk\Model\SendListRequest|null $send_list_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5333,9 +5333,9 @@ class MessagingApi
      * @param  int|null $phone Required if chatId is not set. A phone number starting with the country code. USA example: 12020721369. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendLocation'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function sendLocation($token, $lat, $lng, $address = null, $name = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendLocation'][0])
     {
@@ -5358,9 +5358,9 @@ class MessagingApi
      * @param  int|null $phone Required if chatId is not set. A phone number starting with the country code. USA example: 12020721369. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendLocation'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendLocationWithHttpInfo($token, $lat, $lng, $address = null, $name = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendLocation'][0])
     {
@@ -5392,31 +5392,31 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -5438,7 +5438,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\MessageSentResponse',
+                '\OneMsgSdk\Model\MessageSentResponse',
                 $request,
                 $response,
             );
@@ -5447,7 +5447,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5455,7 +5455,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5463,7 +5463,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5471,7 +5471,7 @@ class MessagingApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5479,7 +5479,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5539,7 +5539,7 @@ class MessagingApi
      */
     public function sendLocationAsyncWithHttpInfo($token, $lat, $lng, $address = null, $name = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendLocation'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\MessageSentResponse';
+        $returnType = '\OneMsgSdk\Model\MessageSentResponse';
         $request = $this->sendLocationRequest($token, $lat, $lng, $address, $name, $quoted_msg_id, $chat_id, $phone, $contentType);
 
         return $this->client
@@ -5723,12 +5723,12 @@ class MessagingApi
      * Send Location Request Message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendLocationRequestRequest|null $send_location_request_request send_location_request_request (optional)
+     * @param  \OneMsgSdk\Model\SendLocationRequestRequest|null $send_location_request_request send_location_request_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendLocationRequest'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function sendLocationRequest($token, $send_location_request_request = null, string $contentType = self::contentTypes['sendLocationRequest'][0])
     {
@@ -5742,12 +5742,12 @@ class MessagingApi
      * Send Location Request Message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendLocationRequestRequest|null $send_location_request_request (optional)
+     * @param  \OneMsgSdk\Model\SendLocationRequestRequest|null $send_location_request_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendLocationRequest'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendLocationRequestWithHttpInfo($token, $send_location_request_request = null, string $contentType = self::contentTypes['sendLocationRequest'][0])
     {
@@ -5779,31 +5779,31 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -5825,7 +5825,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\MessageSentResponse',
+                '\OneMsgSdk\Model\MessageSentResponse',
                 $request,
                 $response,
             );
@@ -5834,7 +5834,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5842,7 +5842,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5850,7 +5850,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5858,7 +5858,7 @@ class MessagingApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5866,7 +5866,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5884,7 +5884,7 @@ class MessagingApi
      * Send Location Request Message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendLocationRequestRequest|null $send_location_request_request (optional)
+     * @param  \OneMsgSdk\Model\SendLocationRequestRequest|null $send_location_request_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendLocationRequest'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5906,7 +5906,7 @@ class MessagingApi
      * Send Location Request Message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendLocationRequestRequest|null $send_location_request_request (optional)
+     * @param  \OneMsgSdk\Model\SendLocationRequestRequest|null $send_location_request_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendLocationRequest'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5914,7 +5914,7 @@ class MessagingApi
      */
     public function sendLocationRequestAsyncWithHttpInfo($token, $send_location_request_request = null, string $contentType = self::contentTypes['sendLocationRequest'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\MessageSentResponse';
+        $returnType = '\OneMsgSdk\Model\MessageSentResponse';
         $request = $this->sendLocationRequestRequest($token, $send_location_request_request, $contentType);
 
         return $this->client
@@ -5957,7 +5957,7 @@ class MessagingApi
      * Create request for operation 'sendLocationRequest'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendLocationRequestRequest|null $send_location_request_request (optional)
+     * @param  \OneMsgSdk\Model\SendLocationRequestRequest|null $send_location_request_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendLocationRequest'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6072,9 +6072,9 @@ class MessagingApi
      * @param  int|null $phone Phone number starting with country code (alternative to chatId) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessage'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function sendMessage($token, $body, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendMessage'][0])
     {
@@ -6094,9 +6094,9 @@ class MessagingApi
      * @param  int|null $phone Phone number starting with country code (alternative to chatId) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessage'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendMessageWithHttpInfo($token, $body, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendMessage'][0])
     {
@@ -6128,31 +6128,31 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -6174,7 +6174,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\MessageSentResponse',
+                '\OneMsgSdk\Model\MessageSentResponse',
                 $request,
                 $response,
             );
@@ -6183,7 +6183,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6191,7 +6191,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6199,7 +6199,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6207,7 +6207,7 @@ class MessagingApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6215,7 +6215,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6269,7 +6269,7 @@ class MessagingApi
      */
     public function sendMessageAsyncWithHttpInfo($token, $body, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendMessage'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\MessageSentResponse';
+        $returnType = '\OneMsgSdk\Model\MessageSentResponse';
         $request = $this->sendMessageRequest($token, $body, $quoted_msg_id, $chat_id, $phone, $contentType);
 
         return $this->client
@@ -6456,12 +6456,12 @@ class MessagingApi
      * Send order details (India payments template)
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendOrderDetailsRequest $send_order_details_request send_order_details_request (required)
+     * @param  \OneMsgSdk\Model\SendOrderDetailsRequest $send_order_details_request send_order_details_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendOrderDetails'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function sendOrderDetails($token, $send_order_details_request, string $contentType = self::contentTypes['sendOrderDetails'][0])
     {
@@ -6475,12 +6475,12 @@ class MessagingApi
      * Send order details (India payments template)
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendOrderDetailsRequest $send_order_details_request (required)
+     * @param  \OneMsgSdk\Model\SendOrderDetailsRequest $send_order_details_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendOrderDetails'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendOrderDetailsWithHttpInfo($token, $send_order_details_request, string $contentType = self::contentTypes['sendOrderDetails'][0])
     {
@@ -6512,25 +6512,25 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -6552,7 +6552,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\MessageSentResponse',
+                '\OneMsgSdk\Model\MessageSentResponse',
                 $request,
                 $response,
             );
@@ -6561,7 +6561,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6569,7 +6569,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6577,7 +6577,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6585,7 +6585,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6603,7 +6603,7 @@ class MessagingApi
      * Send order details (India payments template)
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendOrderDetailsRequest $send_order_details_request (required)
+     * @param  \OneMsgSdk\Model\SendOrderDetailsRequest $send_order_details_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendOrderDetails'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6625,7 +6625,7 @@ class MessagingApi
      * Send order details (India payments template)
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendOrderDetailsRequest $send_order_details_request (required)
+     * @param  \OneMsgSdk\Model\SendOrderDetailsRequest $send_order_details_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendOrderDetails'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6633,7 +6633,7 @@ class MessagingApi
      */
     public function sendOrderDetailsAsyncWithHttpInfo($token, $send_order_details_request, string $contentType = self::contentTypes['sendOrderDetails'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\MessageSentResponse';
+        $returnType = '\OneMsgSdk\Model\MessageSentResponse';
         $request = $this->sendOrderDetailsRequest($token, $send_order_details_request, $contentType);
 
         return $this->client
@@ -6676,7 +6676,7 @@ class MessagingApi
      * Create request for operation 'sendOrderDetails'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendOrderDetailsRequest $send_order_details_request (required)
+     * @param  \OneMsgSdk\Model\SendOrderDetailsRequest $send_order_details_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendOrderDetails'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6791,12 +6791,12 @@ class MessagingApi
      * Send payment request (regional)
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendPaymentRequestRequest $send_payment_request_request send_payment_request_request (required)
+     * @param  \OneMsgSdk\Model\SendPaymentRequestRequest $send_payment_request_request send_payment_request_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendPaymentRequest'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function sendPaymentRequest($token, $send_payment_request_request, string $contentType = self::contentTypes['sendPaymentRequest'][0])
     {
@@ -6810,12 +6810,12 @@ class MessagingApi
      * Send payment request (regional)
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendPaymentRequestRequest $send_payment_request_request (required)
+     * @param  \OneMsgSdk\Model\SendPaymentRequestRequest $send_payment_request_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendPaymentRequest'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendPaymentRequestWithHttpInfo($token, $send_payment_request_request, string $contentType = self::contentTypes['sendPaymentRequest'][0])
     {
@@ -6847,25 +6847,25 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -6887,7 +6887,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\MessageSentResponse',
+                '\OneMsgSdk\Model\MessageSentResponse',
                 $request,
                 $response,
             );
@@ -6896,7 +6896,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6904,7 +6904,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6912,7 +6912,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6920,7 +6920,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6938,7 +6938,7 @@ class MessagingApi
      * Send payment request (regional)
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendPaymentRequestRequest $send_payment_request_request (required)
+     * @param  \OneMsgSdk\Model\SendPaymentRequestRequest $send_payment_request_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendPaymentRequest'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6960,7 +6960,7 @@ class MessagingApi
      * Send payment request (regional)
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendPaymentRequestRequest $send_payment_request_request (required)
+     * @param  \OneMsgSdk\Model\SendPaymentRequestRequest $send_payment_request_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendPaymentRequest'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6968,7 +6968,7 @@ class MessagingApi
      */
     public function sendPaymentRequestAsyncWithHttpInfo($token, $send_payment_request_request, string $contentType = self::contentTypes['sendPaymentRequest'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\MessageSentResponse';
+        $returnType = '\OneMsgSdk\Model\MessageSentResponse';
         $request = $this->sendPaymentRequestRequest($token, $send_payment_request_request, $contentType);
 
         return $this->client
@@ -7011,7 +7011,7 @@ class MessagingApi
      * Create request for operation 'sendPaymentRequest'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendPaymentRequestRequest $send_payment_request_request (required)
+     * @param  \OneMsgSdk\Model\SendPaymentRequestRequest $send_payment_request_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendPaymentRequest'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7129,9 +7129,9 @@ class MessagingApi
      * @param  array<string,mixed>|null $request_body request_body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendProduct'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function sendProduct($token, $request_body = null, string $contentType = self::contentTypes['sendProduct'][0])
     {
@@ -7148,9 +7148,9 @@ class MessagingApi
      * @param  array<string,mixed>|null $request_body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendProduct'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendProductWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['sendProduct'][0])
     {
@@ -7182,31 +7182,31 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -7228,7 +7228,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\MessageSentResponse',
+                '\OneMsgSdk\Model\MessageSentResponse',
                 $request,
                 $response,
             );
@@ -7237,7 +7237,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7245,7 +7245,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7253,7 +7253,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7261,7 +7261,7 @@ class MessagingApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7269,7 +7269,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7317,7 +7317,7 @@ class MessagingApi
      */
     public function sendProductAsyncWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['sendProduct'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\MessageSentResponse';
+        $returnType = '\OneMsgSdk\Model\MessageSentResponse';
         $request = $this->sendProductRequest($token, $request_body, $contentType);
 
         return $this->client
@@ -7469,12 +7469,12 @@ class MessagingApi
      * Send Reaction
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendReactionRequest|null $send_reaction_request send_reaction_request (optional)
+     * @param  \OneMsgSdk\Model\SendReactionRequest|null $send_reaction_request send_reaction_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendReaction'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function sendReaction($token, $send_reaction_request = null, string $contentType = self::contentTypes['sendReaction'][0])
     {
@@ -7488,12 +7488,12 @@ class MessagingApi
      * Send Reaction
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendReactionRequest|null $send_reaction_request (optional)
+     * @param  \OneMsgSdk\Model\SendReactionRequest|null $send_reaction_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendReaction'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendReactionWithHttpInfo($token, $send_reaction_request = null, string $contentType = self::contentTypes['sendReaction'][0])
     {
@@ -7525,31 +7525,31 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -7571,7 +7571,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\MessageSentResponse',
+                '\OneMsgSdk\Model\MessageSentResponse',
                 $request,
                 $response,
             );
@@ -7580,7 +7580,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7588,7 +7588,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7596,7 +7596,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7604,7 +7604,7 @@ class MessagingApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7612,7 +7612,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7630,7 +7630,7 @@ class MessagingApi
      * Send Reaction
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendReactionRequest|null $send_reaction_request (optional)
+     * @param  \OneMsgSdk\Model\SendReactionRequest|null $send_reaction_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendReaction'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7652,7 +7652,7 @@ class MessagingApi
      * Send Reaction
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendReactionRequest|null $send_reaction_request (optional)
+     * @param  \OneMsgSdk\Model\SendReactionRequest|null $send_reaction_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendReaction'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7660,7 +7660,7 @@ class MessagingApi
      */
     public function sendReactionAsyncWithHttpInfo($token, $send_reaction_request = null, string $contentType = self::contentTypes['sendReaction'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\MessageSentResponse';
+        $returnType = '\OneMsgSdk\Model\MessageSentResponse';
         $request = $this->sendReactionRequest($token, $send_reaction_request, $contentType);
 
         return $this->client
@@ -7703,7 +7703,7 @@ class MessagingApi
      * Create request for operation 'sendReaction'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendReactionRequest|null $send_reaction_request (optional)
+     * @param  \OneMsgSdk\Model\SendReactionRequest|null $send_reaction_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendReaction'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7812,12 +7812,12 @@ class MessagingApi
      * Send sticker message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendStickerRequest $send_sticker_request send_sticker_request (required)
+     * @param  \OneMsgSdk\Model\SendStickerRequest $send_sticker_request send_sticker_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendSticker'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function sendSticker($token, $send_sticker_request, string $contentType = self::contentTypes['sendSticker'][0])
     {
@@ -7831,12 +7831,12 @@ class MessagingApi
      * Send sticker message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendStickerRequest $send_sticker_request (required)
+     * @param  \OneMsgSdk\Model\SendStickerRequest $send_sticker_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendSticker'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\MessageSentResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendStickerWithHttpInfo($token, $send_sticker_request, string $contentType = self::contentTypes['sendSticker'][0])
     {
@@ -7868,31 +7868,31 @@ class MessagingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 429:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -7914,7 +7914,7 @@ class MessagingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\MessageSentResponse',
+                '\OneMsgSdk\Model\MessageSentResponse',
                 $request,
                 $response,
             );
@@ -7923,7 +7923,7 @@ class MessagingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\MessageSentResponse',
+                        '\OneMsgSdk\Model\MessageSentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7931,7 +7931,7 @@ class MessagingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7939,7 +7939,7 @@ class MessagingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7947,7 +7947,7 @@ class MessagingApi
                 case 429:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7955,7 +7955,7 @@ class MessagingApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7973,7 +7973,7 @@ class MessagingApi
      * Send sticker message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendStickerRequest $send_sticker_request (required)
+     * @param  \OneMsgSdk\Model\SendStickerRequest $send_sticker_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendSticker'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7995,7 +7995,7 @@ class MessagingApi
      * Send sticker message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendStickerRequest $send_sticker_request (required)
+     * @param  \OneMsgSdk\Model\SendStickerRequest $send_sticker_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendSticker'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8003,7 +8003,7 @@ class MessagingApi
      */
     public function sendStickerAsyncWithHttpInfo($token, $send_sticker_request, string $contentType = self::contentTypes['sendSticker'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\MessageSentResponse';
+        $returnType = '\OneMsgSdk\Model\MessageSentResponse';
         $request = $this->sendStickerRequest($token, $send_sticker_request, $contentType);
 
         return $this->client
@@ -8046,7 +8046,7 @@ class MessagingApi
      * Create request for operation 'sendSticker'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendStickerRequest $send_sticker_request (required)
+     * @param  \OneMsgSdk\Model\SendStickerRequest $send_sticker_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendSticker'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **template** | **string** |  | [optional]
-**language** | [**\OneMsgChatApi\Model\SendTemplateRequestLanguage**](SendTemplateRequestLanguage.md) |  | [optional]
+**language** | [**\OneMsgSdk\Model\SendTemplateRequestLanguage**](SendTemplateRequestLanguage.md) |  | [optional]
 **namespace** | **string** |  | [optional]
 **params** | **mixed[]** |  | [optional]
 **phone** | **string** |  | [optional]

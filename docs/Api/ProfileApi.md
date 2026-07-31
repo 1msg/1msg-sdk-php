@@ -1,4 +1,4 @@
-# OneMsgChatApi\ProfileApi
+# OneMsgSdk\ProfileApi
 
 Channel profile information (read and update)
 
@@ -13,7 +13,7 @@ All URIs are relative to https://api.1msg.io, except if the operation defines an
 ## `getMe()`
 
 ```php
-getMe($token): \OneMsgChatApi\Model\ProfileInfo
+getMe($token): \OneMsgSdk\Model\ProfileInfo
 ```
 
 Get Profile Info
@@ -28,12 +28,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\ProfileApi(
+$apiInstance = new OneMsgSdk\Api\ProfileApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -57,7 +57,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\ProfileInfo**](../Model/ProfileInfo.md)
+[**\OneMsgSdk\Model\ProfileInfo**](../Model/ProfileInfo.md)
 
 ### Authorization
 
@@ -90,19 +90,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\ProfileApi(
+$apiInstance = new OneMsgSdk\Api\ProfileApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$update_me_request = new \OneMsgChatApi\Model\UpdateMeRequest(); // \OneMsgChatApi\Model\UpdateMeRequest
+$update_me_request = new \OneMsgSdk\Model\UpdateMeRequest(); // \OneMsgSdk\Model\UpdateMeRequest
 
 try {
     $result = $apiInstance->updateMe($token, $update_me_request);
@@ -117,7 +117,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **update_me_request** | [**\OneMsgChatApi\Model\UpdateMeRequest**](../Model/UpdateMeRequest.md)|  | [optional] |
+| **update_me_request** | [**\OneMsgSdk\Model\UpdateMeRequest**](../Model/UpdateMeRequest.md)|  | [optional] |
 
 ### Return type
 

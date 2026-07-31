@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Model;
+namespace OneMsgSdk\Model;
 
 use \ArrayAccess;
-use \OneMsgChatApi\ObjectSerializer;
+use \OneMsgSdk\ObjectSerializer;
 
 /**
  * SendOrderDetailsRequestOrderItemsInner Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class SendOrderDetailsRequestOrderItemsInner implements ModelInterface, ArrayAcc
         'retailer_id' => 'string',
         'name' => 'string',
         'quantity' => 'int',
-        'amount' => '\OneMsgChatApi\Model\SendOrderDetailsRequestOrderItemsInnerAmount'
+        'amount' => '\OneMsgSdk\Model\SendOrderDetailsRequestOrderItemsInnerAmount'
     ];
 
     /**
@@ -395,7 +395,7 @@ class SendOrderDetailsRequestOrderItemsInner implements ModelInterface, ArrayAcc
     /**
      * Gets amount
      *
-     * @return \OneMsgChatApi\Model\SendOrderDetailsRequestOrderItemsInnerAmount|null
+     * @return \OneMsgSdk\Model\SendOrderDetailsRequestOrderItemsInnerAmount|null
      */
     public function getAmount()
     {
@@ -405,7 +405,7 @@ class SendOrderDetailsRequestOrderItemsInner implements ModelInterface, ArrayAcc
     /**
      * Sets amount
      *
-     * @param \OneMsgChatApi\Model\SendOrderDetailsRequestOrderItemsInnerAmount|null $amount amount
+     * @param \OneMsgSdk\Model\SendOrderDetailsRequestOrderItemsInnerAmount|null $amount amount
      *
      * @return self
      */

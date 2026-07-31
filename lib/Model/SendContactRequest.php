@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Model;
+namespace OneMsgSdk\Model;
 
 use \ArrayAccess;
-use \OneMsgChatApi\ObjectSerializer;
+use \OneMsgSdk\ObjectSerializer;
 
 /**
  * SendContactRequest Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class SendContactRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     protected static $openAPITypes = [
         'phone' => 'string',
-        'contacts' => '\OneMsgChatApi\Model\SendContactRequestContactsInner[]'
+        'contacts' => '\OneMsgSdk\Model\SendContactRequestContactsInner[]'
     ];
 
     /**
@@ -327,7 +327,7 @@ class SendContactRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets contacts
      *
-     * @return \OneMsgChatApi\Model\SendContactRequestContactsInner[]|null
+     * @return \OneMsgSdk\Model\SendContactRequestContactsInner[]|null
      */
     public function getContacts()
     {
@@ -337,7 +337,7 @@ class SendContactRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets contacts
      *
-     * @param \OneMsgChatApi\Model\SendContactRequestContactsInner[]|null $contacts contacts
+     * @param \OneMsgSdk\Model\SendContactRequestContactsInner[]|null $contacts contacts
      *
      * @return self
      */

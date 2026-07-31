@@ -1,4 +1,4 @@
-# OneMsgChatApi\FlowsApi
+# OneMsgSdk\FlowsApi
 
 WhatsApp Flows (interactive forms)
 
@@ -22,7 +22,7 @@ All URIs are relative to https://api.1msg.io, except if the operation defines an
 ## `createFlows()`
 
 ```php
-createFlows($token, $waba_account_id): \OneMsgChatApi\Model\CreateGroups200Response
+createFlows($token, $waba_account_id): \OneMsgSdk\Model\CreateGroups200Response
 ```
 
 Create Flow
@@ -35,12 +35,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\FlowsApi(
+$apiInstance = new OneMsgSdk\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -66,7 +66,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\CreateGroups200Response**](../Model/CreateGroups200Response.md)
+[**\OneMsgSdk\Model\CreateGroups200Response**](../Model/CreateGroups200Response.md)
 
 ### Authorization
 
@@ -97,12 +97,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\FlowsApi(
+$apiInstance = new OneMsgSdk\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -161,12 +161,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\FlowsApi(
+$apiInstance = new OneMsgSdk\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -212,7 +212,7 @@ try {
 ## `deleteFlowsFlowId()`
 
 ```php
-deleteFlowsFlowId($flow_id, $token, $waba_account_id): \OneMsgChatApi\Model\DeleteFlowsFlowId200Response
+deleteFlowsFlowId($flow_id, $token, $waba_account_id): \OneMsgSdk\Model\DeleteFlowsFlowId200Response
 ```
 
 Delete Flow
@@ -225,12 +225,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\FlowsApi(
+$apiInstance = new OneMsgSdk\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -258,7 +258,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\DeleteFlowsFlowId200Response**](../Model/DeleteFlowsFlowId200Response.md)
+[**\OneMsgSdk\Model\DeleteFlowsFlowId200Response**](../Model/DeleteFlowsFlowId200Response.md)
 
 ### Authorization
 
@@ -276,7 +276,7 @@ try {
 ## `getFlowsFlowId()`
 
 ```php
-getFlowsFlowId($flow_id, $token, $waba_account_id): \OneMsgChatApi\Model\CreateGroups200Response
+getFlowsFlowId($flow_id, $token, $waba_account_id): \OneMsgSdk\Model\CreateGroups200Response
 ```
 
 Get Flow Details
@@ -289,12 +289,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\FlowsApi(
+$apiInstance = new OneMsgSdk\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -322,7 +322,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\CreateGroups200Response**](../Model/CreateGroups200Response.md)
+[**\OneMsgSdk\Model\CreateGroups200Response**](../Model/CreateGroups200Response.md)
 
 ### Authorization
 
@@ -353,12 +353,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\FlowsApi(
+$apiInstance = new OneMsgSdk\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -404,7 +404,7 @@ try {
 ## `getWhatsappBusinessEncryption()`
 
 ```php
-getWhatsappBusinessEncryption($token): \OneMsgChatApi\Model\GetWhatsappBusinessEncryption200Response
+getWhatsappBusinessEncryption($token): \OneMsgSdk\Model\GetWhatsappBusinessEncryption200Response
 ```
 
 Get business encryption public key
@@ -419,12 +419,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\FlowsApi(
+$apiInstance = new OneMsgSdk\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -448,7 +448,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\GetWhatsappBusinessEncryption200Response**](../Model/GetWhatsappBusinessEncryption200Response.md)
+[**\OneMsgSdk\Model\GetWhatsappBusinessEncryption200Response**](../Model/GetWhatsappBusinessEncryption200Response.md)
 
 ### Authorization
 
@@ -466,7 +466,7 @@ try {
 ## `listFlows()`
 
 ```php
-listFlows($token, $waba_account_id): \OneMsgChatApi\Model\ListFlows200Response
+listFlows($token, $waba_account_id): \OneMsgSdk\Model\ListFlows200Response
 ```
 
 List Flows
@@ -479,12 +479,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\FlowsApi(
+$apiInstance = new OneMsgSdk\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -510,7 +510,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\ListFlows200Response**](../Model/ListFlows200Response.md)
+[**\OneMsgSdk\Model\ListFlows200Response**](../Model/ListFlows200Response.md)
 
 ### Authorization
 
@@ -528,7 +528,7 @@ try {
 ## `patchFlowsFlowIdAssets()`
 
 ```php
-patchFlowsFlowIdAssets($flow_id, $token, $waba_account_id): \OneMsgChatApi\Model\PatchFlowsFlowIdAssets200Response
+patchFlowsFlowIdAssets($flow_id, $token, $waba_account_id): \OneMsgSdk\Model\PatchFlowsFlowIdAssets200Response
 ```
 
 Update Flow Structure
@@ -541,12 +541,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\FlowsApi(
+$apiInstance = new OneMsgSdk\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -574,7 +574,7 @@ try {
 
 ### Return type
 
-[**\OneMsgChatApi\Model\PatchFlowsFlowIdAssets200Response**](../Model/PatchFlowsFlowIdAssets200Response.md)
+[**\OneMsgSdk\Model\PatchFlowsFlowIdAssets200Response**](../Model/PatchFlowsFlowIdAssets200Response.md)
 
 ### Authorization
 
@@ -605,12 +605,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\FlowsApi(
+$apiInstance = new OneMsgSdk\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -656,7 +656,7 @@ try {
 ## `setWhatsappBusinessEncryption()`
 
 ```php
-setWhatsappBusinessEncryption($token, $set_whatsapp_business_encryption_request): \OneMsgChatApi\Model\CreateCommerce200Response
+setWhatsappBusinessEncryption($token, $set_whatsapp_business_encryption_request): \OneMsgSdk\Model\CreateCommerce200Response
 ```
 
 Set business encryption public key
@@ -671,19 +671,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: tokenAuth
-$config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OneMsgChatApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
 
 
-$apiInstance = new OneMsgChatApi\Api\FlowsApi(
+$apiInstance = new OneMsgSdk\Api\FlowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$set_whatsapp_business_encryption_request = new \OneMsgChatApi\Model\SetWhatsappBusinessEncryptionRequest(); // \OneMsgChatApi\Model\SetWhatsappBusinessEncryptionRequest
+$set_whatsapp_business_encryption_request = new \OneMsgSdk\Model\SetWhatsappBusinessEncryptionRequest(); // \OneMsgSdk\Model\SetWhatsappBusinessEncryptionRequest
 
 try {
     $result = $apiInstance->setWhatsappBusinessEncryption($token, $set_whatsapp_business_encryption_request);
@@ -698,11 +698,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **set_whatsapp_business_encryption_request** | [**\OneMsgChatApi\Model\SetWhatsappBusinessEncryptionRequest**](../Model/SetWhatsappBusinessEncryptionRequest.md)|  | |
+| **set_whatsapp_business_encryption_request** | [**\OneMsgSdk\Model\SetWhatsappBusinessEncryptionRequest**](../Model/SetWhatsappBusinessEncryptionRequest.md)|  | |
 
 ### Return type
 
-[**\OneMsgChatApi\Model\CreateCommerce200Response**](../Model/CreateCommerce200Response.md)
+[**\OneMsgSdk\Model\CreateCommerce200Response**](../Model/CreateCommerce200Response.md)
 
 ### Authorization
 

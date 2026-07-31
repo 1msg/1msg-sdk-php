@@ -4,7 +4,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Api;
+namespace OneMsgSdk\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -37,17 +37,17 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OneMsgChatApi\ApiException;
-use OneMsgChatApi\Configuration;
-use OneMsgChatApi\FormDataProcessor;
-use OneMsgChatApi\HeaderSelector;
-use OneMsgChatApi\ObjectSerializer;
+use OneMsgSdk\ApiException;
+use OneMsgSdk\Configuration;
+use OneMsgSdk\FormDataProcessor;
+use OneMsgSdk\HeaderSelector;
+use OneMsgSdk\ObjectSerializer;
 
 /**
  * TemplatesApi Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -141,12 +141,12 @@ class TemplatesApi
      * Create message template
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\AddTemplateRequest|null $add_template_request add_template_request (optional)
+     * @param  \OneMsgSdk\Model\AddTemplateRequest|null $add_template_request add_template_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addTemplate'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array<string,mixed>|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function addTemplate($token, $add_template_request = null, string $contentType = self::contentTypes['addTemplate'][0])
     {
@@ -160,12 +160,12 @@ class TemplatesApi
      * Create message template
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\AddTemplateRequest|null $add_template_request (optional)
+     * @param  \OneMsgSdk\Model\AddTemplateRequest|null $add_template_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addTemplate'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of array<string,mixed>|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function addTemplateWithHttpInfo($token, $add_template_request = null, string $contentType = self::contentTypes['addTemplate'][0])
     {
@@ -203,13 +203,13 @@ class TemplatesApi
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -248,7 +248,7 @@ class TemplatesApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -256,7 +256,7 @@ class TemplatesApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -274,7 +274,7 @@ class TemplatesApi
      * Create message template
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\AddTemplateRequest|null $add_template_request (optional)
+     * @param  \OneMsgSdk\Model\AddTemplateRequest|null $add_template_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addTemplate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -296,7 +296,7 @@ class TemplatesApi
      * Create message template
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\AddTemplateRequest|null $add_template_request (optional)
+     * @param  \OneMsgSdk\Model\AddTemplateRequest|null $add_template_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addTemplate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -347,7 +347,7 @@ class TemplatesApi
      * Create request for operation 'addTemplate'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\AddTemplateRequest|null $add_template_request (optional)
+     * @param  \OneMsgSdk\Model\AddTemplateRequest|null $add_template_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addTemplate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -458,9 +458,9 @@ class TemplatesApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTemplates'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\ListTemplates200Response
+     * @return \OneMsgSdk\Model\ListTemplates200Response
      */
     public function listTemplates($token, string $contentType = self::contentTypes['listTemplates'][0])
     {
@@ -476,9 +476,9 @@ class TemplatesApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTemplates'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\ListTemplates200Response, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\ListTemplates200Response, HTTP status code, HTTP response headers (array of strings)
      */
     public function listTemplatesWithHttpInfo($token, string $contentType = self::contentTypes['listTemplates'][0])
     {
@@ -510,7 +510,7 @@ class TemplatesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ListTemplates200Response',
+                        '\OneMsgSdk\Model\ListTemplates200Response',
                         $request,
                         $response,
                     );
@@ -532,7 +532,7 @@ class TemplatesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\ListTemplates200Response',
+                '\OneMsgSdk\Model\ListTemplates200Response',
                 $request,
                 $response,
             );
@@ -541,7 +541,7 @@ class TemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ListTemplates200Response',
+                        '\OneMsgSdk\Model\ListTemplates200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -587,7 +587,7 @@ class TemplatesApi
      */
     public function listTemplatesAsyncWithHttpInfo($token, string $contentType = self::contentTypes['listTemplates'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\ListTemplates200Response';
+        $returnType = '\OneMsgSdk\Model\ListTemplates200Response';
         $request = $this->listTemplatesRequest($token, $contentType);
 
         return $this->client
@@ -733,9 +733,9 @@ class TemplatesApi
      * @param  array<string,mixed>|null $request_body request_body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeTemplate'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array<string,mixed>|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse
+     * @return array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function removeTemplate($token, $request_body = null, string $contentType = self::contentTypes['removeTemplate'][0])
     {
@@ -752,9 +752,9 @@ class TemplatesApi
      * @param  array<string,mixed>|null $request_body (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeTemplate'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of array<string,mixed>|\OneMsgChatApi\Model\ErrorResponse|\OneMsgChatApi\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function removeTemplateWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['removeTemplate'][0])
     {
@@ -792,13 +792,13 @@ class TemplatesApi
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
                 case 500:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $request,
                         $response,
                     );
@@ -837,7 +837,7 @@ class TemplatesApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -845,7 +845,7 @@ class TemplatesApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\ErrorResponse',
+                        '\OneMsgSdk\Model\ErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1045,10 +1045,10 @@ class TemplatesApi
      * Send Template Message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendTemplateRequest|null $send_template_request send_template_request (optional)
+     * @param  \OneMsgSdk\Model\SendTemplateRequest|null $send_template_request send_template_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendTemplate'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array<string,mixed>
      */
@@ -1064,10 +1064,10 @@ class TemplatesApi
      * Send Template Message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendTemplateRequest|null $send_template_request (optional)
+     * @param  \OneMsgSdk\Model\SendTemplateRequest|null $send_template_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendTemplate'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of array<string,mixed>, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1150,7 +1150,7 @@ class TemplatesApi
      * Send Template Message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendTemplateRequest|null $send_template_request (optional)
+     * @param  \OneMsgSdk\Model\SendTemplateRequest|null $send_template_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendTemplate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1172,7 +1172,7 @@ class TemplatesApi
      * Send Template Message
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendTemplateRequest|null $send_template_request (optional)
+     * @param  \OneMsgSdk\Model\SendTemplateRequest|null $send_template_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendTemplate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1223,7 +1223,7 @@ class TemplatesApi
      * Create request for operation 'sendTemplate'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgChatApi\Model\SendTemplateRequest|null $send_template_request (optional)
+     * @param  \OneMsgSdk\Model\SendTemplateRequest|null $send_template_request (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendTemplate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

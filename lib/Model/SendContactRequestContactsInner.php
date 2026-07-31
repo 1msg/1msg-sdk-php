@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Model;
+namespace OneMsgSdk\Model;
 
 use \ArrayAccess;
-use \OneMsgChatApi\ObjectSerializer;
+use \OneMsgSdk\ObjectSerializer;
 
 /**
  * SendContactRequestContactsInner Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,12 +58,12 @@ class SendContactRequestContactsInner implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $openAPITypes = [
-        'name' => '\OneMsgChatApi\Model\SendContactRequestContactsInnerName',
+        'name' => '\OneMsgSdk\Model\SendContactRequestContactsInnerName',
         'birthday' => 'string',
         'addresses' => 'mixed[]',
         'emails' => 'mixed[]',
-        'org' => '\OneMsgChatApi\Model\SendContactRequestContactsInnerOrg',
-        'phones' => '\OneMsgChatApi\Model\SendContactRequestContactsInnerPhonesInner[]',
+        'org' => '\OneMsgSdk\Model\SendContactRequestContactsInnerOrg',
+        'phones' => '\OneMsgSdk\Model\SendContactRequestContactsInnerPhonesInner[]',
         'urls' => 'mixed[]'
     ];
 
@@ -335,7 +335,7 @@ class SendContactRequestContactsInner implements ModelInterface, ArrayAccess, \J
     /**
      * Gets name
      *
-     * @return \OneMsgChatApi\Model\SendContactRequestContactsInnerName|null
+     * @return \OneMsgSdk\Model\SendContactRequestContactsInnerName|null
      */
     public function getName()
     {
@@ -345,7 +345,7 @@ class SendContactRequestContactsInner implements ModelInterface, ArrayAccess, \J
     /**
      * Sets name
      *
-     * @param \OneMsgChatApi\Model\SendContactRequestContactsInnerName|null $name name
+     * @param \OneMsgSdk\Model\SendContactRequestContactsInnerName|null $name name
      *
      * @return self
      */
@@ -443,7 +443,7 @@ class SendContactRequestContactsInner implements ModelInterface, ArrayAccess, \J
     /**
      * Gets org
      *
-     * @return \OneMsgChatApi\Model\SendContactRequestContactsInnerOrg|null
+     * @return \OneMsgSdk\Model\SendContactRequestContactsInnerOrg|null
      */
     public function getOrg()
     {
@@ -453,7 +453,7 @@ class SendContactRequestContactsInner implements ModelInterface, ArrayAccess, \J
     /**
      * Sets org
      *
-     * @param \OneMsgChatApi\Model\SendContactRequestContactsInnerOrg|null $org org
+     * @param \OneMsgSdk\Model\SendContactRequestContactsInnerOrg|null $org org
      *
      * @return self
      */
@@ -470,7 +470,7 @@ class SendContactRequestContactsInner implements ModelInterface, ArrayAccess, \J
     /**
      * Gets phones
      *
-     * @return \OneMsgChatApi\Model\SendContactRequestContactsInnerPhonesInner[]|null
+     * @return \OneMsgSdk\Model\SendContactRequestContactsInnerPhonesInner[]|null
      */
     public function getPhones()
     {
@@ -480,7 +480,7 @@ class SendContactRequestContactsInner implements ModelInterface, ArrayAccess, \J
     /**
      * Sets phones
      *
-     * @param \OneMsgChatApi\Model\SendContactRequestContactsInnerPhonesInner[]|null $phones phones
+     * @param \OneMsgSdk\Model\SendContactRequestContactsInnerPhonesInner[]|null $phones phones
      *
      * @return self
      */

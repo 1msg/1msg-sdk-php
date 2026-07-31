@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Model;
+namespace OneMsgSdk\Model;
 
 use \ArrayAccess;
-use \OneMsgChatApi\ObjectSerializer;
+use \OneMsgSdk\ObjectSerializer;
 
 /**
  * SendListRequest Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -62,7 +62,7 @@ class SendListRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'body' => 'string',
         'button_text' => 'string',
         'action' => 'string',
-        'sections' => '\OneMsgChatApi\Model\SendListRequestSectionsInner[]'
+        'sections' => '\OneMsgSdk\Model\SendListRequestSectionsInner[]'
     ];
 
     /**
@@ -429,7 +429,7 @@ class SendListRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets sections
      *
-     * @return \OneMsgChatApi\Model\SendListRequestSectionsInner[]|null
+     * @return \OneMsgSdk\Model\SendListRequestSectionsInner[]|null
      */
     public function getSections()
     {
@@ -439,7 +439,7 @@ class SendListRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sections
      *
-     * @param \OneMsgChatApi\Model\SendListRequestSectionsInner[]|null $sections sections
+     * @param \OneMsgSdk\Model\SendListRequestSectionsInner[]|null $sections sections
      *
      * @return self
      */

@@ -4,7 +4,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Api;
+namespace OneMsgSdk\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -37,17 +37,17 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use OneMsgChatApi\ApiException;
-use OneMsgChatApi\Configuration;
-use OneMsgChatApi\FormDataProcessor;
-use OneMsgChatApi\HeaderSelector;
-use OneMsgChatApi\ObjectSerializer;
+use OneMsgSdk\ApiException;
+use OneMsgSdk\Configuration;
+use OneMsgSdk\FormDataProcessor;
+use OneMsgSdk\HeaderSelector;
+use OneMsgSdk\ObjectSerializer;
 
 /**
  * GroupsApi Class Doc Comment
  *
  * @category Class
- * @package  OneMsgChatApi
+ * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -152,9 +152,9 @@ class GroupsApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGroups'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\CreateGroups200Response
+     * @return \OneMsgSdk\Model\CreateGroups200Response
      */
     public function createGroups($token, string $contentType = self::contentTypes['createGroups'][0])
     {
@@ -170,9 +170,9 @@ class GroupsApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGroups'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\CreateGroups200Response, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\CreateGroups200Response, HTTP status code, HTTP response headers (array of strings)
      */
     public function createGroupsWithHttpInfo($token, string $contentType = self::contentTypes['createGroups'][0])
     {
@@ -204,7 +204,7 @@ class GroupsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\CreateGroups200Response',
+                        '\OneMsgSdk\Model\CreateGroups200Response',
                         $request,
                         $response,
                     );
@@ -226,7 +226,7 @@ class GroupsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\CreateGroups200Response',
+                '\OneMsgSdk\Model\CreateGroups200Response',
                 $request,
                 $response,
             );
@@ -235,7 +235,7 @@ class GroupsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\CreateGroups200Response',
+                        '\OneMsgSdk\Model\CreateGroups200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -281,7 +281,7 @@ class GroupsApi
      */
     public function createGroupsAsyncWithHttpInfo($token, string $contentType = self::contentTypes['createGroups'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\CreateGroups200Response';
+        $returnType = '\OneMsgSdk\Model\CreateGroups200Response';
         $request = $this->createGroupsRequest($token, $contentType);
 
         return $this->client
@@ -427,7 +427,7 @@ class GroupsApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGroupsGroupId'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array<string,mixed>
      */
@@ -446,7 +446,7 @@ class GroupsApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGroupsGroupId'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of array<string,mixed>, HTTP status code, HTTP response headers (array of strings)
      */
@@ -721,7 +721,7 @@ class GroupsApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGroupsGroupIdInvitelink'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array<string,mixed>
      */
@@ -740,7 +740,7 @@ class GroupsApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGroupsGroupIdInvitelink'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of array<string,mixed>, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1015,9 +1015,9 @@ class GroupsApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteGroupsGroupId'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \OneMsgChatApi\Model\DeleteGroupsGroupId200Response
+     * @return \OneMsgSdk\Model\DeleteGroupsGroupId200Response
      */
     public function deleteGroupsGroupId($group_id, $token, string $contentType = self::contentTypes['deleteGroupsGroupId'][0])
     {
@@ -1034,9 +1034,9 @@ class GroupsApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteGroupsGroupId'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \OneMsgChatApi\Model\DeleteGroupsGroupId200Response, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\DeleteGroupsGroupId200Response, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteGroupsGroupIdWithHttpInfo($group_id, $token, string $contentType = self::contentTypes['deleteGroupsGroupId'][0])
     {
@@ -1068,7 +1068,7 @@ class GroupsApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OneMsgChatApi\Model\DeleteGroupsGroupId200Response',
+                        '\OneMsgSdk\Model\DeleteGroupsGroupId200Response',
                         $request,
                         $response,
                     );
@@ -1090,7 +1090,7 @@ class GroupsApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OneMsgChatApi\Model\DeleteGroupsGroupId200Response',
+                '\OneMsgSdk\Model\DeleteGroupsGroupId200Response',
                 $request,
                 $response,
             );
@@ -1099,7 +1099,7 @@ class GroupsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OneMsgChatApi\Model\DeleteGroupsGroupId200Response',
+                        '\OneMsgSdk\Model\DeleteGroupsGroupId200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1147,7 +1147,7 @@ class GroupsApi
      */
     public function deleteGroupsGroupIdAsyncWithHttpInfo($group_id, $token, string $contentType = self::contentTypes['deleteGroupsGroupId'][0])
     {
-        $returnType = '\OneMsgChatApi\Model\DeleteGroupsGroupId200Response';
+        $returnType = '\OneMsgSdk\Model\DeleteGroupsGroupId200Response';
         $request = $this->deleteGroupsGroupIdRequest($group_id, $token, $contentType);
 
         return $this->client
@@ -1309,7 +1309,7 @@ class GroupsApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getGroupsGroupId'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array<string,mixed>
      */
@@ -1328,7 +1328,7 @@ class GroupsApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getGroupsGroupId'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of array<string,mixed>, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1603,7 +1603,7 @@ class GroupsApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getGroupsGroupIdInvitelink'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array<string,mixed>
      */
@@ -1622,7 +1622,7 @@ class GroupsApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getGroupsGroupIdInvitelink'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of array<string,mixed>, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1896,7 +1896,7 @@ class GroupsApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listGroups'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array<string,mixed>
      */
@@ -1914,7 +1914,7 @@ class GroupsApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listGroups'] to see the possible values for this operation
      *
-     * @throws \OneMsgChatApi\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of array<string,mixed>, HTTP status code, HTTP response headers (array of strings)
      */

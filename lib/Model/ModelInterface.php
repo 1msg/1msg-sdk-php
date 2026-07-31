@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OneMsgChatApi\Model
+ * @package  OneMsgSdk\Model
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,12 +27,12 @@
  * Do not edit the class manually.
  */
 
-namespace OneMsgChatApi\Model;
+namespace OneMsgSdk\Model;
 
 /**
  * Interface abstracting model access.
  *
- * @package OneMsgChatApi\Model
+ * @package OneMsgSdk\Model
  * @author  OpenAPI Generator team
  */
 interface ModelInterface
