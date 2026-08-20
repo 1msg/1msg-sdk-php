@@ -87,7 +87,7 @@ class CallingApiTest extends TestCase
     /**
      * Test case for initiateCall
      *
-     * Initiate WhatsApp call.
+     * Call action (connect / pre_accept / accept / reject / terminate).
      *
      */
     public function testInitiateCall()

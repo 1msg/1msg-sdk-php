@@ -1,6 +1,6 @@
 {
     "name": "1msg/sdk",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/",
     "keywords": [
         "openapitools",
@@ -15,7 +15,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "1msg",
+            "name": "1MSG",
             "homepage": "https://1msg.io"
         }
     ],

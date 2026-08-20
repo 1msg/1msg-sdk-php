@@ -142,7 +142,7 @@ class CallingApi
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\CallingSettings|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function getCallingSettings($token, string $contentType = self::contentTypes['getCallingSettings'][0])
     {
@@ -160,7 +160,7 @@ class CallingApi
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\CallingSettings|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getCallingSettingsWithHttpInfo($token, string $contentType = self::contentTypes['getCallingSettings'][0])
     {
@@ -192,7 +192,7 @@ class CallingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        'array<string,mixed>',
+                        '\OneMsgSdk\Model\CallingSettings',
                         $request,
                         $response,
                     );
@@ -226,7 +226,7 @@ class CallingApi
             }
 
             return $this->handleResponseWithDataType(
-                'array<string,mixed>',
+                '\OneMsgSdk\Model\CallingSettings',
                 $request,
                 $response,
             );
@@ -235,7 +235,7 @@ class CallingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'array<string,mixed>',
+                        '\OneMsgSdk\Model\CallingSettings',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -297,7 +297,7 @@ class CallingApi
      */
     public function getCallingSettingsAsyncWithHttpInfo($token, string $contentType = self::contentTypes['getCallingSettings'][0])
     {
-        $returnType = 'array<string,mixed>';
+        $returnType = '\OneMsgSdk\Model\CallingSettings';
         $request = $this->getCallingSettingsRequest($token, $contentType);
 
         return $this->client
@@ -437,38 +437,38 @@ class CallingApi
     /**
      * Operation initiateCall
      *
-     * Initiate WhatsApp call
+     * Call action (connect / pre_accept / accept / reject / terminate)
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body request_body (optional)
+     * @param  \OneMsgSdk\Model\InitiateCallRequest $initiate_call_request initiate_call_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['initiateCall'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\InitiateCallResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
-    public function initiateCall($token, $request_body = null, string $contentType = self::contentTypes['initiateCall'][0])
+    public function initiateCall($token, $initiate_call_request, string $contentType = self::contentTypes['initiateCall'][0])
     {
-        list($response) = $this->initiateCallWithHttpInfo($token, $request_body, $contentType);
+        list($response) = $this->initiateCallWithHttpInfo($token, $initiate_call_request, $contentType);
         return $response;
     }
 
     /**
      * Operation initiateCallWithHttpInfo
      *
-     * Initiate WhatsApp call
+     * Call action (connect / pre_accept / accept / reject / terminate)
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\InitiateCallRequest $initiate_call_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['initiateCall'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\InitiateCallResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function initiateCallWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['initiateCall'][0])
+    public function initiateCallWithHttpInfo($token, $initiate_call_request, string $contentType = self::contentTypes['initiateCall'][0])
     {
-        $request = $this->initiateCallRequest($token, $request_body, $contentType);
+        $request = $this->initiateCallRequest($token, $initiate_call_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -496,7 +496,7 @@ class CallingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        'array<string,mixed>',
+                        '\OneMsgSdk\Model\InitiateCallResponse',
                         $request,
                         $response,
                     );
@@ -530,7 +530,7 @@ class CallingApi
             }
 
             return $this->handleResponseWithDataType(
-                'array<string,mixed>',
+                '\OneMsgSdk\Model\InitiateCallResponse',
                 $request,
                 $response,
             );
@@ -539,7 +539,7 @@ class CallingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'array<string,mixed>',
+                        '\OneMsgSdk\Model\InitiateCallResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -570,18 +570,18 @@ class CallingApi
     /**
      * Operation initiateCallAsync
      *
-     * Initiate WhatsApp call
+     * Call action (connect / pre_accept / accept / reject / terminate)
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\InitiateCallRequest $initiate_call_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['initiateCall'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function initiateCallAsync($token, $request_body = null, string $contentType = self::contentTypes['initiateCall'][0])
+    public function initiateCallAsync($token, $initiate_call_request, string $contentType = self::contentTypes['initiateCall'][0])
     {
-        return $this->initiateCallAsyncWithHttpInfo($token, $request_body, $contentType)
+        return $this->initiateCallAsyncWithHttpInfo($token, $initiate_call_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -592,19 +592,19 @@ class CallingApi
     /**
      * Operation initiateCallAsyncWithHttpInfo
      *
-     * Initiate WhatsApp call
+     * Call action (connect / pre_accept / accept / reject / terminate)
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\InitiateCallRequest $initiate_call_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['initiateCall'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function initiateCallAsyncWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['initiateCall'][0])
+    public function initiateCallAsyncWithHttpInfo($token, $initiate_call_request, string $contentType = self::contentTypes['initiateCall'][0])
     {
-        $returnType = 'array<string,mixed>';
-        $request = $this->initiateCallRequest($token, $request_body, $contentType);
+        $returnType = '\OneMsgSdk\Model\InitiateCallResponse';
+        $request = $this->initiateCallRequest($token, $initiate_call_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -646,13 +646,13 @@ class CallingApi
      * Create request for operation 'initiateCall'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\InitiateCallRequest $initiate_call_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['initiateCall'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function initiateCallRequest($token, $request_body = null, string $contentType = self::contentTypes['initiateCall'][0])
+    public function initiateCallRequest($token, $initiate_call_request, string $contentType = self::contentTypes['initiateCall'][0])
     {
 
         // verify the required parameter 'token' is set
@@ -662,6 +662,12 @@ class CallingApi
             );
         }
 
+        // verify the required parameter 'initiate_call_request' is set
+        if ($initiate_call_request === null || (is_array($initiate_call_request) && count($initiate_call_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $initiate_call_request when calling initiateCall'
+            );
+        }
 
 
         $resourcePath = '/initiateCall';
@@ -691,12 +697,12 @@ class CallingApi
         );
 
         // for model (json/xml)
-        if (isset($request_body)) {
+        if (isset($initiate_call_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($request_body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($initiate_call_request));
             } else {
-                $httpBody = $request_body;
+                $httpBody = $initiate_call_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -755,16 +761,16 @@ class CallingApi
      * Update calling settings
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body request_body (optional)
+     * @param  \OneMsgSdk\Model\CallingSettings $calling_settings calling_settings (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCallingSettings'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\UpdateCallingSettings200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
-    public function updateCallingSettings($token, $request_body = null, string $contentType = self::contentTypes['updateCallingSettings'][0])
+    public function updateCallingSettings($token, $calling_settings, string $contentType = self::contentTypes['updateCallingSettings'][0])
     {
-        list($response) = $this->updateCallingSettingsWithHttpInfo($token, $request_body, $contentType);
+        list($response) = $this->updateCallingSettingsWithHttpInfo($token, $calling_settings, $contentType);
         return $response;
     }
 
@@ -774,16 +780,16 @@ class CallingApi
      * Update calling settings
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\CallingSettings $calling_settings (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCallingSettings'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\UpdateCallingSettings200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateCallingSettingsWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['updateCallingSettings'][0])
+    public function updateCallingSettingsWithHttpInfo($token, $calling_settings, string $contentType = self::contentTypes['updateCallingSettings'][0])
     {
-        $request = $this->updateCallingSettingsRequest($token, $request_body, $contentType);
+        $request = $this->updateCallingSettingsRequest($token, $calling_settings, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -811,7 +817,7 @@ class CallingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        'array<string,mixed>',
+                        '\OneMsgSdk\Model\UpdateCallingSettings200Response',
                         $request,
                         $response,
                     );
@@ -845,7 +851,7 @@ class CallingApi
             }
 
             return $this->handleResponseWithDataType(
-                'array<string,mixed>',
+                '\OneMsgSdk\Model\UpdateCallingSettings200Response',
                 $request,
                 $response,
             );
@@ -854,7 +860,7 @@ class CallingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'array<string,mixed>',
+                        '\OneMsgSdk\Model\UpdateCallingSettings200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -888,15 +894,15 @@ class CallingApi
      * Update calling settings
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\CallingSettings $calling_settings (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCallingSettings'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateCallingSettingsAsync($token, $request_body = null, string $contentType = self::contentTypes['updateCallingSettings'][0])
+    public function updateCallingSettingsAsync($token, $calling_settings, string $contentType = self::contentTypes['updateCallingSettings'][0])
     {
-        return $this->updateCallingSettingsAsyncWithHttpInfo($token, $request_body, $contentType)
+        return $this->updateCallingSettingsAsyncWithHttpInfo($token, $calling_settings, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -910,16 +916,16 @@ class CallingApi
      * Update calling settings
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\CallingSettings $calling_settings (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCallingSettings'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateCallingSettingsAsyncWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['updateCallingSettings'][0])
+    public function updateCallingSettingsAsyncWithHttpInfo($token, $calling_settings, string $contentType = self::contentTypes['updateCallingSettings'][0])
     {
-        $returnType = 'array<string,mixed>';
-        $request = $this->updateCallingSettingsRequest($token, $request_body, $contentType);
+        $returnType = '\OneMsgSdk\Model\UpdateCallingSettings200Response';
+        $request = $this->updateCallingSettingsRequest($token, $calling_settings, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -961,13 +967,13 @@ class CallingApi
      * Create request for operation 'updateCallingSettings'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\CallingSettings $calling_settings (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCallingSettings'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateCallingSettingsRequest($token, $request_body = null, string $contentType = self::contentTypes['updateCallingSettings'][0])
+    public function updateCallingSettingsRequest($token, $calling_settings, string $contentType = self::contentTypes['updateCallingSettings'][0])
     {
 
         // verify the required parameter 'token' is set
@@ -977,6 +983,12 @@ class CallingApi
             );
         }
 
+        // verify the required parameter 'calling_settings' is set
+        if ($calling_settings === null || (is_array($calling_settings) && count($calling_settings) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $calling_settings when calling updateCallingSettings'
+            );
+        }
 
 
         $resourcePath = '/callingSettings';
@@ -1006,12 +1018,12 @@ class CallingApi
         );
 
         // for model (json/xml)
-        if (isset($request_body)) {
+        if (isset($calling_settings)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($request_body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($calling_settings));
             } else {
-                $httpBody = $request_body;
+                $httpBody = $calling_settings;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
