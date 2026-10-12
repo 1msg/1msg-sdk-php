@@ -12,7 +12,7 @@
 /**
  * 1MSG WhatsApp Business API (Public)
  *
- * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
+ * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** Pass the channel token in **one** place. The API checks JSON body (`token`), then query string (`?token=`), then `Authorization: Bearer` header (preferred in production).  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@1msg.io
@@ -150,15 +150,16 @@ class GroupsApi
      * Create Group
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\CreateGroupsRequest $create_groups_request create_groups_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGroups'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OneMsgSdk\Model\CreateGroups200Response
      */
-    public function createGroups($token, string $contentType = self::contentTypes['createGroups'][0])
+    public function createGroups($token, $create_groups_request, string $contentType = self::contentTypes['createGroups'][0])
     {
-        list($response) = $this->createGroupsWithHttpInfo($token, $contentType);
+        list($response) = $this->createGroupsWithHttpInfo($token, $create_groups_request, $contentType);
         return $response;
     }
 
@@ -168,15 +169,16 @@ class GroupsApi
      * Create Group
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\CreateGroupsRequest $create_groups_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGroups'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OneMsgSdk\Model\CreateGroups200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createGroupsWithHttpInfo($token, string $contentType = self::contentTypes['createGroups'][0])
+    public function createGroupsWithHttpInfo($token, $create_groups_request, string $contentType = self::contentTypes['createGroups'][0])
     {
-        $request = $this->createGroupsRequest($token, $contentType);
+        $request = $this->createGroupsRequest($token, $create_groups_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -253,14 +255,15 @@ class GroupsApi
      * Create Group
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\CreateGroupsRequest $create_groups_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGroups'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createGroupsAsync($token, string $contentType = self::contentTypes['createGroups'][0])
+    public function createGroupsAsync($token, $create_groups_request, string $contentType = self::contentTypes['createGroups'][0])
     {
-        return $this->createGroupsAsyncWithHttpInfo($token, $contentType)
+        return $this->createGroupsAsyncWithHttpInfo($token, $create_groups_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -274,15 +277,16 @@ class GroupsApi
      * Create Group
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\CreateGroupsRequest $create_groups_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGroups'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createGroupsAsyncWithHttpInfo($token, string $contentType = self::contentTypes['createGroups'][0])
+    public function createGroupsAsyncWithHttpInfo($token, $create_groups_request, string $contentType = self::contentTypes['createGroups'][0])
     {
         $returnType = '\OneMsgSdk\Model\CreateGroups200Response';
-        $request = $this->createGroupsRequest($token, $contentType);
+        $request = $this->createGroupsRequest($token, $create_groups_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -324,18 +328,26 @@ class GroupsApi
      * Create request for operation 'createGroups'
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\CreateGroupsRequest $create_groups_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGroups'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createGroupsRequest($token, string $contentType = self::contentTypes['createGroups'][0])
+    public function createGroupsRequest($token, $create_groups_request, string $contentType = self::contentTypes['createGroups'][0])
     {
 
         // verify the required parameter 'token' is set
         if ($token === null || (is_array($token) && count($token) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $token when calling createGroups'
+            );
+        }
+
+        // verify the required parameter 'create_groups_request' is set
+        if ($create_groups_request === null || (is_array($create_groups_request) && count($create_groups_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $create_groups_request when calling createGroups'
             );
         }
 
@@ -367,7 +379,14 @@ class GroupsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($create_groups_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_groups_request));
+            } else {
+                $httpBody = $create_groups_request;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -425,15 +444,16 @@ class GroupsApi
      *
      * @param  string $group_id group_id (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\CreateGroupsGroupIdRequest $create_groups_group_id_request create_groups_group_id_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGroupsGroupId'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array<string,mixed>
      */
-    public function createGroupsGroupId($group_id, $token, string $contentType = self::contentTypes['createGroupsGroupId'][0])
+    public function createGroupsGroupId($group_id, $token, $create_groups_group_id_request, string $contentType = self::contentTypes['createGroupsGroupId'][0])
     {
-        list($response) = $this->createGroupsGroupIdWithHttpInfo($group_id, $token, $contentType);
+        list($response) = $this->createGroupsGroupIdWithHttpInfo($group_id, $token, $create_groups_group_id_request, $contentType);
         return $response;
     }
 
@@ -444,15 +464,16 @@ class GroupsApi
      *
      * @param  string $group_id (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\CreateGroupsGroupIdRequest $create_groups_group_id_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGroupsGroupId'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of array<string,mixed>, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createGroupsGroupIdWithHttpInfo($group_id, $token, string $contentType = self::contentTypes['createGroupsGroupId'][0])
+    public function createGroupsGroupIdWithHttpInfo($group_id, $token, $create_groups_group_id_request, string $contentType = self::contentTypes['createGroupsGroupId'][0])
     {
-        $request = $this->createGroupsGroupIdRequest($group_id, $token, $contentType);
+        $request = $this->createGroupsGroupIdRequest($group_id, $token, $create_groups_group_id_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -530,14 +551,15 @@ class GroupsApi
      *
      * @param  string $group_id (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\CreateGroupsGroupIdRequest $create_groups_group_id_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGroupsGroupId'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createGroupsGroupIdAsync($group_id, $token, string $contentType = self::contentTypes['createGroupsGroupId'][0])
+    public function createGroupsGroupIdAsync($group_id, $token, $create_groups_group_id_request, string $contentType = self::contentTypes['createGroupsGroupId'][0])
     {
-        return $this->createGroupsGroupIdAsyncWithHttpInfo($group_id, $token, $contentType)
+        return $this->createGroupsGroupIdAsyncWithHttpInfo($group_id, $token, $create_groups_group_id_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -552,15 +574,16 @@ class GroupsApi
      *
      * @param  string $group_id (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\CreateGroupsGroupIdRequest $create_groups_group_id_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGroupsGroupId'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createGroupsGroupIdAsyncWithHttpInfo($group_id, $token, string $contentType = self::contentTypes['createGroupsGroupId'][0])
+    public function createGroupsGroupIdAsyncWithHttpInfo($group_id, $token, $create_groups_group_id_request, string $contentType = self::contentTypes['createGroupsGroupId'][0])
     {
         $returnType = 'array<string,mixed>';
-        $request = $this->createGroupsGroupIdRequest($group_id, $token, $contentType);
+        $request = $this->createGroupsGroupIdRequest($group_id, $token, $create_groups_group_id_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -603,12 +626,13 @@ class GroupsApi
      *
      * @param  string $group_id (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\CreateGroupsGroupIdRequest $create_groups_group_id_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createGroupsGroupId'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createGroupsGroupIdRequest($group_id, $token, string $contentType = self::contentTypes['createGroupsGroupId'][0])
+    public function createGroupsGroupIdRequest($group_id, $token, $create_groups_group_id_request, string $contentType = self::contentTypes['createGroupsGroupId'][0])
     {
 
         // verify the required parameter 'group_id' is set
@@ -622,6 +646,13 @@ class GroupsApi
         if ($token === null || (is_array($token) && count($token) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $token when calling createGroupsGroupId'
+            );
+        }
+
+        // verify the required parameter 'create_groups_group_id_request' is set
+        if ($create_groups_group_id_request === null || (is_array($create_groups_group_id_request) && count($create_groups_group_id_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $create_groups_group_id_request when calling createGroupsGroupId'
             );
         }
 
@@ -661,7 +692,14 @@ class GroupsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($create_groups_group_id_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_groups_group_id_request));
+            } else {
+                $httpBody = $create_groups_group_id_request;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1307,15 +1345,16 @@ class GroupsApi
      *
      * @param  string $group_id group_id (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  string|null $fields Comma-separated group fields to return (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getGroupsGroupId'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array<string,mixed>
      */
-    public function getGroupsGroupId($group_id, $token, string $contentType = self::contentTypes['getGroupsGroupId'][0])
+    public function getGroupsGroupId($group_id, $token, $fields = null, string $contentType = self::contentTypes['getGroupsGroupId'][0])
     {
-        list($response) = $this->getGroupsGroupIdWithHttpInfo($group_id, $token, $contentType);
+        list($response) = $this->getGroupsGroupIdWithHttpInfo($group_id, $token, $fields, $contentType);
         return $response;
     }
 
@@ -1326,15 +1365,16 @@ class GroupsApi
      *
      * @param  string $group_id (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  string|null $fields Comma-separated group fields to return (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getGroupsGroupId'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of array<string,mixed>, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getGroupsGroupIdWithHttpInfo($group_id, $token, string $contentType = self::contentTypes['getGroupsGroupId'][0])
+    public function getGroupsGroupIdWithHttpInfo($group_id, $token, $fields = null, string $contentType = self::contentTypes['getGroupsGroupId'][0])
     {
-        $request = $this->getGroupsGroupIdRequest($group_id, $token, $contentType);
+        $request = $this->getGroupsGroupIdRequest($group_id, $token, $fields, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1412,14 +1452,15 @@ class GroupsApi
      *
      * @param  string $group_id (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  string|null $fields Comma-separated group fields to return (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getGroupsGroupId'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getGroupsGroupIdAsync($group_id, $token, string $contentType = self::contentTypes['getGroupsGroupId'][0])
+    public function getGroupsGroupIdAsync($group_id, $token, $fields = null, string $contentType = self::contentTypes['getGroupsGroupId'][0])
     {
-        return $this->getGroupsGroupIdAsyncWithHttpInfo($group_id, $token, $contentType)
+        return $this->getGroupsGroupIdAsyncWithHttpInfo($group_id, $token, $fields, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1434,15 +1475,16 @@ class GroupsApi
      *
      * @param  string $group_id (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  string|null $fields Comma-separated group fields to return (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getGroupsGroupId'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getGroupsGroupIdAsyncWithHttpInfo($group_id, $token, string $contentType = self::contentTypes['getGroupsGroupId'][0])
+    public function getGroupsGroupIdAsyncWithHttpInfo($group_id, $token, $fields = null, string $contentType = self::contentTypes['getGroupsGroupId'][0])
     {
         $returnType = 'array<string,mixed>';
-        $request = $this->getGroupsGroupIdRequest($group_id, $token, $contentType);
+        $request = $this->getGroupsGroupIdRequest($group_id, $token, $fields, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1485,12 +1527,13 @@ class GroupsApi
      *
      * @param  string $group_id (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  string|null $fields Comma-separated group fields to return (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getGroupsGroupId'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getGroupsGroupIdRequest($group_id, $token, string $contentType = self::contentTypes['getGroupsGroupId'][0])
+    public function getGroupsGroupIdRequest($group_id, $token, $fields = null, string $contentType = self::contentTypes['getGroupsGroupId'][0])
     {
 
         // verify the required parameter 'group_id' is set
@@ -1508,6 +1551,7 @@ class GroupsApi
         }
 
 
+
         $resourcePath = '/groups/{groupId}';
         $formParams = [];
         $queryParams = [];
@@ -1523,6 +1567,15 @@ class GroupsApi
             'form', // style
             true, // explode
             true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $fields,
+            'fields', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
         ) ?? []);
 
 
@@ -1894,15 +1947,18 @@ class GroupsApi
      * Get Groups List
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  int|null $limit Max groups to return (optional)
+     * @param  string|null $before Cursor for the previous page (optional)
+     * @param  string|null $after Cursor for the next page (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listGroups'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array<string,mixed>
      */
-    public function listGroups($token, string $contentType = self::contentTypes['listGroups'][0])
+    public function listGroups($token, $limit = null, $before = null, $after = null, string $contentType = self::contentTypes['listGroups'][0])
     {
-        list($response) = $this->listGroupsWithHttpInfo($token, $contentType);
+        list($response) = $this->listGroupsWithHttpInfo($token, $limit, $before, $after, $contentType);
         return $response;
     }
 
@@ -1912,15 +1968,18 @@ class GroupsApi
      * Get Groups List
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  int|null $limit Max groups to return (optional)
+     * @param  string|null $before Cursor for the previous page (optional)
+     * @param  string|null $after Cursor for the next page (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listGroups'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of array<string,mixed>, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listGroupsWithHttpInfo($token, string $contentType = self::contentTypes['listGroups'][0])
+    public function listGroupsWithHttpInfo($token, $limit = null, $before = null, $after = null, string $contentType = self::contentTypes['listGroups'][0])
     {
-        $request = $this->listGroupsRequest($token, $contentType);
+        $request = $this->listGroupsRequest($token, $limit, $before, $after, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1997,14 +2056,17 @@ class GroupsApi
      * Get Groups List
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  int|null $limit Max groups to return (optional)
+     * @param  string|null $before Cursor for the previous page (optional)
+     * @param  string|null $after Cursor for the next page (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listGroups'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listGroupsAsync($token, string $contentType = self::contentTypes['listGroups'][0])
+    public function listGroupsAsync($token, $limit = null, $before = null, $after = null, string $contentType = self::contentTypes['listGroups'][0])
     {
-        return $this->listGroupsAsyncWithHttpInfo($token, $contentType)
+        return $this->listGroupsAsyncWithHttpInfo($token, $limit, $before, $after, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2018,15 +2080,18 @@ class GroupsApi
      * Get Groups List
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  int|null $limit Max groups to return (optional)
+     * @param  string|null $before Cursor for the previous page (optional)
+     * @param  string|null $after Cursor for the next page (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listGroups'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listGroupsAsyncWithHttpInfo($token, string $contentType = self::contentTypes['listGroups'][0])
+    public function listGroupsAsyncWithHttpInfo($token, $limit = null, $before = null, $after = null, string $contentType = self::contentTypes['listGroups'][0])
     {
         $returnType = 'array<string,mixed>';
-        $request = $this->listGroupsRequest($token, $contentType);
+        $request = $this->listGroupsRequest($token, $limit, $before, $after, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2068,12 +2133,15 @@ class GroupsApi
      * Create request for operation 'listGroups'
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  int|null $limit Max groups to return (optional)
+     * @param  string|null $before Cursor for the previous page (optional)
+     * @param  string|null $after Cursor for the next page (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listGroups'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listGroupsRequest($token, string $contentType = self::contentTypes['listGroups'][0])
+    public function listGroupsRequest($token, $limit = null, $before = null, $after = null, string $contentType = self::contentTypes['listGroups'][0])
     {
 
         // verify the required parameter 'token' is set
@@ -2082,6 +2150,9 @@ class GroupsApi
                 'Missing the required parameter $token when calling listGroups'
             );
         }
+
+
+
 
 
         $resourcePath = '/groups';
@@ -2099,6 +2170,33 @@ class GroupsApi
             'form', // style
             true, // explode
             true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $before,
+            'before', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $after,
+            'after', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
         ) ?? []);
 
 

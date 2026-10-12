@@ -13,7 +13,7 @@
 /**
  * 1MSG WhatsApp Business API (Public)
  *
- * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
+ * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** Pass the channel token in **one** place. The API checks JSON body (`token`), then query string (`?token=`), then `Authorization: Bearer` header (preferred in production).  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@1msg.io
@@ -71,7 +71,7 @@ class SendContactRequestContactsInnerPhonesInner implements ModelInterface, Arra
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'phone' => 'utc-millisec',
+        'phone' => null,
         'type' => null,
         'wa_id' => null
     ];
@@ -317,7 +317,7 @@ class SendContactRequestContactsInnerPhonesInner implements ModelInterface, Arra
     /**
      * Sets phone
      *
-     * @param string|null $phone phone
+     * @param string|null $phone E.164 phone (`+79181976551`). Not a timestamp.
      *
      * @return self
      */

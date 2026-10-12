@@ -13,3 +13,10 @@ composer.phar
 
 # PHPUnit cache
 .phpunit.result.cache
+
+vendor/
+
+node_modules/
+quality/reports/
+
+.husky/_/

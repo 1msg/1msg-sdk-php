@@ -13,7 +13,7 @@
 /**
  * 1MSG WhatsApp Business API (Public)
  *
- * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
+ * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** Pass the channel token in **one** place. The API checks JSON body (`token`), then query string (`?token=`), then `Authorization: Bearer` header (preferred in production).  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@1msg.io
@@ -60,11 +60,11 @@ class SendContactRequestContactsInner implements ModelInterface, ArrayAccess, \J
     protected static $openAPITypes = [
         'name' => '\OneMsgSdk\Model\SendContactRequestContactsInnerName',
         'birthday' => 'string',
-        'addresses' => 'mixed[]',
-        'emails' => 'mixed[]',
+        'addresses' => 'array<string,mixed>[]',
+        'emails' => 'array<string,mixed>[]',
         'org' => '\OneMsgSdk\Model\SendContactRequestContactsInnerOrg',
         'phones' => '\OneMsgSdk\Model\SendContactRequestContactsInnerPhonesInner[]',
-        'urls' => 'mixed[]'
+        'urls' => 'array<string,mixed>[]'
     ];
 
     /**
@@ -389,7 +389,7 @@ class SendContactRequestContactsInner implements ModelInterface, ArrayAccess, \J
     /**
      * Gets addresses
      *
-     * @return mixed[]|null
+     * @return array<string,mixed>[]|null
      */
     public function getAddresses()
     {
@@ -399,7 +399,7 @@ class SendContactRequestContactsInner implements ModelInterface, ArrayAccess, \J
     /**
      * Sets addresses
      *
-     * @param mixed[]|null $addresses addresses
+     * @param array<string,mixed>[]|null $addresses addresses
      *
      * @return self
      */
@@ -416,7 +416,7 @@ class SendContactRequestContactsInner implements ModelInterface, ArrayAccess, \J
     /**
      * Gets emails
      *
-     * @return mixed[]|null
+     * @return array<string,mixed>[]|null
      */
     public function getEmails()
     {
@@ -426,7 +426,7 @@ class SendContactRequestContactsInner implements ModelInterface, ArrayAccess, \J
     /**
      * Sets emails
      *
-     * @param mixed[]|null $emails emails
+     * @param array<string,mixed>[]|null $emails emails
      *
      * @return self
      */
@@ -497,7 +497,7 @@ class SendContactRequestContactsInner implements ModelInterface, ArrayAccess, \J
     /**
      * Gets urls
      *
-     * @return mixed[]|null
+     * @return array<string,mixed>[]|null
      */
     public function getUrls()
     {
@@ -507,7 +507,7 @@ class SendContactRequestContactsInner implements ModelInterface, ArrayAccess, \J
     /**
      * Sets urls
      *
-     * @param mixed[]|null $urls urls
+     * @param array<string,mixed>[]|null $urls urls
      *
      * @return self
      */
