@@ -13,7 +13,7 @@
 /**
  * 1MSG WhatsApp Business API (Public)
  *
- * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
+ * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** Pass the channel token in **one** place. The API checks JSON body (`token`), then query string (`?token=`), then `Authorization: Bearer` header (preferred in production).  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@1msg.io
@@ -324,7 +324,7 @@ class AddTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets name
      *
-     * @param string|null $name name
+     * @param string|null $name Template name
      *
      * @return self
      */
@@ -351,7 +351,7 @@ class AddTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets category
      *
-     * @param string|null $category category
+     * @param string|null $category MARKETING, UTILITY, or AUTHENTICATION
      *
      * @return self
      */
@@ -378,7 +378,7 @@ class AddTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets language
      *
-     * @param string|null $language language
+     * @param string|null $language Template language code (e.g. en_US)
      *
      * @return self
      */
@@ -405,7 +405,7 @@ class AddTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets components
      *
-     * @param array<string,mixed>[]|null $components components
+     * @param array<string,mixed>[]|null $components Template components (HEADER, BODY, FOOTER, BUTTONS, CAROUSEL)
      *
      * @return self
      */

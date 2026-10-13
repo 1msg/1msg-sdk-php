@@ -12,7 +12,7 @@
 /**
  * 1MSG WhatsApp Business API (Public)
  *
- * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
+ * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** Pass the channel token in **one** place. The API checks JSON body (`token`), then query string (`?token=`), then `Authorization: Bearer` header (preferred in production).  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@1msg.io
@@ -437,16 +437,16 @@ class WebhooksApi
      * Set webhook URL
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgSdk\Model\GetWebhook200Response|null $get_webhook200_response get_webhook200_response (optional)
+     * @param  \OneMsgSdk\Model\SetWebhookRequest $set_webhook_request set_webhook_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setWebhook'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\SetWebhook200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
-    public function setWebhook($token, $get_webhook200_response = null, string $contentType = self::contentTypes['setWebhook'][0])
+    public function setWebhook($token, $set_webhook_request, string $contentType = self::contentTypes['setWebhook'][0])
     {
-        list($response) = $this->setWebhookWithHttpInfo($token, $get_webhook200_response, $contentType);
+        list($response) = $this->setWebhookWithHttpInfo($token, $set_webhook_request, $contentType);
         return $response;
     }
 
@@ -456,16 +456,16 @@ class WebhooksApi
      * Set webhook URL
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgSdk\Model\GetWebhook200Response|null $get_webhook200_response (optional)
+     * @param  \OneMsgSdk\Model\SetWebhookRequest $set_webhook_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setWebhook'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\SetWebhook200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function setWebhookWithHttpInfo($token, $get_webhook200_response = null, string $contentType = self::contentTypes['setWebhook'][0])
+    public function setWebhookWithHttpInfo($token, $set_webhook_request, string $contentType = self::contentTypes['setWebhook'][0])
     {
-        $request = $this->setWebhookRequest($token, $get_webhook200_response, $contentType);
+        $request = $this->setWebhookRequest($token, $set_webhook_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -493,7 +493,7 @@ class WebhooksApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        'array<string,mixed>',
+                        '\OneMsgSdk\Model\SetWebhook200Response',
                         $request,
                         $response,
                     );
@@ -527,7 +527,7 @@ class WebhooksApi
             }
 
             return $this->handleResponseWithDataType(
-                'array<string,mixed>',
+                '\OneMsgSdk\Model\SetWebhook200Response',
                 $request,
                 $response,
             );
@@ -536,7 +536,7 @@ class WebhooksApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'array<string,mixed>',
+                        '\OneMsgSdk\Model\SetWebhook200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -570,15 +570,15 @@ class WebhooksApi
      * Set webhook URL
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgSdk\Model\GetWebhook200Response|null $get_webhook200_response (optional)
+     * @param  \OneMsgSdk\Model\SetWebhookRequest $set_webhook_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function setWebhookAsync($token, $get_webhook200_response = null, string $contentType = self::contentTypes['setWebhook'][0])
+    public function setWebhookAsync($token, $set_webhook_request, string $contentType = self::contentTypes['setWebhook'][0])
     {
-        return $this->setWebhookAsyncWithHttpInfo($token, $get_webhook200_response, $contentType)
+        return $this->setWebhookAsyncWithHttpInfo($token, $set_webhook_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -592,16 +592,16 @@ class WebhooksApi
      * Set webhook URL
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgSdk\Model\GetWebhook200Response|null $get_webhook200_response (optional)
+     * @param  \OneMsgSdk\Model\SetWebhookRequest $set_webhook_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function setWebhookAsyncWithHttpInfo($token, $get_webhook200_response = null, string $contentType = self::contentTypes['setWebhook'][0])
+    public function setWebhookAsyncWithHttpInfo($token, $set_webhook_request, string $contentType = self::contentTypes['setWebhook'][0])
     {
-        $returnType = 'array<string,mixed>';
-        $request = $this->setWebhookRequest($token, $get_webhook200_response, $contentType);
+        $returnType = '\OneMsgSdk\Model\SetWebhook200Response';
+        $request = $this->setWebhookRequest($token, $set_webhook_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -643,13 +643,13 @@ class WebhooksApi
      * Create request for operation 'setWebhook'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgSdk\Model\GetWebhook200Response|null $get_webhook200_response (optional)
+     * @param  \OneMsgSdk\Model\SetWebhookRequest $set_webhook_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function setWebhookRequest($token, $get_webhook200_response = null, string $contentType = self::contentTypes['setWebhook'][0])
+    public function setWebhookRequest($token, $set_webhook_request, string $contentType = self::contentTypes['setWebhook'][0])
     {
 
         // verify the required parameter 'token' is set
@@ -659,6 +659,12 @@ class WebhooksApi
             );
         }
 
+        // verify the required parameter 'set_webhook_request' is set
+        if ($set_webhook_request === null || (is_array($set_webhook_request) && count($set_webhook_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $set_webhook_request when calling setWebhook'
+            );
+        }
 
 
         $resourcePath = '/webhook';
@@ -688,12 +694,12 @@ class WebhooksApi
         );
 
         // for model (json/xml)
-        if (isset($get_webhook200_response)) {
+        if (isset($set_webhook_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($get_webhook200_response));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($set_webhook_request));
             } else {
-                $httpBody = $get_webhook200_response;
+                $httpBody = $set_webhook_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
