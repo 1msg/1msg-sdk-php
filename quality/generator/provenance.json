@@ -98,14 +98,12 @@
     "composerPackageName": "1msg/sdk",
     "invokerPackage": "OneMsgSdk",
     "packageName": "Sdk",
-    "artifactVersion": "1.1.1",
+    "artifactVersion": "1.1.2",
     "artifactUrl": "https://github.com/1msg/1msg-sdk-php",
     "developerOrganization": "1MSG",
     "developerOrganizationUrl": "https://1msg.io",
     "licenseName": "MIT"
   },
-  "roots": [
-    "lib/"
-  ],
+  "roots": ["lib/"],
   "postprocess": true
 }
