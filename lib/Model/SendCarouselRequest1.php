@@ -13,7 +13,7 @@
 /**
  * 1MSG WhatsApp Business API (Public)
  *
- * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
+ * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** Pass the channel token in **one** place. The API checks JSON body (`token`), then query string (`?token=`), then `Authorization: Bearer` header (preferred in production).  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@1msg.io
@@ -59,6 +59,7 @@ class SendCarouselRequest1 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $openAPITypes = [
         'body' => 'string',
+        'cards' => 'array<string,mixed>[]',
         'params' => 'object[]',
         'quoted_msg_id' => 'string',
         'chat_id' => 'string',
@@ -74,6 +75,7 @@ class SendCarouselRequest1 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $openAPIFormats = [
         'body' => null,
+        'cards' => null,
         'params' => null,
         'quoted_msg_id' => null,
         'chat_id' => null,
@@ -87,6 +89,7 @@ class SendCarouselRequest1 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static array $openAPINullables = [
         'body' => false,
+        'cards' => false,
         'params' => false,
         'quoted_msg_id' => false,
         'chat_id' => false,
@@ -180,6 +183,7 @@ class SendCarouselRequest1 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $attributeMap = [
         'body' => 'body',
+        'cards' => 'cards',
         'params' => 'params',
         'quoted_msg_id' => 'quotedMsgId',
         'chat_id' => 'chatId',
@@ -193,6 +197,7 @@ class SendCarouselRequest1 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $setters = [
         'body' => 'setBody',
+        'cards' => 'setCards',
         'params' => 'setParams',
         'quoted_msg_id' => 'setQuotedMsgId',
         'chat_id' => 'setChatId',
@@ -206,6 +211,7 @@ class SendCarouselRequest1 implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $getters = [
         'body' => 'getBody',
+        'cards' => 'getCards',
         'params' => 'getParams',
         'quoted_msg_id' => 'getQuotedMsgId',
         'chat_id' => 'getChatId',
@@ -270,6 +276,7 @@ class SendCarouselRequest1 implements ModelInterface, ArrayAccess, \JsonSerializ
     public function __construct(?array $data = null)
     {
         $this->setIfExists('body', $data ?? [], null);
+        $this->setIfExists('cards', $data ?? [], null);
         $this->setIfExists('params', $data ?? [], null);
         $this->setIfExists('quoted_msg_id', $data ?? [], null);
         $this->setIfExists('chat_id', $data ?? [], null);
@@ -303,9 +310,14 @@ class SendCarouselRequest1 implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
-        if ($this->container['params'] === null) {
-            $invalidProperties[] = "'params' can't be null";
+        if (!is_null($this->container['cards']) && (count($this->container['cards']) > 10)) {
+            $invalidProperties[] = "invalid value for 'cards', number of items must be less than or equal to 10.";
         }
+
+        if (!is_null($this->container['cards']) && (count($this->container['cards']) < 2)) {
+            $invalidProperties[] = "invalid value for 'cards', number of items must be greater than or equal to 2.";
+        }
+
         return $invalidProperties;
     }
 
@@ -334,7 +346,7 @@ class SendCarouselRequest1 implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets body
      *
-     * @param string|null $body body
+     * @param string|null $body Text shown above the carousel
      *
      * @return self
      */
@@ -349,9 +361,43 @@ class SendCarouselRequest1 implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
     /**
+     * Gets cards
+     *
+     * @return array<string,mixed>[]|null
+     */
+    public function getCards()
+    {
+        return $this->container['cards'];
+    }
+
+    /**
+     * Sets cards
+     *
+     * @param array<string,mixed>[]|null $cards Preferred. 2–10 carousel cards.
+     *
+     * @return self
+     */
+    public function setCards($cards)
+    {
+        if (is_null($cards)) {
+            throw new \InvalidArgumentException('non-nullable cards cannot be null');
+        }
+
+        if ((count($cards) > 10)) {
+            throw new \InvalidArgumentException('invalid value for $cards when calling SendCarouselRequest1., number of items must be less than or equal to 10.');
+        }
+        if ((count($cards) < 2)) {
+            throw new \InvalidArgumentException('invalid length for $cards when calling SendCarouselRequest1., number of items must be greater than or equal to 2.');
+        }
+        $this->container['cards'] = $cards;
+
+        return $this;
+    }
+
+    /**
      * Gets params
      *
-     * @return object[]
+     * @return object[]|null
      */
     public function getParams()
     {
@@ -361,7 +407,7 @@ class SendCarouselRequest1 implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets params
      *
-     * @param object[] $params params
+     * @param object[]|null $params Template-like alternative — include a CAROUSEL component with cards
      *
      * @return self
      */

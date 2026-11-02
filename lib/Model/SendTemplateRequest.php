@@ -13,7 +13,7 @@
 /**
  * 1MSG WhatsApp Business API (Public)
  *
- * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
+ * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** Pass the channel token in **one** place. The API checks JSON body (`token`), then query string (`?token=`), then `Authorization: Bearer` header (preferred in production).  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@1msg.io
@@ -61,8 +61,10 @@ class SendTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'template' => 'string',
         'language' => '\OneMsgSdk\Model\SendTemplateRequestLanguage',
         'namespace' => 'string',
-        'params' => 'mixed[]',
+        'params' => 'array<string,mixed>[]',
         'phone' => 'string',
+        'chat_id' => 'string',
+        'quoted_msg_id' => 'string',
         'use_m_mlite' => 'bool',
         'message_activity_sharing' => 'bool',
         'message_send_ttl_seconds' => 'int'
@@ -81,6 +83,8 @@ class SendTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'namespace' => null,
         'params' => null,
         'phone' => null,
+        'chat_id' => null,
+        'quoted_msg_id' => null,
         'use_m_mlite' => null,
         'message_activity_sharing' => null,
         'message_send_ttl_seconds' => null
@@ -97,6 +101,8 @@ class SendTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'namespace' => false,
         'params' => false,
         'phone' => false,
+        'chat_id' => false,
+        'quoted_msg_id' => false,
         'use_m_mlite' => false,
         'message_activity_sharing' => false,
         'message_send_ttl_seconds' => false
@@ -193,6 +199,8 @@ class SendTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'namespace' => 'namespace',
         'params' => 'params',
         'phone' => 'phone',
+        'chat_id' => 'chatId',
+        'quoted_msg_id' => 'quotedMsgId',
         'use_m_mlite' => 'useMMlite',
         'message_activity_sharing' => 'messageActivitySharing',
         'message_send_ttl_seconds' => 'messageSendTtlSeconds'
@@ -209,6 +217,8 @@ class SendTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'namespace' => 'setNamespace',
         'params' => 'setParams',
         'phone' => 'setPhone',
+        'chat_id' => 'setChatId',
+        'quoted_msg_id' => 'setQuotedMsgId',
         'use_m_mlite' => 'setUseMMlite',
         'message_activity_sharing' => 'setMessageActivitySharing',
         'message_send_ttl_seconds' => 'setMessageSendTtlSeconds'
@@ -225,6 +235,8 @@ class SendTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'namespace' => 'getNamespace',
         'params' => 'getParams',
         'phone' => 'getPhone',
+        'chat_id' => 'getChatId',
+        'quoted_msg_id' => 'getQuotedMsgId',
         'use_m_mlite' => 'getUseMMlite',
         'message_activity_sharing' => 'getMessageActivitySharing',
         'message_send_ttl_seconds' => 'getMessageSendTtlSeconds'
@@ -292,6 +304,8 @@ class SendTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('namespace', $data ?? [], null);
         $this->setIfExists('params', $data ?? [], null);
         $this->setIfExists('phone', $data ?? [], null);
+        $this->setIfExists('chat_id', $data ?? [], null);
+        $this->setIfExists('quoted_msg_id', $data ?? [], null);
         $this->setIfExists('use_m_mlite', $data ?? [], null);
         $this->setIfExists('message_activity_sharing', $data ?? [], null);
         $this->setIfExists('message_send_ttl_seconds', $data ?? [], null);
@@ -352,7 +366,7 @@ class SendTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets template
      *
-     * @param string|null $template template
+     * @param string|null $template Approved template name (template `name`, not the old HSM `element_name`)
      *
      * @return self
      */
@@ -406,7 +420,7 @@ class SendTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets namespace
      *
-     * @param string|null $namespace namespace
+     * @param string|null $namespace Template namespace from `list_templates`
      *
      * @return self
      */
@@ -423,7 +437,7 @@ class SendTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets params
      *
-     * @return mixed[]|null
+     * @return array<string,mixed>[]|null
      */
     public function getParams()
     {
@@ -433,7 +447,7 @@ class SendTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets params
      *
-     * @param mixed[]|null $params params
+     * @param array<string,mixed>[]|null $params Template components in WhatsApp Cloud API format. Each item is an object with `type` (`body`, `header`, `button`) and `parameters` (objects with `type` + `text` / media / action). Never a list of strings. Never HSM `localizable_params`.
      *
      * @return self
      */
@@ -460,7 +474,7 @@ class SendTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets phone
      *
-     * @param string|null $phone phone
+     * @param string|null $phone Recipient phone with country code (use phone or chatId)
      *
      * @return self
      */
@@ -470,6 +484,60 @@ class SendTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable phone cannot be null');
         }
         $this->container['phone'] = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Gets chat_id
+     *
+     * @return string|null
+     */
+    public function getChatId()
+    {
+        return $this->container['chat_id'];
+    }
+
+    /**
+     * Sets chat_id
+     *
+     * @param string|null $chat_id Recipient chat ID (`phone@c.us`, group `@g.us`, or BSUID `@lid`). Use phone or chatId.
+     *
+     * @return self
+     */
+    public function setChatId($chat_id)
+    {
+        if (is_null($chat_id)) {
+            throw new \InvalidArgumentException('non-nullable chat_id cannot be null');
+        }
+        $this->container['chat_id'] = $chat_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets quoted_msg_id
+     *
+     * @return string|null
+     */
+    public function getQuotedMsgId()
+    {
+        return $this->container['quoted_msg_id'];
+    }
+
+    /**
+     * Sets quoted_msg_id
+     *
+     * @param string|null $quoted_msg_id Optional Cloud API wamid to quote
+     *
+     * @return self
+     */
+    public function setQuotedMsgId($quoted_msg_id)
+    {
+        if (is_null($quoted_msg_id)) {
+            throw new \InvalidArgumentException('non-nullable quoted_msg_id cannot be null');
+        }
+        $this->container['quoted_msg_id'] = $quoted_msg_id;
 
         return $this;
     }

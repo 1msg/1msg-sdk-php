@@ -13,7 +13,7 @@
 /**
  * 1MSG WhatsApp Business API (Public)
  *
- * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
+ * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** Pass the channel token in **one** place. The API checks JSON body (`token`), then query string (`?token=`), then `Authorization: Bearer` header (preferred in production).  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@1msg.io
@@ -59,8 +59,12 @@ class SendButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $openAPITypes = [
         'phone' => 'string',
+        'chat_id' => 'string',
+        'quoted_msg_id' => 'string',
         'body' => 'string',
         'footer' => 'string',
+        'header' => 'array<string,mixed>',
+        'buttons' => 'object[]',
         'sections' => '\OneMsgSdk\Model\SendButtonRequestSectionsInner[]'
     ];
 
@@ -73,8 +77,12 @@ class SendButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $openAPIFormats = [
         'phone' => null,
+        'chat_id' => null,
+        'quoted_msg_id' => null,
         'body' => null,
         'footer' => null,
+        'header' => null,
+        'buttons' => null,
         'sections' => null
     ];
 
@@ -85,8 +93,12 @@ class SendButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static array $openAPINullables = [
         'phone' => false,
+        'chat_id' => false,
+        'quoted_msg_id' => false,
         'body' => false,
         'footer' => false,
+        'header' => false,
+        'buttons' => false,
         'sections' => false
     ];
 
@@ -177,8 +189,12 @@ class SendButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $attributeMap = [
         'phone' => 'phone',
+        'chat_id' => 'chatId',
+        'quoted_msg_id' => 'quotedMsgId',
         'body' => 'body',
         'footer' => 'footer',
+        'header' => 'header',
+        'buttons' => 'buttons',
         'sections' => 'sections'
     ];
 
@@ -189,8 +205,12 @@ class SendButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $setters = [
         'phone' => 'setPhone',
+        'chat_id' => 'setChatId',
+        'quoted_msg_id' => 'setQuotedMsgId',
         'body' => 'setBody',
         'footer' => 'setFooter',
+        'header' => 'setHeader',
+        'buttons' => 'setButtons',
         'sections' => 'setSections'
     ];
 
@@ -201,8 +221,12 @@ class SendButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $getters = [
         'phone' => 'getPhone',
+        'chat_id' => 'getChatId',
+        'quoted_msg_id' => 'getQuotedMsgId',
         'body' => 'getBody',
         'footer' => 'getFooter',
+        'header' => 'getHeader',
+        'buttons' => 'getButtons',
         'sections' => 'getSections'
     ];
 
@@ -264,8 +288,12 @@ class SendButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function __construct(?array $data = null)
     {
         $this->setIfExists('phone', $data ?? [], null);
+        $this->setIfExists('chat_id', $data ?? [], null);
+        $this->setIfExists('quoted_msg_id', $data ?? [], null);
         $this->setIfExists('body', $data ?? [], null);
         $this->setIfExists('footer', $data ?? [], null);
+        $this->setIfExists('header', $data ?? [], null);
+        $this->setIfExists('buttons', $data ?? [], null);
         $this->setIfExists('sections', $data ?? [], null);
     }
 
@@ -324,7 +352,7 @@ class SendButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets phone
      *
-     * @param string|null $phone phone
+     * @param string|null $phone Recipient phone with country code. Use phone or chatId.
      *
      * @return self
      */
@@ -334,6 +362,60 @@ class SendButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable phone cannot be null');
         }
         $this->container['phone'] = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Gets chat_id
+     *
+     * @return string|null
+     */
+    public function getChatId()
+    {
+        return $this->container['chat_id'];
+    }
+
+    /**
+     * Sets chat_id
+     *
+     * @param string|null $chat_id Recipient chat ID (`phone@c.us`, group `@g.us`, or BSUID `@lid`). Use phone or chatId.
+     *
+     * @return self
+     */
+    public function setChatId($chat_id)
+    {
+        if (is_null($chat_id)) {
+            throw new \InvalidArgumentException('non-nullable chat_id cannot be null');
+        }
+        $this->container['chat_id'] = $chat_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets quoted_msg_id
+     *
+     * @return string|null
+     */
+    public function getQuotedMsgId()
+    {
+        return $this->container['quoted_msg_id'];
+    }
+
+    /**
+     * Sets quoted_msg_id
+     *
+     * @param string|null $quoted_msg_id Optional Cloud API wamid to quote
+     *
+     * @return self
+     */
+    public function setQuotedMsgId($quoted_msg_id)
+    {
+        if (is_null($quoted_msg_id)) {
+            throw new \InvalidArgumentException('non-nullable quoted_msg_id cannot be null');
+        }
+        $this->container['quoted_msg_id'] = $quoted_msg_id;
 
         return $this;
     }
@@ -388,6 +470,60 @@ class SendButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable footer cannot be null');
         }
         $this->container['footer'] = $footer;
+
+        return $this;
+    }
+
+    /**
+     * Gets header
+     *
+     * @return array<string,mixed>|null
+     */
+    public function getHeader()
+    {
+        return $this->container['header'];
+    }
+
+    /**
+     * Sets header
+     *
+     * @param array<string,mixed>|null $header Optional interactive header (text/image/video/document)
+     *
+     * @return self
+     */
+    public function setHeader($header)
+    {
+        if (is_null($header)) {
+            throw new \InvalidArgumentException('non-nullable header cannot be null');
+        }
+        $this->container['header'] = $header;
+
+        return $this;
+    }
+
+    /**
+     * Gets buttons
+     *
+     * @return object[]|null
+     */
+    public function getButtons()
+    {
+        return $this->container['buttons'];
+    }
+
+    /**
+     * Sets buttons
+     *
+     * @param object[]|null $buttons Legacy alias for sections (`[{id,title}]`)
+     *
+     * @return self
+     */
+    public function setButtons($buttons)
+    {
+        if (is_null($buttons)) {
+            throw new \InvalidArgumentException('non-nullable buttons cannot be null');
+        }
+        $this->container['buttons'] = $buttons;
 
         return $this;
     }

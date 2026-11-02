@@ -12,7 +12,7 @@
 /**
  * 1MSG WhatsApp Business API (Public)
  *
- * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
+ * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** Pass the channel token in **one** place. The API checks JSON body (`token`), then query string (`?token=`), then `Authorization: Bearer` header (preferred in production).  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@1msg.io
@@ -521,16 +521,17 @@ class MessagingApi
      * Upload media
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body request_body (optional)
+     * @param  \OneMsgSdk\Model\CreateUploadMediaRequest $create_upload_media_request create_upload_media_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUploadMedia'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \OneMsgSdk\Model\CreateUploadMedia200Response
      */
-    public function createUploadMedia($token, $request_body = null, string $contentType = self::contentTypes['createUploadMedia'][0])
+    public function createUploadMedia($token, $create_upload_media_request, string $contentType = self::contentTypes['createUploadMedia'][0])
     {
-        $this->createUploadMediaWithHttpInfo($token, $request_body, $contentType);
+        list($response) = $this->createUploadMediaWithHttpInfo($token, $create_upload_media_request, $contentType);
+        return $response;
     }
 
     /**
@@ -539,16 +540,16 @@ class MessagingApi
      * Upload media
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\CreateUploadMediaRequest $create_upload_media_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUploadMedia'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\CreateUploadMedia200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createUploadMediaWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['createUploadMedia'][0])
+    public function createUploadMediaWithHttpInfo($token, $create_upload_media_request, string $contentType = self::contentTypes['createUploadMedia'][0])
     {
-        $request = $this->createUploadMediaRequest($token, $request_body, $contentType);
+        $request = $this->createUploadMediaRequest($token, $create_upload_media_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -573,9 +574,45 @@ class MessagingApi
             $statusCode = $response->getStatusCode();
 
 
-            return [null, $statusCode, $response->getHeaders()];
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\OneMsgSdk\Model\CreateUploadMedia200Response',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\OneMsgSdk\Model\CreateUploadMedia200Response',
+                $request,
+                $response,
+            );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OneMsgSdk\Model\CreateUploadMedia200Response',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
             }
         
 
@@ -589,15 +626,15 @@ class MessagingApi
      * Upload media
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\CreateUploadMediaRequest $create_upload_media_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUploadMedia'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createUploadMediaAsync($token, $request_body = null, string $contentType = self::contentTypes['createUploadMedia'][0])
+    public function createUploadMediaAsync($token, $create_upload_media_request, string $contentType = self::contentTypes['createUploadMedia'][0])
     {
-        return $this->createUploadMediaAsyncWithHttpInfo($token, $request_body, $contentType)
+        return $this->createUploadMediaAsyncWithHttpInfo($token, $create_upload_media_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -611,22 +648,35 @@ class MessagingApi
      * Upload media
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\CreateUploadMediaRequest $create_upload_media_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUploadMedia'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createUploadMediaAsyncWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['createUploadMedia'][0])
+    public function createUploadMediaAsyncWithHttpInfo($token, $create_upload_media_request, string $contentType = self::contentTypes['createUploadMedia'][0])
     {
-        $returnType = '';
-        $request = $this->createUploadMediaRequest($token, $request_body, $contentType);
+        $returnType = '\OneMsgSdk\Model\CreateUploadMedia200Response';
+        $request = $this->createUploadMediaRequest($token, $create_upload_media_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -649,13 +699,13 @@ class MessagingApi
      * Create request for operation 'createUploadMedia'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\CreateUploadMediaRequest $create_upload_media_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUploadMedia'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createUploadMediaRequest($token, $request_body = null, string $contentType = self::contentTypes['createUploadMedia'][0])
+    public function createUploadMediaRequest($token, $create_upload_media_request, string $contentType = self::contentTypes['createUploadMedia'][0])
     {
 
         // verify the required parameter 'token' is set
@@ -665,6 +715,12 @@ class MessagingApi
             );
         }
 
+        // verify the required parameter 'create_upload_media_request' is set
+        if ($create_upload_media_request === null || (is_array($create_upload_media_request) && count($create_upload_media_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $create_upload_media_request when calling createUploadMedia'
+            );
+        }
 
 
         $resourcePath = '/uploadMedia';
@@ -688,18 +744,18 @@ class MessagingApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            [],
+            ['application/json', ],
             $contentType,
             $multipart
         );
 
         // for model (json/xml)
-        if (isset($request_body)) {
+        if (isset($create_upload_media_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($request_body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_upload_media_request));
             } else {
-                $httpBody = $request_body;
+                $httpBody = $create_upload_media_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1736,15 +1792,23 @@ class MessagingApi
      * Get messages list
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  string|null $chat_id Filter messages for one chat (&#x60;phone@c.us&#x60;, group &#x60;@g.us&#x60;, or BSUID &#x60;@lid&#x60;) (optional)
+     * @param  int|null $limit Max rows to return (default 100) (optional)
+     * @param  bool|null $last If true, return the latest messages (DESC). Default false. (optional)
+     * @param  int|null $last_message_number last_message_number (optional)
+     * @param  int|null $first_message_number first_message_number (optional)
+     * @param  int|null $min_time Unix timestamp lower bound (optional)
+     * @param  int|null $max_time Unix timestamp upper bound (optional)
+     * @param  string|null $msg_id Filter by stored message id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMessages'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OneMsgSdk\Model\ListMessages200Response
      */
-    public function listMessages($token, string $contentType = self::contentTypes['listMessages'][0])
+    public function listMessages($token, $chat_id = null, $limit = null, $last = null, $last_message_number = null, $first_message_number = null, $min_time = null, $max_time = null, $msg_id = null, string $contentType = self::contentTypes['listMessages'][0])
     {
-        list($response) = $this->listMessagesWithHttpInfo($token, $contentType);
+        list($response) = $this->listMessagesWithHttpInfo($token, $chat_id, $limit, $last, $last_message_number, $first_message_number, $min_time, $max_time, $msg_id, $contentType);
         return $response;
     }
 
@@ -1754,15 +1818,23 @@ class MessagingApi
      * Get messages list
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  string|null $chat_id Filter messages for one chat (&#x60;phone@c.us&#x60;, group &#x60;@g.us&#x60;, or BSUID &#x60;@lid&#x60;) (optional)
+     * @param  int|null $limit Max rows to return (default 100) (optional)
+     * @param  bool|null $last If true, return the latest messages (DESC). Default false. (optional)
+     * @param  int|null $last_message_number (optional)
+     * @param  int|null $first_message_number (optional)
+     * @param  int|null $min_time Unix timestamp lower bound (optional)
+     * @param  int|null $max_time Unix timestamp upper bound (optional)
+     * @param  string|null $msg_id Filter by stored message id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMessages'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OneMsgSdk\Model\ListMessages200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listMessagesWithHttpInfo($token, string $contentType = self::contentTypes['listMessages'][0])
+    public function listMessagesWithHttpInfo($token, $chat_id = null, $limit = null, $last = null, $last_message_number = null, $first_message_number = null, $min_time = null, $max_time = null, $msg_id = null, string $contentType = self::contentTypes['listMessages'][0])
     {
-        $request = $this->listMessagesRequest($token, $contentType);
+        $request = $this->listMessagesRequest($token, $chat_id, $limit, $last, $last_message_number, $first_message_number, $min_time, $max_time, $msg_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1839,14 +1911,22 @@ class MessagingApi
      * Get messages list
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  string|null $chat_id Filter messages for one chat (&#x60;phone@c.us&#x60;, group &#x60;@g.us&#x60;, or BSUID &#x60;@lid&#x60;) (optional)
+     * @param  int|null $limit Max rows to return (default 100) (optional)
+     * @param  bool|null $last If true, return the latest messages (DESC). Default false. (optional)
+     * @param  int|null $last_message_number (optional)
+     * @param  int|null $first_message_number (optional)
+     * @param  int|null $min_time Unix timestamp lower bound (optional)
+     * @param  int|null $max_time Unix timestamp upper bound (optional)
+     * @param  string|null $msg_id Filter by stored message id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMessages'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listMessagesAsync($token, string $contentType = self::contentTypes['listMessages'][0])
+    public function listMessagesAsync($token, $chat_id = null, $limit = null, $last = null, $last_message_number = null, $first_message_number = null, $min_time = null, $max_time = null, $msg_id = null, string $contentType = self::contentTypes['listMessages'][0])
     {
-        return $this->listMessagesAsyncWithHttpInfo($token, $contentType)
+        return $this->listMessagesAsyncWithHttpInfo($token, $chat_id, $limit, $last, $last_message_number, $first_message_number, $min_time, $max_time, $msg_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1860,15 +1940,23 @@ class MessagingApi
      * Get messages list
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  string|null $chat_id Filter messages for one chat (&#x60;phone@c.us&#x60;, group &#x60;@g.us&#x60;, or BSUID &#x60;@lid&#x60;) (optional)
+     * @param  int|null $limit Max rows to return (default 100) (optional)
+     * @param  bool|null $last If true, return the latest messages (DESC). Default false. (optional)
+     * @param  int|null $last_message_number (optional)
+     * @param  int|null $first_message_number (optional)
+     * @param  int|null $min_time Unix timestamp lower bound (optional)
+     * @param  int|null $max_time Unix timestamp upper bound (optional)
+     * @param  string|null $msg_id Filter by stored message id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMessages'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listMessagesAsyncWithHttpInfo($token, string $contentType = self::contentTypes['listMessages'][0])
+    public function listMessagesAsyncWithHttpInfo($token, $chat_id = null, $limit = null, $last = null, $last_message_number = null, $first_message_number = null, $min_time = null, $max_time = null, $msg_id = null, string $contentType = self::contentTypes['listMessages'][0])
     {
         $returnType = '\OneMsgSdk\Model\ListMessages200Response';
-        $request = $this->listMessagesRequest($token, $contentType);
+        $request = $this->listMessagesRequest($token, $chat_id, $limit, $last, $last_message_number, $first_message_number, $min_time, $max_time, $msg_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1910,12 +1998,20 @@ class MessagingApi
      * Create request for operation 'listMessages'
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  string|null $chat_id Filter messages for one chat (&#x60;phone@c.us&#x60;, group &#x60;@g.us&#x60;, or BSUID &#x60;@lid&#x60;) (optional)
+     * @param  int|null $limit Max rows to return (default 100) (optional)
+     * @param  bool|null $last If true, return the latest messages (DESC). Default false. (optional)
+     * @param  int|null $last_message_number (optional)
+     * @param  int|null $first_message_number (optional)
+     * @param  int|null $min_time Unix timestamp lower bound (optional)
+     * @param  int|null $max_time Unix timestamp upper bound (optional)
+     * @param  string|null $msg_id Filter by stored message id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMessages'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listMessagesRequest($token, string $contentType = self::contentTypes['listMessages'][0])
+    public function listMessagesRequest($token, $chat_id = null, $limit = null, $last = null, $last_message_number = null, $first_message_number = null, $min_time = null, $max_time = null, $msg_id = null, string $contentType = self::contentTypes['listMessages'][0])
     {
 
         // verify the required parameter 'token' is set
@@ -1924,6 +2020,14 @@ class MessagingApi
                 'Missing the required parameter $token when calling listMessages'
             );
         }
+
+
+
+
+
+
+
+
 
 
         $resourcePath = '/messages';
@@ -1941,6 +2045,78 @@ class MessagingApi
             'form', // style
             true, // explode
             true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $chat_id,
+            'chatId', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $last,
+            'last', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $last_message_number,
+            'lastMessageNumber', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $first_message_number,
+            'firstMessageNumber', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $min_time,
+            'min_time', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $max_time,
+            'max_time', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $msg_id,
+            'msgId', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
         ) ?? []);
 
 
@@ -3039,8 +3215,9 @@ class MessagingApi
      * Send Carousel
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  object[] $params Required. Template-like structure (same as sendTemplate params). Must include a CAROUSEL component and its cards.  Structure: - params[] item with type CAROUSEL and cards (2..10) - cards[] item:   - components[] items:     - header: parameters[0] with type image/video/product       - image: {\\\&quot;image\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - video: {\\\&quot;video\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - product: {\\\&quot;product\\\&quot;: {\\\&quot;catalog_id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;product_retailer_id\\\&quot;: \\\&quot;...\\\&quot;}}     - button: sub_type url or quick_reply       - url: parameters {\\\&quot;text\\\&quot;: \\\&quot;Button\\\&quot;, \\\&quot;url\\\&quot;: \\\&quot;https://...\\\&quot;}       - quick_reply: parameters[] of {\\\&quot;id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;text\\\&quot;: \\\&quot;...\\\&quot;} (required)
      * @param  string|null $body Text shown above the carousel. Optional. If omitted and params include a body component, the body will be taken from params. (optional)
+     * @param  array<string,mixed>[]|null $cards Preferred. 2–10 carousel cards (header + body + CTA or quick replies). (optional)
+     * @param  object[]|null $params Required. Template-like structure (same as sendTemplate params). Must include a CAROUSEL component and its cards.  Structure: - params[] item with type CAROUSEL and cards (2..10) - cards[] item:   - components[] items:     - header: parameters[0] with type image/video/product       - image: {\\\&quot;image\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - video: {\\\&quot;video\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - product: {\\\&quot;product\\\&quot;: {\\\&quot;catalog_id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;product_retailer_id\\\&quot;: \\\&quot;...\\\&quot;}}     - button: sub_type url or quick_reply       - url: parameters {\\\&quot;text\\\&quot;: \\\&quot;Button\\\&quot;, \\\&quot;url\\\&quot;: \\\&quot;https://...\\\&quot;}       - quick_reply: parameters[] of {\\\&quot;id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;text\\\&quot;: \\\&quot;...\\\&quot;} (optional)
      * @param  string|null $quoted_msg_id Quoted message ID (Cloud API) (optional)
      * @param  string|null $chat_id Required if phone is not set. Chat ID from the message list. Examples: 12020721369@c.us or 120363046942338209@g.us(group) (optional)
      * @param  int|null $phone Required if chatId is not set. A phone number starting with the country code. USA example: 12020721369. (optional)
@@ -3050,9 +3227,9 @@ class MessagingApi
      * @throws \InvalidArgumentException
      * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
-    public function sendCarousel($token, $params, $body = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendCarousel'][0])
+    public function sendCarousel($token, $body = null, $cards = null, $params = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendCarousel'][0])
     {
-        list($response) = $this->sendCarouselWithHttpInfo($token, $params, $body, $quoted_msg_id, $chat_id, $phone, $contentType);
+        list($response) = $this->sendCarouselWithHttpInfo($token, $body, $cards, $params, $quoted_msg_id, $chat_id, $phone, $contentType);
         return $response;
     }
 
@@ -3062,8 +3239,9 @@ class MessagingApi
      * Send Carousel
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  object[] $params Required. Template-like structure (same as sendTemplate params). Must include a CAROUSEL component and its cards.  Structure: - params[] item with type CAROUSEL and cards (2..10) - cards[] item:   - components[] items:     - header: parameters[0] with type image/video/product       - image: {\\\&quot;image\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - video: {\\\&quot;video\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - product: {\\\&quot;product\\\&quot;: {\\\&quot;catalog_id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;product_retailer_id\\\&quot;: \\\&quot;...\\\&quot;}}     - button: sub_type url or quick_reply       - url: parameters {\\\&quot;text\\\&quot;: \\\&quot;Button\\\&quot;, \\\&quot;url\\\&quot;: \\\&quot;https://...\\\&quot;}       - quick_reply: parameters[] of {\\\&quot;id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;text\\\&quot;: \\\&quot;...\\\&quot;} (required)
      * @param  string|null $body Text shown above the carousel. Optional. If omitted and params include a body component, the body will be taken from params. (optional)
+     * @param  array<string,mixed>[]|null $cards Preferred. 2–10 carousel cards (header + body + CTA or quick replies). (optional)
+     * @param  object[]|null $params Required. Template-like structure (same as sendTemplate params). Must include a CAROUSEL component and its cards.  Structure: - params[] item with type CAROUSEL and cards (2..10) - cards[] item:   - components[] items:     - header: parameters[0] with type image/video/product       - image: {\\\&quot;image\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - video: {\\\&quot;video\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - product: {\\\&quot;product\\\&quot;: {\\\&quot;catalog_id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;product_retailer_id\\\&quot;: \\\&quot;...\\\&quot;}}     - button: sub_type url or quick_reply       - url: parameters {\\\&quot;text\\\&quot;: \\\&quot;Button\\\&quot;, \\\&quot;url\\\&quot;: \\\&quot;https://...\\\&quot;}       - quick_reply: parameters[] of {\\\&quot;id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;text\\\&quot;: \\\&quot;...\\\&quot;} (optional)
      * @param  string|null $quoted_msg_id Quoted message ID (Cloud API) (optional)
      * @param  string|null $chat_id Required if phone is not set. Chat ID from the message list. Examples: 12020721369@c.us or 120363046942338209@g.us(group) (optional)
      * @param  int|null $phone Required if chatId is not set. A phone number starting with the country code. USA example: 12020721369. (optional)
@@ -3073,9 +3251,9 @@ class MessagingApi
      * @throws \InvalidArgumentException
      * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function sendCarouselWithHttpInfo($token, $params, $body = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendCarousel'][0])
+    public function sendCarouselWithHttpInfo($token, $body = null, $cards = null, $params = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendCarousel'][0])
     {
-        $request = $this->sendCarouselRequest($token, $params, $body, $quoted_msg_id, $chat_id, $phone, $contentType);
+        $request = $this->sendCarouselRequest($token, $body, $cards, $params, $quoted_msg_id, $chat_id, $phone, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3208,8 +3386,9 @@ class MessagingApi
      * Send Carousel
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  object[] $params Required. Template-like structure (same as sendTemplate params). Must include a CAROUSEL component and its cards.  Structure: - params[] item with type CAROUSEL and cards (2..10) - cards[] item:   - components[] items:     - header: parameters[0] with type image/video/product       - image: {\\\&quot;image\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - video: {\\\&quot;video\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - product: {\\\&quot;product\\\&quot;: {\\\&quot;catalog_id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;product_retailer_id\\\&quot;: \\\&quot;...\\\&quot;}}     - button: sub_type url or quick_reply       - url: parameters {\\\&quot;text\\\&quot;: \\\&quot;Button\\\&quot;, \\\&quot;url\\\&quot;: \\\&quot;https://...\\\&quot;}       - quick_reply: parameters[] of {\\\&quot;id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;text\\\&quot;: \\\&quot;...\\\&quot;} (required)
      * @param  string|null $body Text shown above the carousel. Optional. If omitted and params include a body component, the body will be taken from params. (optional)
+     * @param  array<string,mixed>[]|null $cards Preferred. 2–10 carousel cards (header + body + CTA or quick replies). (optional)
+     * @param  object[]|null $params Required. Template-like structure (same as sendTemplate params). Must include a CAROUSEL component and its cards.  Structure: - params[] item with type CAROUSEL and cards (2..10) - cards[] item:   - components[] items:     - header: parameters[0] with type image/video/product       - image: {\\\&quot;image\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - video: {\\\&quot;video\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - product: {\\\&quot;product\\\&quot;: {\\\&quot;catalog_id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;product_retailer_id\\\&quot;: \\\&quot;...\\\&quot;}}     - button: sub_type url or quick_reply       - url: parameters {\\\&quot;text\\\&quot;: \\\&quot;Button\\\&quot;, \\\&quot;url\\\&quot;: \\\&quot;https://...\\\&quot;}       - quick_reply: parameters[] of {\\\&quot;id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;text\\\&quot;: \\\&quot;...\\\&quot;} (optional)
      * @param  string|null $quoted_msg_id Quoted message ID (Cloud API) (optional)
      * @param  string|null $chat_id Required if phone is not set. Chat ID from the message list. Examples: 12020721369@c.us or 120363046942338209@g.us(group) (optional)
      * @param  int|null $phone Required if chatId is not set. A phone number starting with the country code. USA example: 12020721369. (optional)
@@ -3218,9 +3397,9 @@ class MessagingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendCarouselAsync($token, $params, $body = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendCarousel'][0])
+    public function sendCarouselAsync($token, $body = null, $cards = null, $params = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendCarousel'][0])
     {
-        return $this->sendCarouselAsyncWithHttpInfo($token, $params, $body, $quoted_msg_id, $chat_id, $phone, $contentType)
+        return $this->sendCarouselAsyncWithHttpInfo($token, $body, $cards, $params, $quoted_msg_id, $chat_id, $phone, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3234,8 +3413,9 @@ class MessagingApi
      * Send Carousel
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  object[] $params Required. Template-like structure (same as sendTemplate params). Must include a CAROUSEL component and its cards.  Structure: - params[] item with type CAROUSEL and cards (2..10) - cards[] item:   - components[] items:     - header: parameters[0] with type image/video/product       - image: {\\\&quot;image\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - video: {\\\&quot;video\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - product: {\\\&quot;product\\\&quot;: {\\\&quot;catalog_id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;product_retailer_id\\\&quot;: \\\&quot;...\\\&quot;}}     - button: sub_type url or quick_reply       - url: parameters {\\\&quot;text\\\&quot;: \\\&quot;Button\\\&quot;, \\\&quot;url\\\&quot;: \\\&quot;https://...\\\&quot;}       - quick_reply: parameters[] of {\\\&quot;id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;text\\\&quot;: \\\&quot;...\\\&quot;} (required)
      * @param  string|null $body Text shown above the carousel. Optional. If omitted and params include a body component, the body will be taken from params. (optional)
+     * @param  array<string,mixed>[]|null $cards Preferred. 2–10 carousel cards (header + body + CTA or quick replies). (optional)
+     * @param  object[]|null $params Required. Template-like structure (same as sendTemplate params). Must include a CAROUSEL component and its cards.  Structure: - params[] item with type CAROUSEL and cards (2..10) - cards[] item:   - components[] items:     - header: parameters[0] with type image/video/product       - image: {\\\&quot;image\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - video: {\\\&quot;video\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - product: {\\\&quot;product\\\&quot;: {\\\&quot;catalog_id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;product_retailer_id\\\&quot;: \\\&quot;...\\\&quot;}}     - button: sub_type url or quick_reply       - url: parameters {\\\&quot;text\\\&quot;: \\\&quot;Button\\\&quot;, \\\&quot;url\\\&quot;: \\\&quot;https://...\\\&quot;}       - quick_reply: parameters[] of {\\\&quot;id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;text\\\&quot;: \\\&quot;...\\\&quot;} (optional)
      * @param  string|null $quoted_msg_id Quoted message ID (Cloud API) (optional)
      * @param  string|null $chat_id Required if phone is not set. Chat ID from the message list. Examples: 12020721369@c.us or 120363046942338209@g.us(group) (optional)
      * @param  int|null $phone Required if chatId is not set. A phone number starting with the country code. USA example: 12020721369. (optional)
@@ -3244,10 +3424,10 @@ class MessagingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendCarouselAsyncWithHttpInfo($token, $params, $body = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendCarousel'][0])
+    public function sendCarouselAsyncWithHttpInfo($token, $body = null, $cards = null, $params = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendCarousel'][0])
     {
         $returnType = '\OneMsgSdk\Model\MessageSentResponse';
-        $request = $this->sendCarouselRequest($token, $params, $body, $quoted_msg_id, $chat_id, $phone, $contentType);
+        $request = $this->sendCarouselRequest($token, $body, $cards, $params, $quoted_msg_id, $chat_id, $phone, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3289,8 +3469,9 @@ class MessagingApi
      * Create request for operation 'sendCarousel'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  object[] $params Required. Template-like structure (same as sendTemplate params). Must include a CAROUSEL component and its cards.  Structure: - params[] item with type CAROUSEL and cards (2..10) - cards[] item:   - components[] items:     - header: parameters[0] with type image/video/product       - image: {\\\&quot;image\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - video: {\\\&quot;video\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - product: {\\\&quot;product\\\&quot;: {\\\&quot;catalog_id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;product_retailer_id\\\&quot;: \\\&quot;...\\\&quot;}}     - button: sub_type url or quick_reply       - url: parameters {\\\&quot;text\\\&quot;: \\\&quot;Button\\\&quot;, \\\&quot;url\\\&quot;: \\\&quot;https://...\\\&quot;}       - quick_reply: parameters[] of {\\\&quot;id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;text\\\&quot;: \\\&quot;...\\\&quot;} (required)
      * @param  string|null $body Text shown above the carousel. Optional. If omitted and params include a body component, the body will be taken from params. (optional)
+     * @param  array<string,mixed>[]|null $cards Preferred. 2–10 carousel cards (header + body + CTA or quick replies). (optional)
+     * @param  object[]|null $params Required. Template-like structure (same as sendTemplate params). Must include a CAROUSEL component and its cards.  Structure: - params[] item with type CAROUSEL and cards (2..10) - cards[] item:   - components[] items:     - header: parameters[0] with type image/video/product       - image: {\\\&quot;image\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - video: {\\\&quot;video\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - product: {\\\&quot;product\\\&quot;: {\\\&quot;catalog_id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;product_retailer_id\\\&quot;: \\\&quot;...\\\&quot;}}     - button: sub_type url or quick_reply       - url: parameters {\\\&quot;text\\\&quot;: \\\&quot;Button\\\&quot;, \\\&quot;url\\\&quot;: \\\&quot;https://...\\\&quot;}       - quick_reply: parameters[] of {\\\&quot;id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;text\\\&quot;: \\\&quot;...\\\&quot;} (optional)
      * @param  string|null $quoted_msg_id Quoted message ID (Cloud API) (optional)
      * @param  string|null $chat_id Required if phone is not set. Chat ID from the message list. Examples: 12020721369@c.us or 120363046942338209@g.us(group) (optional)
      * @param  int|null $phone Required if chatId is not set. A phone number starting with the country code. USA example: 12020721369. (optional)
@@ -3299,7 +3480,7 @@ class MessagingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function sendCarouselRequest($token, $params, $body = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendCarousel'][0])
+    public function sendCarouselRequest($token, $body = null, $cards = null, $params = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendCarousel'][0])
     {
 
         // verify the required parameter 'token' is set
@@ -3309,13 +3490,14 @@ class MessagingApi
             );
         }
 
-        // verify the required parameter 'params' is set
-        if ($params === null || (is_array($params) && count($params) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $params when calling sendCarousel'
-            );
-        }
 
+        if ($cards !== null && count($cards) > 10) {
+            throw new \InvalidArgumentException('invalid value for "$cards" when calling MessagingApi.sendCarousel, number of items must be less than or equal to 10.');
+        }
+        if ($cards !== null && count($cards) < 2) {
+            throw new \InvalidArgumentException('invalid value for "$cards" when calling MessagingApi.sendCarousel, number of items must be greater than or equal to 2.');
+        }
+        
 
 
 
@@ -3345,6 +3527,7 @@ class MessagingApi
 
         $formData = $formDataProcessor->prepare([
             'body' => $body,
+            'cards' => $cards,
             'params' => $params,
             'quotedMsgId' => $quoted_msg_id,
             'chatId' => $chat_id,
@@ -5364,7 +5547,7 @@ class MessagingApi
      */
     public function sendLocationWithHttpInfo($token, $lat, $lng, $address = null, $name = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendLocation'][0])
     {
-        $request = $this->sendLocationRequest($token, $lat, $lng, $address, $name, $quoted_msg_id, $chat_id, $phone, $contentType);
+        $request = $this->sendLocationHttpRequest($token, $lat, $lng, $address, $name, $quoted_msg_id, $chat_id, $phone, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5540,7 +5723,7 @@ class MessagingApi
     public function sendLocationAsyncWithHttpInfo($token, $lat, $lng, $address = null, $name = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendLocation'][0])
     {
         $returnType = '\OneMsgSdk\Model\MessageSentResponse';
-        $request = $this->sendLocationRequest($token, $lat, $lng, $address, $name, $quoted_msg_id, $chat_id, $phone, $contentType);
+        $request = $this->sendLocationHttpRequest($token, $lat, $lng, $address, $name, $quoted_msg_id, $chat_id, $phone, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5594,7 +5777,7 @@ class MessagingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function sendLocationRequest($token, $lat, $lng, $address = null, $name = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendLocation'][0])
+    public function sendLocationHttpRequest($token, $lat, $lng, $address = null, $name = null, $quoted_msg_id = null, $chat_id = null, $phone = null, string $contentType = self::contentTypes['sendLocation'][0])
     {
 
         // verify the required parameter 'token' is set
@@ -6068,7 +6251,7 @@ class MessagingApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $body Message text, UTF-8 or UTF-16 string with emoji (required)
      * @param  string|null $quoted_msg_id Message ID to quote/reply to (Cloud API wamid) (optional)
-     * @param  string|null $chat_id Chat ID in format: phone@c.us (individual) or phone@g.us (group) (optional)
+     * @param  string|null $chat_id Recipient chat ID: phone@c.us, group@g.us, or BSUID@lid (optional)
      * @param  int|null $phone Phone number starting with country code (alternative to chatId) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessage'] to see the possible values for this operation
      *
@@ -6090,7 +6273,7 @@ class MessagingApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $body Message text, UTF-8 or UTF-16 string with emoji (required)
      * @param  string|null $quoted_msg_id Message ID to quote/reply to (Cloud API wamid) (optional)
-     * @param  string|null $chat_id Chat ID in format: phone@c.us (individual) or phone@g.us (group) (optional)
+     * @param  string|null $chat_id Recipient chat ID: phone@c.us, group@g.us, or BSUID@lid (optional)
      * @param  int|null $phone Phone number starting with country code (alternative to chatId) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessage'] to see the possible values for this operation
      *
@@ -6235,7 +6418,7 @@ class MessagingApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $body Message text, UTF-8 or UTF-16 string with emoji (required)
      * @param  string|null $quoted_msg_id Message ID to quote/reply to (Cloud API wamid) (optional)
-     * @param  string|null $chat_id Chat ID in format: phone@c.us (individual) or phone@g.us (group) (optional)
+     * @param  string|null $chat_id Recipient chat ID: phone@c.us, group@g.us, or BSUID@lid (optional)
      * @param  int|null $phone Phone number starting with country code (alternative to chatId) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessage'] to see the possible values for this operation
      *
@@ -6260,7 +6443,7 @@ class MessagingApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $body Message text, UTF-8 or UTF-16 string with emoji (required)
      * @param  string|null $quoted_msg_id Message ID to quote/reply to (Cloud API wamid) (optional)
-     * @param  string|null $chat_id Chat ID in format: phone@c.us (individual) or phone@g.us (group) (optional)
+     * @param  string|null $chat_id Recipient chat ID: phone@c.us, group@g.us, or BSUID@lid (optional)
      * @param  int|null $phone Phone number starting with country code (alternative to chatId) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessage'] to see the possible values for this operation
      *
@@ -6314,7 +6497,7 @@ class MessagingApi
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string $body Message text, UTF-8 or UTF-16 string with emoji (required)
      * @param  string|null $quoted_msg_id Message ID to quote/reply to (Cloud API wamid) (optional)
-     * @param  string|null $chat_id Chat ID in format: phone@c.us (individual) or phone@g.us (group) (optional)
+     * @param  string|null $chat_id Recipient chat ID: phone@c.us, group@g.us, or BSUID@lid (optional)
      * @param  int|null $phone Phone number starting with country code (alternative to chatId) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMessage'] to see the possible values for this operation
      *
@@ -6348,10 +6531,7 @@ class MessagingApi
             throw new \InvalidArgumentException("invalid value for \"quoted_msg_id\" when calling MessagingApi.sendMessage, must conform to the pattern /^wamid\\..+$/.");
         }
         
-        if ($chat_id !== null && !preg_match("/^[0-9]+@[cg]\\.us$/", $chat_id)) {
-            throw new \InvalidArgumentException("invalid value for \"chat_id\" when calling MessagingApi.sendMessage, must conform to the pattern /^[0-9]+@[cg]\\.us$/.");
-        }
-        
+
         if ($phone !== null && $phone > 999999999999999) {
             throw new \InvalidArgumentException('invalid value for "$phone" when calling MessagingApi.sendMessage, must be smaller than or equal to 999999999999999.');
         }
@@ -7126,16 +7306,16 @@ class MessagingApi
      * Send a Product
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body request_body (optional)
+     * @param  \OneMsgSdk\Model\SendProductRequest $send_product_request send_product_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendProduct'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
-    public function sendProduct($token, $request_body = null, string $contentType = self::contentTypes['sendProduct'][0])
+    public function sendProduct($token, $send_product_request, string $contentType = self::contentTypes['sendProduct'][0])
     {
-        list($response) = $this->sendProductWithHttpInfo($token, $request_body, $contentType);
+        list($response) = $this->sendProductWithHttpInfo($token, $send_product_request, $contentType);
         return $response;
     }
 
@@ -7145,16 +7325,16 @@ class MessagingApi
      * Send a Product
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\SendProductRequest $send_product_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendProduct'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OneMsgSdk\Model\MessageSentResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function sendProductWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['sendProduct'][0])
+    public function sendProductWithHttpInfo($token, $send_product_request, string $contentType = self::contentTypes['sendProduct'][0])
     {
-        $request = $this->sendProductRequest($token, $request_body, $contentType);
+        $request = $this->sendProductRequest($token, $send_product_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7287,15 +7467,15 @@ class MessagingApi
      * Send a Product
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\SendProductRequest $send_product_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendProduct'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendProductAsync($token, $request_body = null, string $contentType = self::contentTypes['sendProduct'][0])
+    public function sendProductAsync($token, $send_product_request, string $contentType = self::contentTypes['sendProduct'][0])
     {
-        return $this->sendProductAsyncWithHttpInfo($token, $request_body, $contentType)
+        return $this->sendProductAsyncWithHttpInfo($token, $send_product_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7309,16 +7489,16 @@ class MessagingApi
      * Send a Product
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\SendProductRequest $send_product_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendProduct'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendProductAsyncWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['sendProduct'][0])
+    public function sendProductAsyncWithHttpInfo($token, $send_product_request, string $contentType = self::contentTypes['sendProduct'][0])
     {
         $returnType = '\OneMsgSdk\Model\MessageSentResponse';
-        $request = $this->sendProductRequest($token, $request_body, $contentType);
+        $request = $this->sendProductRequest($token, $send_product_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7360,13 +7540,13 @@ class MessagingApi
      * Create request for operation 'sendProduct'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\SendProductRequest $send_product_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendProduct'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function sendProductRequest($token, $request_body = null, string $contentType = self::contentTypes['sendProduct'][0])
+    public function sendProductRequest($token, $send_product_request, string $contentType = self::contentTypes['sendProduct'][0])
     {
 
         // verify the required parameter 'token' is set
@@ -7376,6 +7556,12 @@ class MessagingApi
             );
         }
 
+        // verify the required parameter 'send_product_request' is set
+        if ($send_product_request === null || (is_array($send_product_request) && count($send_product_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $send_product_request when calling sendProduct'
+            );
+        }
 
 
         $resourcePath = '/sendProduct';
@@ -7405,12 +7591,12 @@ class MessagingApi
         );
 
         // for model (json/xml)
-        if (isset($request_body)) {
+        if (isset($send_product_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($request_body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($send_product_request));
             } else {
-                $httpBody = $request_body;
+                $httpBody = $send_product_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

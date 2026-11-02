@@ -12,7 +12,7 @@
 /**
  * 1MSG WhatsApp Business API (Public)
  *
- * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
+ * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** Pass the channel token in **one** place. The API checks JSON body (`token`), then query string (`?token=`), then `Authorization: Bearer` header (preferred in production).  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@1msg.io
@@ -146,7 +146,7 @@ class TemplatesApi
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\AddTemplate200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
     public function addTemplate($token, $add_template_request = null, string $contentType = self::contentTypes['addTemplate'][0])
     {
@@ -165,7 +165,7 @@ class TemplatesApi
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\AddTemplate200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function addTemplateWithHttpInfo($token, $add_template_request = null, string $contentType = self::contentTypes['addTemplate'][0])
     {
@@ -197,7 +197,7 @@ class TemplatesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        'array<string,mixed>',
+                        '\OneMsgSdk\Model\AddTemplate200Response',
                         $request,
                         $response,
                     );
@@ -231,7 +231,7 @@ class TemplatesApi
             }
 
             return $this->handleResponseWithDataType(
-                'array<string,mixed>',
+                '\OneMsgSdk\Model\AddTemplate200Response',
                 $request,
                 $response,
             );
@@ -240,7 +240,7 @@ class TemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'array<string,mixed>',
+                        '\OneMsgSdk\Model\AddTemplate200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -304,7 +304,7 @@ class TemplatesApi
      */
     public function addTemplateAsyncWithHttpInfo($token, $add_template_request = null, string $contentType = self::contentTypes['addTemplate'][0])
     {
-        $returnType = 'array<string,mixed>';
+        $returnType = '\OneMsgSdk\Model\AddTemplate200Response';
         $request = $this->addTemplateRequest($token, $add_template_request, $contentType);
 
         return $this->client
@@ -456,15 +456,18 @@ class TemplatesApi
      * Get templates list
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  int|null $limit limit (optional)
+     * @param  int|null $offset offset (optional)
+     * @param  string|null $sort Sort field (&#x60;id&#x60;, &#x60;name&#x60;, or &#x60;status&#x60;) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTemplates'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OneMsgSdk\Model\ListTemplates200Response
      */
-    public function listTemplates($token, string $contentType = self::contentTypes['listTemplates'][0])
+    public function listTemplates($token, $limit = null, $offset = null, $sort = null, string $contentType = self::contentTypes['listTemplates'][0])
     {
-        list($response) = $this->listTemplatesWithHttpInfo($token, $contentType);
+        list($response) = $this->listTemplatesWithHttpInfo($token, $limit, $offset, $sort, $contentType);
         return $response;
     }
 
@@ -474,15 +477,18 @@ class TemplatesApi
      * Get templates list
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  int|null $limit (optional)
+     * @param  int|null $offset (optional)
+     * @param  string|null $sort Sort field (&#x60;id&#x60;, &#x60;name&#x60;, or &#x60;status&#x60;) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTemplates'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OneMsgSdk\Model\ListTemplates200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listTemplatesWithHttpInfo($token, string $contentType = self::contentTypes['listTemplates'][0])
+    public function listTemplatesWithHttpInfo($token, $limit = null, $offset = null, $sort = null, string $contentType = self::contentTypes['listTemplates'][0])
     {
-        $request = $this->listTemplatesRequest($token, $contentType);
+        $request = $this->listTemplatesRequest($token, $limit, $offset, $sort, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -559,14 +565,17 @@ class TemplatesApi
      * Get templates list
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  int|null $limit (optional)
+     * @param  int|null $offset (optional)
+     * @param  string|null $sort Sort field (&#x60;id&#x60;, &#x60;name&#x60;, or &#x60;status&#x60;) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTemplates'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listTemplatesAsync($token, string $contentType = self::contentTypes['listTemplates'][0])
+    public function listTemplatesAsync($token, $limit = null, $offset = null, $sort = null, string $contentType = self::contentTypes['listTemplates'][0])
     {
-        return $this->listTemplatesAsyncWithHttpInfo($token, $contentType)
+        return $this->listTemplatesAsyncWithHttpInfo($token, $limit, $offset, $sort, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -580,15 +589,18 @@ class TemplatesApi
      * Get templates list
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  int|null $limit (optional)
+     * @param  int|null $offset (optional)
+     * @param  string|null $sort Sort field (&#x60;id&#x60;, &#x60;name&#x60;, or &#x60;status&#x60;) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTemplates'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listTemplatesAsyncWithHttpInfo($token, string $contentType = self::contentTypes['listTemplates'][0])
+    public function listTemplatesAsyncWithHttpInfo($token, $limit = null, $offset = null, $sort = null, string $contentType = self::contentTypes['listTemplates'][0])
     {
         $returnType = '\OneMsgSdk\Model\ListTemplates200Response';
-        $request = $this->listTemplatesRequest($token, $contentType);
+        $request = $this->listTemplatesRequest($token, $limit, $offset, $sort, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -630,12 +642,15 @@ class TemplatesApi
      * Create request for operation 'listTemplates'
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  int|null $limit (optional)
+     * @param  int|null $offset (optional)
+     * @param  string|null $sort Sort field (&#x60;id&#x60;, &#x60;name&#x60;, or &#x60;status&#x60;) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listTemplates'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listTemplatesRequest($token, string $contentType = self::contentTypes['listTemplates'][0])
+    public function listTemplatesRequest($token, $limit = null, $offset = null, $sort = null, string $contentType = self::contentTypes['listTemplates'][0])
     {
 
         // verify the required parameter 'token' is set
@@ -644,6 +659,9 @@ class TemplatesApi
                 'Missing the required parameter $token when calling listTemplates'
             );
         }
+
+
+
 
 
         $resourcePath = '/templates';
@@ -661,6 +679,33 @@ class TemplatesApi
             'form', // style
             true, // explode
             true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $offset,
+            'offset', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $sort,
+            'sort', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
         ) ?? []);
 
 
@@ -730,16 +775,16 @@ class TemplatesApi
      * Remove message template
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body request_body (optional)
+     * @param  \OneMsgSdk\Model\RemoveTemplateRequest $remove_template_request remove_template_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeTemplate'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
-    public function removeTemplate($token, $request_body = null, string $contentType = self::contentTypes['removeTemplate'][0])
+    public function removeTemplate($token, $remove_template_request, string $contentType = self::contentTypes['removeTemplate'][0])
     {
-        list($response) = $this->removeTemplateWithHttpInfo($token, $request_body, $contentType);
+        list($response) = $this->removeTemplateWithHttpInfo($token, $remove_template_request, $contentType);
         return $response;
     }
 
@@ -749,16 +794,16 @@ class TemplatesApi
      * Remove message template
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\RemoveTemplateRequest $remove_template_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeTemplate'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function removeTemplateWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['removeTemplate'][0])
+    public function removeTemplateWithHttpInfo($token, $remove_template_request, string $contentType = self::contentTypes['removeTemplate'][0])
     {
-        $request = $this->removeTemplateRequest($token, $request_body, $contentType);
+        $request = $this->removeTemplateRequest($token, $remove_template_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -863,15 +908,15 @@ class TemplatesApi
      * Remove message template
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\RemoveTemplateRequest $remove_template_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeTemplate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function removeTemplateAsync($token, $request_body = null, string $contentType = self::contentTypes['removeTemplate'][0])
+    public function removeTemplateAsync($token, $remove_template_request, string $contentType = self::contentTypes['removeTemplate'][0])
     {
-        return $this->removeTemplateAsyncWithHttpInfo($token, $request_body, $contentType)
+        return $this->removeTemplateAsyncWithHttpInfo($token, $remove_template_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -885,16 +930,16 @@ class TemplatesApi
      * Remove message template
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\RemoveTemplateRequest $remove_template_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeTemplate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function removeTemplateAsyncWithHttpInfo($token, $request_body = null, string $contentType = self::contentTypes['removeTemplate'][0])
+    public function removeTemplateAsyncWithHttpInfo($token, $remove_template_request, string $contentType = self::contentTypes['removeTemplate'][0])
     {
         $returnType = 'array<string,mixed>';
-        $request = $this->removeTemplateRequest($token, $request_body, $contentType);
+        $request = $this->removeTemplateRequest($token, $remove_template_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -936,13 +981,13 @@ class TemplatesApi
      * Create request for operation 'removeTemplate'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  array<string,mixed>|null $request_body (optional)
+     * @param  \OneMsgSdk\Model\RemoveTemplateRequest $remove_template_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['removeTemplate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function removeTemplateRequest($token, $request_body = null, string $contentType = self::contentTypes['removeTemplate'][0])
+    public function removeTemplateRequest($token, $remove_template_request, string $contentType = self::contentTypes['removeTemplate'][0])
     {
 
         // verify the required parameter 'token' is set
@@ -952,6 +997,12 @@ class TemplatesApi
             );
         }
 
+        // verify the required parameter 'remove_template_request' is set
+        if ($remove_template_request === null || (is_array($remove_template_request) && count($remove_template_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $remove_template_request when calling removeTemplate'
+            );
+        }
 
 
         $resourcePath = '/removeTemplate';
@@ -981,12 +1032,12 @@ class TemplatesApi
         );
 
         // for model (json/xml)
-        if (isset($request_body)) {
+        if (isset($remove_template_request)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($request_body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($remove_template_request));
             } else {
-                $httpBody = $request_body;
+                $httpBody = $remove_template_request;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

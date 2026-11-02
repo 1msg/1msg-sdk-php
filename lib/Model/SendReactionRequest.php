@@ -13,7 +13,7 @@
 /**
  * 1MSG WhatsApp Business API (Public)
  *
- * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
+ * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** Pass the channel token in **one** place. The API checks JSON body (`token`), then query string (`?token=`), then `Authorization: Bearer` header (preferred in production).  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@1msg.io
@@ -59,6 +59,7 @@ class SendReactionRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $openAPITypes = [
         'phone' => 'string',
+        'chat_id' => 'string',
         'body' => 'string',
         'quoted_msg_id' => 'string'
     ];
@@ -72,6 +73,7 @@ class SendReactionRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $openAPIFormats = [
         'phone' => null,
+        'chat_id' => null,
         'body' => null,
         'quoted_msg_id' => null
     ];
@@ -83,6 +85,7 @@ class SendReactionRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static array $openAPINullables = [
         'phone' => false,
+        'chat_id' => false,
         'body' => false,
         'quoted_msg_id' => false
     ];
@@ -174,6 +177,7 @@ class SendReactionRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $attributeMap = [
         'phone' => 'phone',
+        'chat_id' => 'chatId',
         'body' => 'body',
         'quoted_msg_id' => 'quotedMsgId'
     ];
@@ -185,6 +189,7 @@ class SendReactionRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $setters = [
         'phone' => 'setPhone',
+        'chat_id' => 'setChatId',
         'body' => 'setBody',
         'quoted_msg_id' => 'setQuotedMsgId'
     ];
@@ -196,6 +201,7 @@ class SendReactionRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $getters = [
         'phone' => 'getPhone',
+        'chat_id' => 'getChatId',
         'body' => 'getBody',
         'quoted_msg_id' => 'getQuotedMsgId'
     ];
@@ -258,6 +264,7 @@ class SendReactionRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     public function __construct(?array $data = null)
     {
         $this->setIfExists('phone', $data ?? [], null);
+        $this->setIfExists('chat_id', $data ?? [], null);
         $this->setIfExists('body', $data ?? [], null);
         $this->setIfExists('quoted_msg_id', $data ?? [], null);
     }
@@ -317,7 +324,7 @@ class SendReactionRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets phone
      *
-     * @param string|null $phone phone
+     * @param string|null $phone Recipient phone with country code. Use phone or chatId.
      *
      * @return self
      */
@@ -327,6 +334,33 @@ class SendReactionRequest implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable phone cannot be null');
         }
         $this->container['phone'] = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Gets chat_id
+     *
+     * @return string|null
+     */
+    public function getChatId()
+    {
+        return $this->container['chat_id'];
+    }
+
+    /**
+     * Sets chat_id
+     *
+     * @param string|null $chat_id Recipient chat ID (`phone@c.us`, group `@g.us`, or BSUID `@lid`). Use phone or chatId.
+     *
+     * @return self
+     */
+    public function setChatId($chat_id)
+    {
+        if (is_null($chat_id)) {
+            throw new \InvalidArgumentException('non-nullable chat_id cannot be null');
+        }
+        $this->container['chat_id'] = $chat_id;
 
         return $this;
     }

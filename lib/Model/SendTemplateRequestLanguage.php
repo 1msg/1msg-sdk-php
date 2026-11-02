@@ -13,7 +13,7 @@
 /**
  * 1MSG WhatsApp Business API (Public)
  *
- * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
+ * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** Pass the channel token in **one** place. The API checks JSON body (`token`), then query string (`?token=`), then `Authorization: Bearer` header (preferred in production).  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@1msg.io
@@ -36,6 +36,7 @@ use \OneMsgSdk\ObjectSerializer;
  * SendTemplateRequestLanguage Class Doc Comment
  *
  * @category Class
+ * @description Template language. Always set &#x60;policy&#x60; to &#x60;deterministic&#x60;.
  * @package  OneMsgSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -251,7 +252,7 @@ class SendTemplateRequestLanguage implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('policy', $data ?? [], null);
+        $this->setIfExists('policy', $data ?? [], 'deterministic');
         $this->setIfExists('code', $data ?? [], null);
     }
 
@@ -310,7 +311,7 @@ class SendTemplateRequestLanguage implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets policy
      *
-     * @param string|null $policy policy
+     * @param string|null $policy Must be `deterministic`
      *
      * @return self
      */

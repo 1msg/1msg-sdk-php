@@ -12,7 +12,7 @@
 /**
  * 1MSG WhatsApp Business API (Public)
  *
- * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
+ * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** Pass the channel token in **one** place. The API checks JSON body (`token`), then query string (`?token=`), then `Authorization: Bearer` header (preferred in production).  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@1msg.io
@@ -437,14 +437,14 @@ class ProfileApi
      * Update profile info
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgSdk\Model\UpdateMeRequest|null $update_me_request update_me_request (optional)
+     * @param  \OneMsgSdk\Model\UpdateMeRequest $update_me_request update_me_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateMe'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
+     * @return \OneMsgSdk\Model\UpdateMe200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse
      */
-    public function updateMe($token, $update_me_request = null, string $contentType = self::contentTypes['updateMe'][0])
+    public function updateMe($token, $update_me_request, string $contentType = self::contentTypes['updateMe'][0])
     {
         list($response) = $this->updateMeWithHttpInfo($token, $update_me_request, $contentType);
         return $response;
@@ -456,14 +456,14 @@ class ProfileApi
      * Update profile info
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgSdk\Model\UpdateMeRequest|null $update_me_request (optional)
+     * @param  \OneMsgSdk\Model\UpdateMeRequest $update_me_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateMe'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of array<string,mixed>|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OneMsgSdk\Model\UpdateMe200Response|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse|\OneMsgSdk\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateMeWithHttpInfo($token, $update_me_request = null, string $contentType = self::contentTypes['updateMe'][0])
+    public function updateMeWithHttpInfo($token, $update_me_request, string $contentType = self::contentTypes['updateMe'][0])
     {
         $request = $this->updateMeRequest($token, $update_me_request, $contentType);
 
@@ -493,7 +493,7 @@ class ProfileApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        'array<string,mixed>',
+                        '\OneMsgSdk\Model\UpdateMe200Response',
                         $request,
                         $response,
                     );
@@ -533,7 +533,7 @@ class ProfileApi
             }
 
             return $this->handleResponseWithDataType(
-                'array<string,mixed>',
+                '\OneMsgSdk\Model\UpdateMe200Response',
                 $request,
                 $response,
             );
@@ -542,7 +542,7 @@ class ProfileApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        'array<string,mixed>',
+                        '\OneMsgSdk\Model\UpdateMe200Response',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -584,13 +584,13 @@ class ProfileApi
      * Update profile info
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgSdk\Model\UpdateMeRequest|null $update_me_request (optional)
+     * @param  \OneMsgSdk\Model\UpdateMeRequest $update_me_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateMeAsync($token, $update_me_request = null, string $contentType = self::contentTypes['updateMe'][0])
+    public function updateMeAsync($token, $update_me_request, string $contentType = self::contentTypes['updateMe'][0])
     {
         return $this->updateMeAsyncWithHttpInfo($token, $update_me_request, $contentType)
             ->then(
@@ -606,15 +606,15 @@ class ProfileApi
      * Update profile info
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgSdk\Model\UpdateMeRequest|null $update_me_request (optional)
+     * @param  \OneMsgSdk\Model\UpdateMeRequest $update_me_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateMeAsyncWithHttpInfo($token, $update_me_request = null, string $contentType = self::contentTypes['updateMe'][0])
+    public function updateMeAsyncWithHttpInfo($token, $update_me_request, string $contentType = self::contentTypes['updateMe'][0])
     {
-        $returnType = 'array<string,mixed>';
+        $returnType = '\OneMsgSdk\Model\UpdateMe200Response';
         $request = $this->updateMeRequest($token, $update_me_request, $contentType);
 
         return $this->client
@@ -657,13 +657,13 @@ class ProfileApi
      * Create request for operation 'updateMe'
      *
      * @param  string $token JWT token or API key for authorization (required)
-     * @param  \OneMsgSdk\Model\UpdateMeRequest|null $update_me_request (optional)
+     * @param  \OneMsgSdk\Model\UpdateMeRequest $update_me_request (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateMe'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateMeRequest($token, $update_me_request = null, string $contentType = self::contentTypes['updateMe'][0])
+    public function updateMeRequest($token, $update_me_request, string $contentType = self::contentTypes['updateMe'][0])
     {
 
         // verify the required parameter 'token' is set
@@ -673,6 +673,12 @@ class ProfileApi
             );
         }
 
+        // verify the required parameter 'update_me_request' is set
+        if ($update_me_request === null || (is_array($update_me_request) && count($update_me_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $update_me_request when calling updateMe'
+            );
+        }
 
 
         $resourcePath = '/me';

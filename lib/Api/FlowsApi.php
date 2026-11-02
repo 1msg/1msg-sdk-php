@@ -12,7 +12,7 @@
 /**
  * 1MSG WhatsApp Business API (Public)
  *
- * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
+ * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** Pass the channel token in **one** place. The API checks JSON body (`token`), then query string (`?token=`), then `Authorization: Bearer` header (preferred in production).  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@1msg.io
@@ -162,6 +162,7 @@ class FlowsApi
      * Create Flow
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\CreateFlowsRequest $create_flows_request create_flows_request (required)
      * @param  string|null $waba_account_id waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlows'] to see the possible values for this operation
      *
@@ -169,9 +170,9 @@ class FlowsApi
      * @throws \InvalidArgumentException
      * @return \OneMsgSdk\Model\CreateGroups200Response
      */
-    public function createFlows($token, $waba_account_id = null, string $contentType = self::contentTypes['createFlows'][0])
+    public function createFlows($token, $create_flows_request, $waba_account_id = null, string $contentType = self::contentTypes['createFlows'][0])
     {
-        list($response) = $this->createFlowsWithHttpInfo($token, $waba_account_id, $contentType);
+        list($response) = $this->createFlowsWithHttpInfo($token, $create_flows_request, $waba_account_id, $contentType);
         return $response;
     }
 
@@ -181,6 +182,7 @@ class FlowsApi
      * Create Flow
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\CreateFlowsRequest $create_flows_request (required)
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlows'] to see the possible values for this operation
      *
@@ -188,9 +190,9 @@ class FlowsApi
      * @throws \InvalidArgumentException
      * @return array of \OneMsgSdk\Model\CreateGroups200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createFlowsWithHttpInfo($token, $waba_account_id = null, string $contentType = self::contentTypes['createFlows'][0])
+    public function createFlowsWithHttpInfo($token, $create_flows_request, $waba_account_id = null, string $contentType = self::contentTypes['createFlows'][0])
     {
-        $request = $this->createFlowsRequest($token, $waba_account_id, $contentType);
+        $request = $this->createFlowsRequest($token, $create_flows_request, $waba_account_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -267,15 +269,16 @@ class FlowsApi
      * Create Flow
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\CreateFlowsRequest $create_flows_request (required)
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlows'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createFlowsAsync($token, $waba_account_id = null, string $contentType = self::contentTypes['createFlows'][0])
+    public function createFlowsAsync($token, $create_flows_request, $waba_account_id = null, string $contentType = self::contentTypes['createFlows'][0])
     {
-        return $this->createFlowsAsyncWithHttpInfo($token, $waba_account_id, $contentType)
+        return $this->createFlowsAsyncWithHttpInfo($token, $create_flows_request, $waba_account_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -289,16 +292,17 @@ class FlowsApi
      * Create Flow
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\CreateFlowsRequest $create_flows_request (required)
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlows'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createFlowsAsyncWithHttpInfo($token, $waba_account_id = null, string $contentType = self::contentTypes['createFlows'][0])
+    public function createFlowsAsyncWithHttpInfo($token, $create_flows_request, $waba_account_id = null, string $contentType = self::contentTypes['createFlows'][0])
     {
         $returnType = '\OneMsgSdk\Model\CreateGroups200Response';
-        $request = $this->createFlowsRequest($token, $waba_account_id, $contentType);
+        $request = $this->createFlowsRequest($token, $create_flows_request, $waba_account_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -340,19 +344,27 @@ class FlowsApi
      * Create request for operation 'createFlows'
      *
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\CreateFlowsRequest $create_flows_request (required)
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlows'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createFlowsRequest($token, $waba_account_id = null, string $contentType = self::contentTypes['createFlows'][0])
+    public function createFlowsRequest($token, $create_flows_request, $waba_account_id = null, string $contentType = self::contentTypes['createFlows'][0])
     {
 
         // verify the required parameter 'token' is set
         if ($token === null || (is_array($token) && count($token) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $token when calling createFlows'
+            );
+        }
+
+        // verify the required parameter 'create_flows_request' is set
+        if ($create_flows_request === null || (is_array($create_flows_request) && count($create_flows_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $create_flows_request when calling createFlows'
             );
         }
 
@@ -394,7 +406,14 @@ class FlowsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($create_flows_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_flows_request));
+            } else {
+                $httpBody = $create_flows_request;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -2299,15 +2318,16 @@ class FlowsApi
      *
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string|null $waba_account_id waba_account_id (optional)
+     * @param  string|null $fields Comma-separated Flow fields to return (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlows'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \OneMsgSdk\Model\ListFlows200Response
      */
-    public function listFlows($token, $waba_account_id = null, string $contentType = self::contentTypes['listFlows'][0])
+    public function listFlows($token, $waba_account_id = null, $fields = null, string $contentType = self::contentTypes['listFlows'][0])
     {
-        list($response) = $this->listFlowsWithHttpInfo($token, $waba_account_id, $contentType);
+        list($response) = $this->listFlowsWithHttpInfo($token, $waba_account_id, $fields, $contentType);
         return $response;
     }
 
@@ -2318,15 +2338,16 @@ class FlowsApi
      *
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string|null $waba_account_id (optional)
+     * @param  string|null $fields Comma-separated Flow fields to return (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlows'] to see the possible values for this operation
      *
      * @throws \OneMsgSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \OneMsgSdk\Model\ListFlows200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listFlowsWithHttpInfo($token, $waba_account_id = null, string $contentType = self::contentTypes['listFlows'][0])
+    public function listFlowsWithHttpInfo($token, $waba_account_id = null, $fields = null, string $contentType = self::contentTypes['listFlows'][0])
     {
-        $request = $this->listFlowsRequest($token, $waba_account_id, $contentType);
+        $request = $this->listFlowsRequest($token, $waba_account_id, $fields, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2404,14 +2425,15 @@ class FlowsApi
      *
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string|null $waba_account_id (optional)
+     * @param  string|null $fields Comma-separated Flow fields to return (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlows'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFlowsAsync($token, $waba_account_id = null, string $contentType = self::contentTypes['listFlows'][0])
+    public function listFlowsAsync($token, $waba_account_id = null, $fields = null, string $contentType = self::contentTypes['listFlows'][0])
     {
-        return $this->listFlowsAsyncWithHttpInfo($token, $waba_account_id, $contentType)
+        return $this->listFlowsAsyncWithHttpInfo($token, $waba_account_id, $fields, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2426,15 +2448,16 @@ class FlowsApi
      *
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string|null $waba_account_id (optional)
+     * @param  string|null $fields Comma-separated Flow fields to return (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlows'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFlowsAsyncWithHttpInfo($token, $waba_account_id = null, string $contentType = self::contentTypes['listFlows'][0])
+    public function listFlowsAsyncWithHttpInfo($token, $waba_account_id = null, $fields = null, string $contentType = self::contentTypes['listFlows'][0])
     {
         $returnType = '\OneMsgSdk\Model\ListFlows200Response';
-        $request = $this->listFlowsRequest($token, $waba_account_id, $contentType);
+        $request = $this->listFlowsRequest($token, $waba_account_id, $fields, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2477,12 +2500,13 @@ class FlowsApi
      *
      * @param  string $token JWT token or API key for authorization (required)
      * @param  string|null $waba_account_id (optional)
+     * @param  string|null $fields Comma-separated Flow fields to return (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlows'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listFlowsRequest($token, $waba_account_id = null, string $contentType = self::contentTypes['listFlows'][0])
+    public function listFlowsRequest($token, $waba_account_id = null, $fields = null, string $contentType = self::contentTypes['listFlows'][0])
     {
 
         // verify the required parameter 'token' is set
@@ -2491,6 +2515,7 @@ class FlowsApi
                 'Missing the required parameter $token when calling listFlows'
             );
         }
+
 
 
 
@@ -2514,6 +2539,15 @@ class FlowsApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $waba_account_id,
             'wabaAccountId', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $fields,
+            'fields', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -2588,6 +2622,7 @@ class FlowsApi
      *
      * @param  string $flow_id Flow ID (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\PatchFlowsFlowIdAssetsRequest $patch_flows_flow_id_assets_request patch_flows_flow_id_assets_request (required)
      * @param  string|null $waba_account_id waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchFlowsFlowIdAssets'] to see the possible values for this operation
      *
@@ -2595,9 +2630,9 @@ class FlowsApi
      * @throws \InvalidArgumentException
      * @return \OneMsgSdk\Model\PatchFlowsFlowIdAssets200Response
      */
-    public function patchFlowsFlowIdAssets($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdAssets'][0])
+    public function patchFlowsFlowIdAssets($flow_id, $token, $patch_flows_flow_id_assets_request, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdAssets'][0])
     {
-        list($response) = $this->patchFlowsFlowIdAssetsWithHttpInfo($flow_id, $token, $waba_account_id, $contentType);
+        list($response) = $this->patchFlowsFlowIdAssetsWithHttpInfo($flow_id, $token, $patch_flows_flow_id_assets_request, $waba_account_id, $contentType);
         return $response;
     }
 
@@ -2608,6 +2643,7 @@ class FlowsApi
      *
      * @param  string $flow_id Flow ID (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\PatchFlowsFlowIdAssetsRequest $patch_flows_flow_id_assets_request (required)
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchFlowsFlowIdAssets'] to see the possible values for this operation
      *
@@ -2615,9 +2651,9 @@ class FlowsApi
      * @throws \InvalidArgumentException
      * @return array of \OneMsgSdk\Model\PatchFlowsFlowIdAssets200Response, HTTP status code, HTTP response headers (array of strings)
      */
-    public function patchFlowsFlowIdAssetsWithHttpInfo($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdAssets'][0])
+    public function patchFlowsFlowIdAssetsWithHttpInfo($flow_id, $token, $patch_flows_flow_id_assets_request, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdAssets'][0])
     {
-        $request = $this->patchFlowsFlowIdAssetsRequest($flow_id, $token, $waba_account_id, $contentType);
+        $request = $this->patchFlowsFlowIdAssetsRequest($flow_id, $token, $patch_flows_flow_id_assets_request, $waba_account_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2695,15 +2731,16 @@ class FlowsApi
      *
      * @param  string $flow_id Flow ID (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\PatchFlowsFlowIdAssetsRequest $patch_flows_flow_id_assets_request (required)
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchFlowsFlowIdAssets'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function patchFlowsFlowIdAssetsAsync($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdAssets'][0])
+    public function patchFlowsFlowIdAssetsAsync($flow_id, $token, $patch_flows_flow_id_assets_request, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdAssets'][0])
     {
-        return $this->patchFlowsFlowIdAssetsAsyncWithHttpInfo($flow_id, $token, $waba_account_id, $contentType)
+        return $this->patchFlowsFlowIdAssetsAsyncWithHttpInfo($flow_id, $token, $patch_flows_flow_id_assets_request, $waba_account_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2718,16 +2755,17 @@ class FlowsApi
      *
      * @param  string $flow_id Flow ID (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\PatchFlowsFlowIdAssetsRequest $patch_flows_flow_id_assets_request (required)
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchFlowsFlowIdAssets'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function patchFlowsFlowIdAssetsAsyncWithHttpInfo($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdAssets'][0])
+    public function patchFlowsFlowIdAssetsAsyncWithHttpInfo($flow_id, $token, $patch_flows_flow_id_assets_request, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdAssets'][0])
     {
         $returnType = '\OneMsgSdk\Model\PatchFlowsFlowIdAssets200Response';
-        $request = $this->patchFlowsFlowIdAssetsRequest($flow_id, $token, $waba_account_id, $contentType);
+        $request = $this->patchFlowsFlowIdAssetsRequest($flow_id, $token, $patch_flows_flow_id_assets_request, $waba_account_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2770,13 +2808,14 @@ class FlowsApi
      *
      * @param  string $flow_id Flow ID (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\PatchFlowsFlowIdAssetsRequest $patch_flows_flow_id_assets_request (required)
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchFlowsFlowIdAssets'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function patchFlowsFlowIdAssetsRequest($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdAssets'][0])
+    public function patchFlowsFlowIdAssetsRequest($flow_id, $token, $patch_flows_flow_id_assets_request, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdAssets'][0])
     {
 
         // verify the required parameter 'flow_id' is set
@@ -2790,6 +2829,13 @@ class FlowsApi
         if ($token === null || (is_array($token) && count($token) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $token when calling patchFlowsFlowIdAssets'
+            );
+        }
+
+        // verify the required parameter 'patch_flows_flow_id_assets_request' is set
+        if ($patch_flows_flow_id_assets_request === null || (is_array($patch_flows_flow_id_assets_request) && count($patch_flows_flow_id_assets_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $patch_flows_flow_id_assets_request when calling patchFlowsFlowIdAssets'
             );
         }
 
@@ -2839,7 +2885,14 @@ class FlowsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($patch_flows_flow_id_assets_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($patch_flows_flow_id_assets_request));
+            } else {
+                $httpBody = $patch_flows_flow_id_assets_request;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -2897,6 +2950,7 @@ class FlowsApi
      *
      * @param  string $flow_id Flow ID (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\PatchFlowsFlowIdMetadataRequest $patch_flows_flow_id_metadata_request patch_flows_flow_id_metadata_request (required)
      * @param  string|null $waba_account_id waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchFlowsFlowIdMetadata'] to see the possible values for this operation
      *
@@ -2904,9 +2958,9 @@ class FlowsApi
      * @throws \InvalidArgumentException
      * @return array<string,mixed>
      */
-    public function patchFlowsFlowIdMetadata($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdMetadata'][0])
+    public function patchFlowsFlowIdMetadata($flow_id, $token, $patch_flows_flow_id_metadata_request, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdMetadata'][0])
     {
-        list($response) = $this->patchFlowsFlowIdMetadataWithHttpInfo($flow_id, $token, $waba_account_id, $contentType);
+        list($response) = $this->patchFlowsFlowIdMetadataWithHttpInfo($flow_id, $token, $patch_flows_flow_id_metadata_request, $waba_account_id, $contentType);
         return $response;
     }
 
@@ -2917,6 +2971,7 @@ class FlowsApi
      *
      * @param  string $flow_id Flow ID (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\PatchFlowsFlowIdMetadataRequest $patch_flows_flow_id_metadata_request (required)
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchFlowsFlowIdMetadata'] to see the possible values for this operation
      *
@@ -2924,9 +2979,9 @@ class FlowsApi
      * @throws \InvalidArgumentException
      * @return array of array<string,mixed>, HTTP status code, HTTP response headers (array of strings)
      */
-    public function patchFlowsFlowIdMetadataWithHttpInfo($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdMetadata'][0])
+    public function patchFlowsFlowIdMetadataWithHttpInfo($flow_id, $token, $patch_flows_flow_id_metadata_request, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdMetadata'][0])
     {
-        $request = $this->patchFlowsFlowIdMetadataRequest($flow_id, $token, $waba_account_id, $contentType);
+        $request = $this->patchFlowsFlowIdMetadataRequest($flow_id, $token, $patch_flows_flow_id_metadata_request, $waba_account_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3004,15 +3059,16 @@ class FlowsApi
      *
      * @param  string $flow_id Flow ID (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\PatchFlowsFlowIdMetadataRequest $patch_flows_flow_id_metadata_request (required)
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchFlowsFlowIdMetadata'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function patchFlowsFlowIdMetadataAsync($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdMetadata'][0])
+    public function patchFlowsFlowIdMetadataAsync($flow_id, $token, $patch_flows_flow_id_metadata_request, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdMetadata'][0])
     {
-        return $this->patchFlowsFlowIdMetadataAsyncWithHttpInfo($flow_id, $token, $waba_account_id, $contentType)
+        return $this->patchFlowsFlowIdMetadataAsyncWithHttpInfo($flow_id, $token, $patch_flows_flow_id_metadata_request, $waba_account_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3027,16 +3083,17 @@ class FlowsApi
      *
      * @param  string $flow_id Flow ID (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\PatchFlowsFlowIdMetadataRequest $patch_flows_flow_id_metadata_request (required)
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchFlowsFlowIdMetadata'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function patchFlowsFlowIdMetadataAsyncWithHttpInfo($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdMetadata'][0])
+    public function patchFlowsFlowIdMetadataAsyncWithHttpInfo($flow_id, $token, $patch_flows_flow_id_metadata_request, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdMetadata'][0])
     {
         $returnType = 'array<string,mixed>';
-        $request = $this->patchFlowsFlowIdMetadataRequest($flow_id, $token, $waba_account_id, $contentType);
+        $request = $this->patchFlowsFlowIdMetadataRequest($flow_id, $token, $patch_flows_flow_id_metadata_request, $waba_account_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3079,13 +3136,14 @@ class FlowsApi
      *
      * @param  string $flow_id Flow ID (required)
      * @param  string $token JWT token or API key for authorization (required)
+     * @param  \OneMsgSdk\Model\PatchFlowsFlowIdMetadataRequest $patch_flows_flow_id_metadata_request (required)
      * @param  string|null $waba_account_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['patchFlowsFlowIdMetadata'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function patchFlowsFlowIdMetadataRequest($flow_id, $token, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdMetadata'][0])
+    public function patchFlowsFlowIdMetadataRequest($flow_id, $token, $patch_flows_flow_id_metadata_request, $waba_account_id = null, string $contentType = self::contentTypes['patchFlowsFlowIdMetadata'][0])
     {
 
         // verify the required parameter 'flow_id' is set
@@ -3099,6 +3157,13 @@ class FlowsApi
         if ($token === null || (is_array($token) && count($token) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $token when calling patchFlowsFlowIdMetadata'
+            );
+        }
+
+        // verify the required parameter 'patch_flows_flow_id_metadata_request' is set
+        if ($patch_flows_flow_id_metadata_request === null || (is_array($patch_flows_flow_id_metadata_request) && count($patch_flows_flow_id_metadata_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $patch_flows_flow_id_metadata_request when calling patchFlowsFlowIdMetadata'
             );
         }
 
@@ -3148,7 +3213,14 @@ class FlowsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($patch_flows_flow_id_metadata_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($patch_flows_flow_id_metadata_request));
+            } else {
+                $httpBody = $patch_flows_flow_id_metadata_request;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

@@ -13,7 +13,7 @@
 /**
  * 1MSG WhatsApp Business API (Public)
  *
- * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
+ * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** Pass the channel token in **one** place. The API checks JSON body (`token`), then query string (`?token=`), then `Authorization: Bearer` header (preferred in production).  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@1msg.io
@@ -58,7 +58,18 @@ class GetWebhook200Response implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $openAPITypes = [
-        'webhook_url' => 'string'
+        'webhook_url' => '\OneMsgSdk\Model\GetWebhook200ResponseWebhookUrl',
+        'have_disabled_webhooks' => 'bool',
+        'circuit_state' => 'string',
+        'reason' => 'string',
+        'fails' => 'int',
+        'trips' => 'int',
+        'disabled_at' => 'int',
+        'first_fail_at' => 'int',
+        'last_status' => 'int',
+        'next_probe_at' => 'int',
+        'disabled_webhooks' => 'array<string,mixed>[]',
+        'webhook_statuses' => '\OneMsgSdk\Model\WebhookUrlStatus[]'
     ];
 
     /**
@@ -69,7 +80,18 @@ class GetWebhook200Response implements ModelInterface, ArrayAccess, \JsonSeriali
      * @psalm-var array<string, string|null>
      */
     protected static $openAPIFormats = [
-        'webhook_url' => null
+        'webhook_url' => null,
+        'have_disabled_webhooks' => null,
+        'circuit_state' => null,
+        'reason' => null,
+        'fails' => null,
+        'trips' => null,
+        'disabled_at' => null,
+        'first_fail_at' => null,
+        'last_status' => null,
+        'next_probe_at' => null,
+        'disabled_webhooks' => null,
+        'webhook_statuses' => null
     ];
 
     /**
@@ -78,7 +100,18 @@ class GetWebhook200Response implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var boolean[]
      */
     protected static array $openAPINullables = [
-        'webhook_url' => false
+        'webhook_url' => true,
+        'have_disabled_webhooks' => false,
+        'circuit_state' => false,
+        'reason' => false,
+        'fails' => false,
+        'trips' => false,
+        'disabled_at' => false,
+        'first_fail_at' => false,
+        'last_status' => false,
+        'next_probe_at' => false,
+        'disabled_webhooks' => false,
+        'webhook_statuses' => false
     ];
 
     /**
@@ -167,7 +200,18 @@ class GetWebhook200Response implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'webhook_url' => 'webhookUrl'
+        'webhook_url' => 'webhookUrl',
+        'have_disabled_webhooks' => 'haveDisabledWebhooks',
+        'circuit_state' => 'circuitState',
+        'reason' => 'reason',
+        'fails' => 'fails',
+        'trips' => 'trips',
+        'disabled_at' => 'disabledAt',
+        'first_fail_at' => 'firstFailAt',
+        'last_status' => 'lastStatus',
+        'next_probe_at' => 'nextProbeAt',
+        'disabled_webhooks' => 'disabledWebhooks',
+        'webhook_statuses' => 'webhookStatuses'
     ];
 
     /**
@@ -176,7 +220,18 @@ class GetWebhook200Response implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'webhook_url' => 'setWebhookUrl'
+        'webhook_url' => 'setWebhookUrl',
+        'have_disabled_webhooks' => 'setHaveDisabledWebhooks',
+        'circuit_state' => 'setCircuitState',
+        'reason' => 'setReason',
+        'fails' => 'setFails',
+        'trips' => 'setTrips',
+        'disabled_at' => 'setDisabledAt',
+        'first_fail_at' => 'setFirstFailAt',
+        'last_status' => 'setLastStatus',
+        'next_probe_at' => 'setNextProbeAt',
+        'disabled_webhooks' => 'setDisabledWebhooks',
+        'webhook_statuses' => 'setWebhookStatuses'
     ];
 
     /**
@@ -185,7 +240,18 @@ class GetWebhook200Response implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'webhook_url' => 'getWebhookUrl'
+        'webhook_url' => 'getWebhookUrl',
+        'have_disabled_webhooks' => 'getHaveDisabledWebhooks',
+        'circuit_state' => 'getCircuitState',
+        'reason' => 'getReason',
+        'fails' => 'getFails',
+        'trips' => 'getTrips',
+        'disabled_at' => 'getDisabledAt',
+        'first_fail_at' => 'getFirstFailAt',
+        'last_status' => 'getLastStatus',
+        'next_probe_at' => 'getNextProbeAt',
+        'disabled_webhooks' => 'getDisabledWebhooks',
+        'webhook_statuses' => 'getWebhookStatuses'
     ];
 
     /**
@@ -229,6 +295,27 @@ class GetWebhook200Response implements ModelInterface, ArrayAccess, \JsonSeriali
         return self::$openAPIModelName;
     }
 
+    public const CIRCUIT_STATE_OK = 'ok';
+    public const CIRCUIT_STATE_DEGRADED = 'degraded';
+    public const CIRCUIT_STATE_OPEN = 'open';
+    public const CIRCUIT_STATE_HALF_OPEN = 'half_open';
+    public const CIRCUIT_STATE_DISABLED = 'disabled';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getCircuitStateAllowableValues()
+    {
+        return [
+            self::CIRCUIT_STATE_OK,
+            self::CIRCUIT_STATE_DEGRADED,
+            self::CIRCUIT_STATE_OPEN,
+            self::CIRCUIT_STATE_HALF_OPEN,
+            self::CIRCUIT_STATE_DISABLED,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -246,6 +333,17 @@ class GetWebhook200Response implements ModelInterface, ArrayAccess, \JsonSeriali
     public function __construct(?array $data = null)
     {
         $this->setIfExists('webhook_url', $data ?? [], null);
+        $this->setIfExists('have_disabled_webhooks', $data ?? [], null);
+        $this->setIfExists('circuit_state', $data ?? [], null);
+        $this->setIfExists('reason', $data ?? [], null);
+        $this->setIfExists('fails', $data ?? [], null);
+        $this->setIfExists('trips', $data ?? [], null);
+        $this->setIfExists('disabled_at', $data ?? [], null);
+        $this->setIfExists('first_fail_at', $data ?? [], null);
+        $this->setIfExists('last_status', $data ?? [], null);
+        $this->setIfExists('next_probe_at', $data ?? [], null);
+        $this->setIfExists('disabled_webhooks', $data ?? [], null);
+        $this->setIfExists('webhook_statuses', $data ?? [], null);
     }
 
     /**
@@ -275,6 +373,15 @@ class GetWebhook200Response implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getCircuitStateAllowableValues();
+        if (!is_null($this->container['circuit_state']) && !in_array($this->container['circuit_state'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'circuit_state', must be one of '%s'",
+                $this->container['circuit_state'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -293,7 +400,7 @@ class GetWebhook200Response implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets webhook_url
      *
-     * @return string|null
+     * @return \OneMsgSdk\Model\GetWebhook200ResponseWebhookUrl|null
      */
     public function getWebhookUrl()
     {
@@ -303,16 +410,330 @@ class GetWebhook200Response implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets webhook_url
      *
-     * @param string|null $webhook_url webhook_url
+     * @param \OneMsgSdk\Model\GetWebhook200ResponseWebhookUrl|null $webhook_url webhook_url
      *
      * @return self
      */
     public function setWebhookUrl($webhook_url)
     {
         if (is_null($webhook_url)) {
-            throw new \InvalidArgumentException('non-nullable webhook_url cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'webhook_url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('webhook_url', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['webhook_url'] = $webhook_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets have_disabled_webhooks
+     *
+     * @return bool|null
+     */
+    public function getHaveDisabledWebhooks()
+    {
+        return $this->container['have_disabled_webhooks'];
+    }
+
+    /**
+     * Sets have_disabled_webhooks
+     *
+     * @param bool|null $have_disabled_webhooks `true` when at least one URL in `webhookUrl` is sticky auto-disabled. Not \"the channel is dead\": other configured URLs still receive events. Send/receive are unaffected.
+     *
+     * @return self
+     */
+    public function setHaveDisabledWebhooks($have_disabled_webhooks)
+    {
+        if (is_null($have_disabled_webhooks)) {
+            throw new \InvalidArgumentException('non-nullable have_disabled_webhooks cannot be null');
+        }
+        $this->container['have_disabled_webhooks'] = $have_disabled_webhooks;
+
+        return $this;
+    }
+
+    /**
+     * Gets circuit_state
+     *
+     * @return string|null
+     */
+    public function getCircuitState()
+    {
+        return $this->container['circuit_state'];
+    }
+
+    /**
+     * Sets circuit_state
+     *
+     * @param string|null $circuit_state Compatibility scalar for **one** URL (first sticky-disabled, else first configured). Not the channel as a whole. Prefer `webhookStatuses[].circuitState`.
+     *
+     * @return self
+     */
+    public function setCircuitState($circuit_state)
+    {
+        if (is_null($circuit_state)) {
+            throw new \InvalidArgumentException('non-nullable circuit_state cannot be null');
+        }
+        $allowedValues = $this->getCircuitStateAllowableValues();
+        if (!in_array($circuit_state, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'circuit_state', must be one of '%s'",
+                    $circuit_state,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['circuit_state'] = $circuit_state;
+
+        return $this;
+    }
+
+    /**
+     * Gets reason
+     *
+     * @return string|null
+     */
+    public function getReason()
+    {
+        return $this->container['reason'];
+    }
+
+    /**
+     * Sets reason
+     *
+     * @param string|null $reason Last qualifying fail reason of the summary URL (same URL as `circuitState`)
+     *
+     * @return self
+     */
+    public function setReason($reason)
+    {
+        if (is_null($reason)) {
+            throw new \InvalidArgumentException('non-nullable reason cannot be null');
+        }
+        $this->container['reason'] = $reason;
+
+        return $this;
+    }
+
+    /**
+     * Gets fails
+     *
+     * @return int|null
+     */
+    public function getFails()
+    {
+        return $this->container['fails'];
+    }
+
+    /**
+     * Sets fails
+     *
+     * @param int|null $fails Diagnostic only (summary URL). Qualifying failures in the rolling ~10 minute breaker window — not lifetime and not customer retries. Prefer `webhookStatuses` / `disabledWebhooks`.
+     *
+     * @return self
+     */
+    public function setFails($fails)
+    {
+        if (is_null($fails)) {
+            throw new \InvalidArgumentException('non-nullable fails cannot be null');
+        }
+        $this->container['fails'] = $fails;
+
+        return $this;
+    }
+
+    /**
+     * Gets trips
+     *
+     * @return int|null
+     */
+    public function getTrips()
+    {
+        return $this->container['trips'];
+    }
+
+    /**
+     * Sets trips
+     *
+     * @param int|null $trips Diagnostic only (summary URL). Failed recovery probes (≈15 min → 1 h → 6 h). Sticky disable after 3. Not a blind unblock timer.
+     *
+     * @return self
+     */
+    public function setTrips($trips)
+    {
+        if (is_null($trips)) {
+            throw new \InvalidArgumentException('non-nullable trips cannot be null');
+        }
+        $this->container['trips'] = $trips;
+
+        return $this;
+    }
+
+    /**
+     * Gets disabled_at
+     *
+     * @return int|null
+     */
+    public function getDisabledAt()
+    {
+        return $this->container['disabled_at'];
+    }
+
+    /**
+     * Sets disabled_at
+     *
+     * @param int|null $disabled_at Epoch milliseconds when the summary URL became sticky-disabled
+     *
+     * @return self
+     */
+    public function setDisabledAt($disabled_at)
+    {
+        if (is_null($disabled_at)) {
+            throw new \InvalidArgumentException('non-nullable disabled_at cannot be null');
+        }
+        $this->container['disabled_at'] = $disabled_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets first_fail_at
+     *
+     * @return int|null
+     */
+    public function getFirstFailAt()
+    {
+        return $this->container['first_fail_at'];
+    }
+
+    /**
+     * Sets first_fail_at
+     *
+     * @param int|null $first_fail_at Diagnostic only (summary URL). Epoch ms of the first fail in the current ~10 minute window (pairs with `fails`).
+     *
+     * @return self
+     */
+    public function setFirstFailAt($first_fail_at)
+    {
+        if (is_null($first_fail_at)) {
+            throw new \InvalidArgumentException('non-nullable first_fail_at cannot be null');
+        }
+        $this->container['first_fail_at'] = $first_fail_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_status
+     *
+     * @return int|null
+     */
+    public function getLastStatus()
+    {
+        return $this->container['last_status'];
+    }
+
+    /**
+     * Sets last_status
+     *
+     * @param int|null $last_status Last HTTP status from the summary URL, when known
+     *
+     * @return self
+     */
+    public function setLastStatus($last_status)
+    {
+        if (is_null($last_status)) {
+            throw new \InvalidArgumentException('non-nullable last_status cannot be null');
+        }
+        $this->container['last_status'] = $last_status;
+
+        return $this;
+    }
+
+    /**
+     * Gets next_probe_at
+     *
+     * @return int|null
+     */
+    public function getNextProbeAt()
+    {
+        return $this->container['next_probe_at'];
+    }
+
+    /**
+     * Sets next_probe_at
+     *
+     * @param int|null $next_probe_at Epoch milliseconds of the next half-open probe for the summary URL, if any
+     *
+     * @return self
+     */
+    public function setNextProbeAt($next_probe_at)
+    {
+        if (is_null($next_probe_at)) {
+            throw new \InvalidArgumentException('non-nullable next_probe_at cannot be null');
+        }
+        $this->container['next_probe_at'] = $next_probe_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets disabled_webhooks
+     *
+     * @return array<string,mixed>[]|null
+     */
+    public function getDisabledWebhooks()
+    {
+        return $this->container['disabled_webhooks'];
+    }
+
+    /**
+     * Sets disabled_webhooks
+     *
+     * @param array<string,mixed>[]|null $disabled_webhooks Currently configured URLs that are sticky auto-disabled (subset of `webhookUrl`). Does not include leftover URLs that are no longer configured.
+     *
+     * @return self
+     */
+    public function setDisabledWebhooks($disabled_webhooks)
+    {
+        if (is_null($disabled_webhooks)) {
+            throw new \InvalidArgumentException('non-nullable disabled_webhooks cannot be null');
+        }
+        $this->container['disabled_webhooks'] = $disabled_webhooks;
+
+        return $this;
+    }
+
+    /**
+     * Gets webhook_statuses
+     *
+     * @return \OneMsgSdk\Model\WebhookUrlStatus[]|null
+     */
+    public function getWebhookStatuses()
+    {
+        return $this->container['webhook_statuses'];
+    }
+
+    /**
+     * Sets webhook_statuses
+     *
+     * @param \OneMsgSdk\Model\WebhookUrlStatus[]|null $webhook_statuses One entry per currently configured URL. Prefer this over top-level `haveDisabledWebhooks` / `circuitState` when more than one webhook is set.
+     *
+     * @return self
+     */
+    public function setWebhookStatuses($webhook_statuses)
+    {
+        if (is_null($webhook_statuses)) {
+            throw new \InvalidArgumentException('non-nullable webhook_statuses cannot be null');
+        }
+        $this->container['webhook_statuses'] = $webhook_statuses;
 
         return $this;
     }

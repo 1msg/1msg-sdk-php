@@ -13,7 +13,7 @@
 /**
  * 1MSG WhatsApp Business API (Public)
  *
- * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** All requests require `token` query parameter with JWT or API key.  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
+ * Public client API for sending messages, managing groups, flows, and templates.  This is the API exposed to end customers via platform.1msg.io  **Authentication:** Pass the channel token in **one** place. The API checks JSON body (`token`), then query string (`?token=`), then `Authorization: Bearer` header (preferred in production).  **Documentation:** https://help.1msg.io/platform-1msg/getting-start/quick-start **API Docs:** https://docs.1msg.io/
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: support@1msg.io
@@ -312,10 +312,6 @@ class SendMessageRequest implements ModelInterface, ArrayAccess, \JsonSerializab
             $invalidProperties[] = "invalid value for 'quoted_msg_id', must be conform to the pattern /^wamid\\..+$/.";
         }
 
-        if (!is_null($this->container['chat_id']) && !preg_match("/^[0-9]+@[cg]\\.us$/", $this->container['chat_id'])) {
-            $invalidProperties[] = "invalid value for 'chat_id', must be conform to the pattern /^[0-9]+@[cg]\\.us$/.";
-        }
-
         if (!is_null($this->container['phone']) && ($this->container['phone'] > 999999999999999)) {
             $invalidProperties[] = "invalid value for 'phone', must be smaller than or equal to 999999999999999.";
         }
@@ -418,7 +414,7 @@ class SendMessageRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets chat_id
      *
-     * @param string|null $chat_id Chat ID in format: phone@c.us (individual) or phone@g.us (group)
+     * @param string|null $chat_id Recipient chat ID: phone@c.us, group@g.us, or BSUID@lid
      *
      * @return self
      */
@@ -427,11 +423,6 @@ class SendMessageRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         if (is_null($chat_id)) {
             throw new \InvalidArgumentException('non-nullable chat_id cannot be null');
         }
-
-        if ((!preg_match("/^[0-9]+@[cg]\\.us$/", ObjectSerializer::toString($chat_id)))) {
-            throw new \InvalidArgumentException("invalid value for \$chat_id when calling SendMessageRequest., must conform to the pattern /^[0-9]+@[cg]\\.us$/.");
-        }
-
         $this->container['chat_id'] = $chat_id;
 
         return $this;

@@ -13,3 +13,13 @@ composer.phar
 
 # PHPUnit cache
 .phpunit.result.cache
+
+vendor/
+
+node_modules/
+quality/reports/
+
+.husky/_/
+
+# Local shared-tool dependency links are never repository content.
+tools/quality/node_modules
