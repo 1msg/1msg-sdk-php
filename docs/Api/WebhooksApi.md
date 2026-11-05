@@ -1,6 +1,6 @@
 # OneMsgSdk\WebhooksApi
 
-Client webhook URL configuration
+Client webhook URL configuration (&#x60;GET&#x60;/&#x60;POST /webhook&#x60;).  Auto-disable is **per URL**, not per channel. Prefer &#x60;webhookStatuses&#x60; on &#x60;GET /webhook&#x60; / &#x60;GET /settings&#x60;. Top-level &#x60;haveDisabledWebhooks&#x60; means at least one configured URL is sticky-disabled; live URLs still receive events.
 
 All URIs are relative to https://api.1msg.io, except if the operation defines another base path.
 
@@ -18,7 +18,7 @@ getWebhook($token): \OneMsgSdk\Model\GetWebhook200Response
 
 Get webhook URL
 
-Returns the configured client webhook URL for this channel.
+Return the webhook URL(s) currently configured for this channel, plus delivery status for each URL.  `webhookUrl` is a string when a single URL is set, an array of strings when multiple URLs are configured, or `null` if none is set.  **Prefer `webhookStatuses`.** The circuit breaker is per URL, not per channel. If 1 of 4 URLs is sticky-disabled, that URL is skipped; the other three still receive events. Send/receive are not affected.  Channel-level `haveDisabledWebhooks`, `circuitState`, `reason`, `fails`, `trips`, and timestamps are a compatibility summary of **one** URL (the first sticky-disabled URL, else the first configured URL). They are not \"the channel is dead\".  - `haveDisabledWebhooks` — `true` when **at least one** URL in `webhookUrl` is   sticky auto-disabled. Live URLs still get events. - `circuitState` — compressed scalar for that same primary URL:   `ok` | `degraded` | `open` | `half_open` | `disabled`. - `disabledWebhooks` — currently configured URLs that are sticky-disabled   (subset of `webhookUrl`). - `webhookStatuses` — one row per currently configured URL. Use this array   to see which endpoints are live vs skipped. - `fails` / `trips` / `firstFailAt` — **diagnostics for support**, not product   UI. `fails` = failures in a rolling ~10 minute window (not lifetime).   `trips` = failed recovery probes on the 15 min → 1 h → 6 h schedule (sticky   disable after 3). Clients can ignore these and use `webhookStatuses` +   `disabledWebhooks` only.  Sticky disable skips delivery; it does not unconfigure the URL (it stays in `webhookUrl`). Re-enable with `POST /webhook` or `POST /settings`. Those endpoints **replace** the whole list — with multiple URLs, send the full array.
 
 ### Example
 
@@ -75,12 +75,12 @@ try {
 ## `setWebhook()`
 
 ```php
-setWebhook($token, $get_webhook200_response): array<string,mixed>
+setWebhook($token, $set_webhook_request): \OneMsgSdk\Model\SetWebhook200Response
 ```
 
 Set webhook URL
 
-Configure the client webhook URL for inbound events.  WhatsApp **Calling** events (`field=calls`) are forwarded as passthrough payloads with `type: \"calls\"` and `instanceId` (connect / status / terminate). Call permission replies arrive on the normal messages path (`call_permission_reply`). Details: **Calling** tag.
+Set the client webhook URL that receives inbound events for this channel.  **Replaces** the stored webhook list (it does not append). To deliver the same events to several endpoints, pass an array in `webhookUrl` (max 5) or use `POST /settings`. With several URLs already configured, posting only the disabled URL **drops the others** — send the complete array to re-enable one of many.  Incoming payloads include messages, delivery ACKs, group updates, coexistence echoes, and calling events. WhatsApp Calling payloads (`type: \"calls\"`) are documented under the **Calling** tag. Call permission replies arrive on the normal messages path (`call_permission_reply`).  Repeating `POST /webhook` with the same URL(s) clears an auto-disable (self-serve re-enable). Send/receive are not affected by webhook auto-disable.
 
 ### Example
 
@@ -102,10 +102,10 @@ $apiInstance = new OneMsgSdk\Api\WebhooksApi(
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$get_webhook200_response = new \OneMsgSdk\Model\GetWebhook200Response(); // \OneMsgSdk\Model\GetWebhook200Response
+$set_webhook_request = {"webhookUrl":"https://example.com/webhook"}; // \OneMsgSdk\Model\SetWebhookRequest
 
 try {
-    $result = $apiInstance->setWebhook($token, $get_webhook200_response);
+    $result = $apiInstance->setWebhook($token, $set_webhook_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling WebhooksApi->setWebhook: ', $e->getMessage(), PHP_EOL;
@@ -117,11 +117,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **get_webhook200_response** | [**\OneMsgSdk\Model\GetWebhook200Response**](../Model/GetWebhook200Response.md)|  | [optional] |
+| **set_webhook_request** | [**\OneMsgSdk\Model\SetWebhookRequest**](../Model/SetWebhookRequest.md)|  | |
 
 ### Return type
 
-**array<string,mixed>**
+[**\OneMsgSdk\Model\SetWebhook200Response**](../Model/SetWebhook200Response.md)
 
 ### Authorization
 

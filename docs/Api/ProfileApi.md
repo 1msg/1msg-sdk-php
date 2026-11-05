@@ -18,7 +18,7 @@ getMe($token): \OneMsgSdk\Model\ProfileInfo
 
 Get Profile Info
 
-Get WhatsApp Business Account profile information
+Return the WhatsApp Business profile for this channel: About, address, description, email, phone, websites, industry (`vertical`), and profile photo URL.
 
 ### Example
 
@@ -75,7 +75,7 @@ try {
 ## `updateMe()`
 
 ```php
-updateMe($token, $update_me_request): array<string,mixed>
+updateMe($token, $update_me_request): \OneMsgSdk\Model\UpdateMe200Response
 ```
 
 Update profile info
@@ -102,7 +102,7 @@ $apiInstance = new OneMsgSdk\Api\ProfileApi(
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$update_me_request = new \OneMsgSdk\Model\UpdateMeRequest(); // \OneMsgSdk\Model\UpdateMeRequest
+$update_me_request = {"about":"Available 9–18","email":"support@example.com"}; // \OneMsgSdk\Model\UpdateMeRequest
 
 try {
     $result = $apiInstance->updateMe($token, $update_me_request);
@@ -117,11 +117,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **update_me_request** | [**\OneMsgSdk\Model\UpdateMeRequest**](../Model/UpdateMeRequest.md)|  | [optional] |
+| **update_me_request** | [**\OneMsgSdk\Model\UpdateMeRequest**](../Model/UpdateMeRequest.md)|  | |
 
 ### Return type
 
-**array<string,mixed>**
+[**\OneMsgSdk\Model\UpdateMe200Response**](../Model/UpdateMe200Response.md)
 
 ### Authorization
 

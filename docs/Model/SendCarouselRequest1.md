@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**body** | **string** |  | [optional]
-**params** | **object[]** |  |
+**body** | **string** | Text shown above the carousel | [optional]
+**cards** | **array<string,mixed>[]** | Preferred. 2–10 carousel cards. | [optional]
+**params** | **object[]** | Template-like alternative — include a CAROUSEL component with cards | [optional]
 **quoted_msg_id** | **string** |  | [optional]
 **chat_id** | **string** |  | [optional]
 **phone** | **int** |  | [optional]

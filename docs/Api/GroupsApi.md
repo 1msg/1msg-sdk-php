@@ -18,7 +18,7 @@ All URIs are relative to https://api.1msg.io, except if the operation defines an
 ## `createGroups()`
 
 ```php
-createGroups($token): \OneMsgSdk\Model\CreateGroups200Response
+createGroups($token, $create_groups_request): \OneMsgSdk\Model\CreateGroups200Response
 ```
 
 Create Group
@@ -43,9 +43,10 @@ $apiInstance = new OneMsgSdk\Api\GroupsApi(
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
+$create_groups_request = new \OneMsgSdk\Model\CreateGroupsRequest(); // \OneMsgSdk\Model\CreateGroupsRequest
 
 try {
-    $result = $apiInstance->createGroups($token);
+    $result = $apiInstance->createGroups($token, $create_groups_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling GroupsApi->createGroups: ', $e->getMessage(), PHP_EOL;
@@ -57,6 +58,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
+| **create_groups_request** | [**\OneMsgSdk\Model\CreateGroupsRequest**](../Model/CreateGroupsRequest.md)|  | |
 
 ### Return type
 
@@ -68,7 +70,7 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -78,10 +80,12 @@ try {
 ## `createGroupsGroupId()`
 
 ```php
-createGroupsGroupId($group_id, $token): array<string,mixed>
+createGroupsGroupId($group_id, $token, $create_groups_group_id_request): array<string,mixed>
 ```
 
 Update Group Info
+
+Update group subject, description, and/or profile picture. Path `groupId` is the WABA group id (without `@g.us`).
 
 ### Example
 
@@ -104,9 +108,10 @@ $apiInstance = new OneMsgSdk\Api\GroupsApi(
 );
 $group_id = {{createdGroupId}}; // string
 $token = 'token_example'; // string | JWT token or API key for authorization
+$create_groups_group_id_request = {"subject":"Support team","description":"Customer support"}; // \OneMsgSdk\Model\CreateGroupsGroupIdRequest
 
 try {
-    $result = $apiInstance->createGroupsGroupId($group_id, $token);
+    $result = $apiInstance->createGroupsGroupId($group_id, $token, $create_groups_group_id_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling GroupsApi->createGroupsGroupId: ', $e->getMessage(), PHP_EOL;
@@ -119,6 +124,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **group_id** | **string**|  | |
 | **token** | **string**| JWT token or API key for authorization | |
+| **create_groups_group_id_request** | [**\OneMsgSdk\Model\CreateGroupsGroupIdRequest**](../Model/CreateGroupsGroupIdRequest.md)|  | |
 
 ### Return type
 
@@ -130,7 +136,7 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -264,7 +270,7 @@ try {
 ## `getGroupsGroupId()`
 
 ```php
-getGroupsGroupId($group_id, $token): array<string,mixed>
+getGroupsGroupId($group_id, $token, $fields): array<string,mixed>
 ```
 
 Get Group Info
@@ -290,9 +296,10 @@ $apiInstance = new OneMsgSdk\Api\GroupsApi(
 );
 $group_id = {{createdGroupId}}; // string
 $token = 'token_example'; // string | JWT token or API key for authorization
+$fields = 'fields_example'; // string | Comma-separated group fields to return
 
 try {
-    $result = $apiInstance->getGroupsGroupId($group_id, $token);
+    $result = $apiInstance->getGroupsGroupId($group_id, $token, $fields);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling GroupsApi->getGroupsGroupId: ', $e->getMessage(), PHP_EOL;
@@ -305,6 +312,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **group_id** | **string**|  | |
 | **token** | **string**| JWT token or API key for authorization | |
+| **fields** | **string**| Comma-separated group fields to return | [optional] |
 
 ### Return type
 
@@ -388,10 +396,12 @@ try {
 ## `listGroups()`
 
 ```php
-listGroups($token): array<string,mixed>
+listGroups($token, $limit, $before, $after): array<string,mixed>
 ```
 
 Get Groups List
+
+List WhatsApp groups for this channel. Paginate with `limit`, `before`, and `after`.
 
 ### Example
 
@@ -413,9 +423,12 @@ $apiInstance = new OneMsgSdk\Api\GroupsApi(
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
+$limit = 56; // int | Max groups to return
+$before = 'before_example'; // string | Cursor for the previous page
+$after = 'after_example'; // string | Cursor for the next page
 
 try {
-    $result = $apiInstance->listGroups($token);
+    $result = $apiInstance->listGroups($token, $limit, $before, $after);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling GroupsApi->listGroups: ', $e->getMessage(), PHP_EOL;
@@ -427,6 +440,9 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
+| **limit** | **int**| Max groups to return | [optional] |
+| **before** | **string**| Cursor for the previous page | [optional] |
+| **after** | **string**| Cursor for the next page | [optional] |
 
 ### Return type
 

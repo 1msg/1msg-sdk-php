@@ -6,10 +6,76 @@ All URIs are relative to https://api.1msg.io, except if the operation defines an
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**createSettings()**](ChannelApi.md#createSettings) | **POST** /settings | Update channel settings |
 | [**getConversationalAutomation()**](ChannelApi.md#getConversationalAutomation) | **GET** /conversationalAutomation | Get conversational automation settings |
 | [**getStatus()**](ChannelApi.md#getStatus) | **GET** /status | Get channel status |
+| [**listSettings()**](ChannelApi.md#listSettings) | **GET** /settings | Get channel settings |
 | [**setConversationalAutomation()**](ChannelApi.md#setConversationalAutomation) | **POST** /conversationalAutomation | Set conversational automation settings |
 
+
+## `createSettings()`
+
+```php
+createSettings($token, $create_settings_request): array<string,mixed>
+```
+
+Update channel settings
+
+Update channel settings. Only send fields you want to change.  `webhookUrl` **replaces** the stored list (one URL string, or up to 5 URLs as an array). Passing an empty value clears webhooks. Repeating the same URL(s) also clears a sticky auto-disable. With several URLs, send the complete array to re-enable one of them — omitting a URL removes it from the channel.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: tokenAuth
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+
+
+$apiInstance = new OneMsgSdk\Api\ChannelApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$token = 'token_example'; // string | JWT token or API key for authorization
+$create_settings_request = {"webhookUrl":"https://example.com/webhook","ackNotificationsOn":true}; // \OneMsgSdk\Model\CreateSettingsRequest
+
+try {
+    $result = $apiInstance->createSettings($token, $create_settings_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ChannelApi->createSettings: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **token** | **string**| JWT token or API key for authorization | |
+| **create_settings_request** | [**\OneMsgSdk\Model\CreateSettingsRequest**](../Model/CreateSettingsRequest.md)|  | |
+
+### Return type
+
+**array<string,mixed>**
+
+### Authorization
+
+[tokenAuth](../../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `getConversationalAutomation()`
 
@@ -76,12 +142,12 @@ try {
 ## `getStatus()`
 
 ```php
-getStatus($token): array<string,mixed>
+getStatus($token): \OneMsgSdk\Model\GetStatus200Response
 ```
 
 Get channel status
 
-Returns WhatsApp Business API client connection status.
+Return WhatsApp Cloud API connection status for this channel (`connected` when the number can send). May include `accountStatus`, messaging limit, and MM Lite availability.  Optional `health_status_warning` appears only when Meta Graph health could not be loaded and a soft `connected` response is returned. Omitted on the normal path and when health details are not applicable for the channel — never an internal provider/transport name.
 
 ### Example
 
@@ -120,7 +186,69 @@ try {
 
 ### Return type
 
-**array<string,mixed>**
+[**\OneMsgSdk\Model\GetStatus200Response**](../Model/GetStatus200Response.md)
+
+### Authorization
+
+[tokenAuth](../../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listSettings()`
+
+```php
+listSettings($token): \OneMsgSdk\Model\ListSettings200Response
+```
+
+Get channel settings
+
+Return channel settings: webhook URL(s), delivery flags, and analytics toggles.  Auto-disable / circuit state matches `GET /webhook`. **Prefer `webhookStatuses`** (one row per configured URL). The breaker is per URL, not per channel.  Channel-level `haveDisabledWebhooks` is `true` when **at least one** URL in `webhookUrl` is sticky auto-disabled — not \"the channel is dead\". Live URLs still receive events. Top-level `circuitState` / `reason` / `fails` / `trips` are a compatibility summary of one URL (first sticky-disabled, else first configured).  This is the same `GET /settings` endpoint as the REST API (previously missing from MCP).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: tokenAuth
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+
+
+$apiInstance = new OneMsgSdk\Api\ChannelApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$token = 'token_example'; // string | JWT token or API key for authorization
+
+try {
+    $result = $apiInstance->listSettings($token);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ChannelApi->listSettings: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **token** | **string**| JWT token or API key for authorization | |
+
+### Return type
+
+[**\OneMsgSdk\Model\ListSettings200Response**](../Model/ListSettings200Response.md)
 
 ### Authorization
 

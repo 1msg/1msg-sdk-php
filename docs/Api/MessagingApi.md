@@ -17,6 +17,7 @@ All URIs are relative to https://api.1msg.io, except if the operation defines an
 | [**sendButton()**](MessagingApi.md#sendButton) | **POST** /sendButton | Send Reply Buttons Message |
 | [**sendCarousel()**](MessagingApi.md#sendCarousel) | **POST** /sendCarousel | Send Carousel |
 | [**sendContact()**](MessagingApi.md#sendContact) | **POST** /sendContact | Send a Contact |
+| [**sendContactInfo()**](MessagingApi.md#sendContactInfo) | **POST** /sendContactInfo | Request the user&#39;s phone number |
 | [**sendCtaUrl()**](MessagingApi.md#sendCtaUrl) | **POST** /sendCtaUrl | Send CTA URL interactive message |
 | [**sendFile()**](MessagingApi.md#sendFile) | **POST** /sendFile | Send a File |
 | [**sendFlow()**](MessagingApi.md#sendFlow) | **POST** /sendFlow | Send WhatsApp Flow Message |
@@ -100,10 +101,12 @@ try {
 ## `createUploadMedia()`
 
 ```php
-createUploadMedia($token, $request_body)
+createUploadMedia($token, $create_upload_media_request): \OneMsgSdk\Model\CreateUploadMedia200Response
 ```
 
 Upload media
+
+Upload a file to WhatsApp media storage and get a numeric `mediaId` for later use with `send_file` / `send_sticker` (`mediaId` field, not `body`).  Pass the file as `body` **or** `url` — an HTTP(S) URL or a base64 data URI. The `mediaId` in the response is a numeric string (keep it as a string).
 
 ### Example
 
@@ -125,10 +128,11 @@ $apiInstance = new OneMsgSdk\Api\MessagingApi(
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$request_body = NULL; // array<string,mixed>
+$create_upload_media_request = {"body":"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"}; // \OneMsgSdk\Model\CreateUploadMediaRequest
 
 try {
-    $apiInstance->createUploadMedia($token, $request_body);
+    $result = $apiInstance->createUploadMedia($token, $create_upload_media_request);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MessagingApi->createUploadMedia: ', $e->getMessage(), PHP_EOL;
 }
@@ -139,11 +143,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **request_body** | [**array<string,mixed>**](../Model/mixed.md)|  | [optional] |
+| **create_upload_media_request** | [**\OneMsgSdk\Model\CreateUploadMediaRequest**](../Model/CreateUploadMediaRequest.md)|  | |
 
 ### Return type
 
-void (empty response body)
+[**\OneMsgSdk\Model\CreateUploadMedia200Response**](../Model/CreateUploadMedia200Response.md)
 
 ### Authorization
 
@@ -152,7 +156,7 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -349,10 +353,12 @@ try {
 ## `listMessages()`
 
 ```php
-listMessages($token): \OneMsgSdk\Model\ListMessages200Response
+listMessages($token, $chat_id, $limit, $last, $last_message_number, $first_message_number, $min_time, $max_time, $msg_id): \OneMsgSdk\Model\ListMessages200Response
 ```
 
 Get messages list
+
+List stored chat history for this channel (requires history storage). Filter with `chatId`, `limit`, `last`, message numbers, or time bounds.
 
 ### Example
 
@@ -374,9 +380,17 @@ $apiInstance = new OneMsgSdk\Api\MessagingApi(
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
+$chat_id = 'chat_id_example'; // string | Filter messages for one chat (`phone@c.us`, group `@g.us`, or BSUID `@lid`)
+$limit = 56; // int | Max rows to return (default 100)
+$last = True; // bool | If true, return the latest messages (DESC). Default false.
+$last_message_number = 56; // int
+$first_message_number = 56; // int
+$min_time = 56; // int | Unix timestamp lower bound
+$max_time = 56; // int | Unix timestamp upper bound
+$msg_id = 'msg_id_example'; // string | Filter by stored message id
 
 try {
-    $result = $apiInstance->listMessages($token);
+    $result = $apiInstance->listMessages($token, $chat_id, $limit, $last, $last_message_number, $first_message_number, $min_time, $max_time, $msg_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MessagingApi->listMessages: ', $e->getMessage(), PHP_EOL;
@@ -388,6 +402,14 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
+| **chat_id** | **string**| Filter messages for one chat (&#x60;phone@c.us&#x60;, group &#x60;@g.us&#x60;, or BSUID &#x60;@lid&#x60;) | [optional] |
+| **limit** | **int**| Max rows to return (default 100) | [optional] |
+| **last** | **bool**| If true, return the latest messages (DESC). Default false. | [optional] |
+| **last_message_number** | **int**|  | [optional] |
+| **first_message_number** | **int**|  | [optional] |
+| **min_time** | **int**| Unix timestamp lower bound | [optional] |
+| **max_time** | **int**| Unix timestamp upper bound | [optional] |
+| **msg_id** | **string**| Filter by stored message id | [optional] |
 
 ### Return type
 
@@ -599,12 +621,12 @@ try {
 ## `sendCarousel()`
 
 ```php
-sendCarousel($token, $params, $body, $quoted_msg_id, $chat_id, $phone): \OneMsgSdk\Model\MessageSentResponse
+sendCarousel($token, $body, $cards, $params, $quoted_msg_id, $chat_id, $phone): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send Carousel
 
-You can send product cards via Carousel in two ways:  Template messages: do not require a 24-hour customer service window between you and the recipient. Use sendTemplate.  Free-form messages: can be sent only when a customer service window is open between you and the recipient. Use sendCarousel.  The message structure in /sendCarousel is largely similar to sending a template. However, in this case you must  explicitly specify all elements that are created in advance when working with templates. This is because the message  is sent without using a template.  In /sendCarousel, for sending a Catalog Carousel there can be either 1 URL button or one or more quick reply buttons.
+You can send product cards via Carousel in two ways:  Template messages: do not require a 24-hour customer service window between you and the recipient. Use sendTemplate.  Free-form messages: can be sent only when a customer service window is open between you and the recipient. Use sendCarousel.  The message structure in /sendCarousel is largely similar to sending a template. However, in this case you must  explicitly specify all elements that are created in advance when working with templates. This is because the message  is sent without using a template.  In /sendCarousel, for a Catalog Carousel there can be either 1 URL button or one or more quick reply buttons.  Prefer the simple `cards` array (2–10 cards). Each card needs a header media/product plus a CTA URL or quick-reply buttons. Example:  ```json {   \"phone\": \"79001234567\",   \"body\": \"Pick a product\",   \"cards\": [     {       \"header\": { \"type\": \"image\", \"image\": { \"link\": \"https://example.com/1.jpg\" } },       \"body\": { \"text\": \"Card one\" },       \"type\": \"cta_url\",       \"action\": { \"name\": \"cta_url\", \"parameters\": { \"url\": \"https://example.com/p1\", \"display_text\": \"Open\" } }     },     {       \"header\": { \"type\": \"image\", \"image\": { \"link\": \"https://example.com/2.jpg\" } },       \"body\": { \"text\": \"Card two\" },       \"type\": \"cta_url\",       \"action\": { \"name\": \"cta_url\", \"parameters\": { \"url\": \"https://example.com/p2\", \"display_text\": \"Open\" } }     }   ] } ```  `params` with a `CAROUSEL` component is the template-like alternative.
 
 ### Example
 
@@ -626,14 +648,15 @@ $apiInstance = new OneMsgSdk\Api\MessagingApi(
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$params = array(new \stdClass); // object[] | Required. Template-like structure (same as sendTemplate params). Must include a CAROUSEL component and its cards.  Structure: - params[] item with type CAROUSEL and cards (2..10) - cards[] item:   - components[] items:     - header: parameters[0] with type image/video/product       - image: {\\\"image\\\": {\\\"link\\\": \\\"https://...\\\"}}       - video: {\\\"video\\\": {\\\"link\\\": \\\"https://...\\\"}}       - product: {\\\"product\\\": {\\\"catalog_id\\\": \\\"...\\\", \\\"product_retailer_id\\\": \\\"...\\\"}}     - button: sub_type url or quick_reply       - url: parameters {\\\"text\\\": \\\"Button\\\", \\\"url\\\": \\\"https://...\\\"}       - quick_reply: parameters[] of {\\\"id\\\": \\\"...\\\", \\\"text\\\": \\\"...\\\"}
 $body = 'body_example'; // string | Text shown above the carousel. Optional. If omitted and params include a body component, the body will be taken from params.
+$cards = array(new \OneMsgSdk\Model\array<string,mixed>()); // array<string,mixed>[] | Preferred. 2–10 carousel cards (header + body + CTA or quick replies).
+$params = array(new \stdClass); // object[] | Required. Template-like structure (same as sendTemplate params). Must include a CAROUSEL component and its cards.  Structure: - params[] item with type CAROUSEL and cards (2..10) - cards[] item:   - components[] items:     - header: parameters[0] with type image/video/product       - image: {\\\"image\\\": {\\\"link\\\": \\\"https://...\\\"}}       - video: {\\\"video\\\": {\\\"link\\\": \\\"https://...\\\"}}       - product: {\\\"product\\\": {\\\"catalog_id\\\": \\\"...\\\", \\\"product_retailer_id\\\": \\\"...\\\"}}     - button: sub_type url or quick_reply       - url: parameters {\\\"text\\\": \\\"Button\\\", \\\"url\\\": \\\"https://...\\\"}       - quick_reply: parameters[] of {\\\"id\\\": \\\"...\\\", \\\"text\\\": \\\"...\\\"}
 $quoted_msg_id = 'quoted_msg_id_example'; // string | Quoted message ID (Cloud API)
 $chat_id = 'chat_id_example'; // string | Required if phone is not set. Chat ID from the message list. Examples: 12020721369@c.us or 120363046942338209@g.us(group)
 $phone = 56; // int | Required if chatId is not set. A phone number starting with the country code. USA example: 12020721369.
 
 try {
-    $result = $apiInstance->sendCarousel($token, $params, $body, $quoted_msg_id, $chat_id, $phone);
+    $result = $apiInstance->sendCarousel($token, $body, $cards, $params, $quoted_msg_id, $chat_id, $phone);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MessagingApi->sendCarousel: ', $e->getMessage(), PHP_EOL;
@@ -645,8 +668,9 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **params** | [**object[]**](../Model/object.md)| Required. Template-like structure (same as sendTemplate params). Must include a CAROUSEL component and its cards.  Structure: - params[] item with type CAROUSEL and cards (2..10) - cards[] item:   - components[] items:     - header: parameters[0] with type image/video/product       - image: {\\\&quot;image\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - video: {\\\&quot;video\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - product: {\\\&quot;product\\\&quot;: {\\\&quot;catalog_id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;product_retailer_id\\\&quot;: \\\&quot;...\\\&quot;}}     - button: sub_type url or quick_reply       - url: parameters {\\\&quot;text\\\&quot;: \\\&quot;Button\\\&quot;, \\\&quot;url\\\&quot;: \\\&quot;https://...\\\&quot;}       - quick_reply: parameters[] of {\\\&quot;id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;text\\\&quot;: \\\&quot;...\\\&quot;} | |
 | **body** | **string**| Text shown above the carousel. Optional. If omitted and params include a body component, the body will be taken from params. | [optional] |
+| **cards** | [**array<string,mixed>[]**](../Model/array&lt;string,mixed&gt;.md)| Preferred. 2–10 carousel cards (header + body + CTA or quick replies). | [optional] |
+| **params** | [**object[]**](../Model/object.md)| Required. Template-like structure (same as sendTemplate params). Must include a CAROUSEL component and its cards.  Structure: - params[] item with type CAROUSEL and cards (2..10) - cards[] item:   - components[] items:     - header: parameters[0] with type image/video/product       - image: {\\\&quot;image\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - video: {\\\&quot;video\\\&quot;: {\\\&quot;link\\\&quot;: \\\&quot;https://...\\\&quot;}}       - product: {\\\&quot;product\\\&quot;: {\\\&quot;catalog_id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;product_retailer_id\\\&quot;: \\\&quot;...\\\&quot;}}     - button: sub_type url or quick_reply       - url: parameters {\\\&quot;text\\\&quot;: \\\&quot;Button\\\&quot;, \\\&quot;url\\\&quot;: \\\&quot;https://...\\\&quot;}       - quick_reply: parameters[] of {\\\&quot;id\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;text\\\&quot;: \\\&quot;...\\\&quot;} | [optional] |
 | **quoted_msg_id** | **string**| Quoted message ID (Cloud API) | [optional] |
 | **chat_id** | **string**| Required if phone is not set. Chat ID from the message list. Examples: 12020721369@c.us or 120363046942338209@g.us(group) | [optional] |
 | **phone** | **int**| Required if chatId is not set. A phone number starting with the country code. USA example: 12020721369. | [optional] |
@@ -676,6 +700,8 @@ sendContact($token, $send_contact_request): \OneMsgSdk\Model\MessageSentResponse
 
 Send a Contact
 
+Send a WhatsApp contact card.  Preferred simple body (legacy-compatible):  ```json {   \"phone\": \"79001234567\",   \"contact\": { \"name\": \"Lida\", \"phone\": \"+79181976551\" } } ```  Cloud API shape also works: `contacts` is an array of objects with `name.formatted_name` and `phones[].phone` (E.164 string, **not** a timestamp).
+
 ### Example
 
 ```php
@@ -696,7 +722,7 @@ $apiInstance = new OneMsgSdk\Api\MessagingApi(
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$send_contact_request = {"phone":"{{testPhone}}","contacts":[{"name":{"formatted_name":"John Doe","first_name":"John","last_name":"Doe","middle_name":"","suffix":"","prefix":""},"birthday":"","addresses":[],"emails":[],"org":{"company":"","department":"","title":""},"phones":[{"phone":"+1234567890","type":"HOME","wa_id":""}],"urls":[]}]}; // \OneMsgSdk\Model\SendContactRequest
+$send_contact_request = {"phone":"{{testPhone}}","contact":{"name":"John Doe","phone":"+1234567890"}}; // \OneMsgSdk\Model\SendContactRequest
 
 try {
     $result = $apiInstance->sendContact($token, $send_contact_request);
@@ -712,6 +738,70 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
 | **send_contact_request** | [**\OneMsgSdk\Model\SendContactRequest**](../Model/SendContactRequest.md)|  | [optional] |
+
+### Return type
+
+[**\OneMsgSdk\Model\MessageSentResponse**](../Model/MessageSentResponse.md)
+
+### Authorization
+
+[tokenAuth](../../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `sendContactInfo()`
+
+```php
+sendContactInfo($token, $send_contact_info_request): \OneMsgSdk\Model\MessageSentResponse
+```
+
+Request the user's phone number
+
+Send a service-window interactive message that asks the WhatsApp user to share their phone number (`request_contact_info`).  Use this when you only know the user by BSUID (WhatsApp username) and the 24-hour customer service window is open. Outside that window, create a UTILITY or MARKETING template with a `REQUEST_CONTACT_INFO` button (`POST /addTemplate`) and send it with `POST /sendTemplate`.  `body` is the text shown above the button (1–1024 characters). WhatsApp chooses the button label. This method has no button-text field — do not send one.  ```json {   \"bsuid\": \"US.13491208655302741918\",   \"body\": \"Please share your phone number so we can reach you.\" } ```  `phone`, `chatId` (`…@c.us`, `…@lid`, `…@username`), or `bsuid` identifies the recipient. One of them is enough.  After Meta accepts the send, the outgoing webhook and stored history message use this same text as `messages[].body` (`type: interactive`).  When the user taps the button, Meta sends an inbound `contacts` message. The sender stays the BSUID. The shared number is on the card with `origin: contact_request`. We write that phone onto the existing BSUID contact automatically — there is no separate “link phone” call.  ```json {   \"contacts\": [     {       \"profile\": { \"name\": \"Ada\", \"username\": \"ada\" },       \"user_id\": \"US.13491208655302741918\"     }   ],   \"messages\": [     {       \"from_user_id\": \"US.13491208655302741918\",       \"type\": \"contacts\",       \"contacts\": [         {           \"origin\": \"contact_request\",           \"phones\": [{ \"phone\": \"+1 202-555-0123\", \"wa_id\": \"12025550123\" }]         }       ]     }   ] } ```  The stored inbound message body is the digits (`12025550123`).  If Meta later includes a phone on an ordinary message or status for that same BSUID (`wa_id`, `from`, or `recipient_id`, together with `user_id` / `recipient_user_id`), that phone is merged onto the same contact. A contact card the user forwards (`origin` other than `contact_request`) is someone else's number and is not stored as this sender's phone.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: tokenAuth
+$config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OneMsgSdk\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+
+
+$apiInstance = new OneMsgSdk\Api\MessagingApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$token = 'token_example'; // string | JWT token or API key for authorization
+$send_contact_info_request = {"bsuid":"US.13491208655302741918","body":"Please share your phone number so we can reach you."}; // \OneMsgSdk\Model\SendContactInfoRequest
+
+try {
+    $result = $apiInstance->sendContactInfo($token, $send_contact_info_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MessagingApi->sendContactInfo: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **token** | **string**| JWT token or API key for authorization | |
+| **send_contact_info_request** | [**\OneMsgSdk\Model\SendContactInfoRequest**](../Model/SendContactInfoRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1169,12 +1259,12 @@ try {
 ## `sendMessage()`
 
 ```php
-sendMessage($token, $body, $quoted_msg_id, $chat_id, $phone): \OneMsgSdk\Model\MessageSentResponse
+sendMessage($token, $body, $quoted_msg_id, $chat_id, $phone, $category, $direct_send): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send a Message
 
-Send a message to an existing chat. (Only if the dialogue has an Open Session).  The message will be added to the queue for sending and delivered even if the phone  is disconnected from the Internet or authorization is not passed.  Only one of two parameters is needed to determine the destination - chatId or phone.
+Send a message to an existing chat. (Only if the dialogue has an Open Session).  The message will be added to the queue for sending and delivered even if the phone  is disconnected from the Internet or authorization is not passed.  Only one of two parameters is needed to determine the destination - chatId or phone.  Direct Send is in beta. Meta has not enabled it on every business portfolio, so `category` and `directSend` are a beta option: watch delivery errors before relying on them.  Set `category` to `utility` or `authentication` to send outside the 24-hour window as a Meta Direct Send template instead of the 1MSG marketing auto-template. `authentication` is part of that beta and is not recommended. `directSend.serviceFirst: true` tries a free service message first and uses Direct Send only when Meta rejects it because the window is closed (131047). `directSend.templateName` is only valid with `utility` (`^[a-z0-9_]+$`, max 512). Direct Send text is limited to 1024 characters. Without `templateName`, the first unseen phrase may be delivered as Meta's onboarding template. A named template does not guarantee delivery — wait for webhook errors 131000 or 132021. An open 24-hour window is still billed as utility when `category` is set and `serviceFirst` is not true.
 
 ### Example
 
@@ -1198,11 +1288,13 @@ $apiInstance = new OneMsgSdk\Api\MessagingApi(
 $token = 'token_example'; // string | JWT token or API key for authorization
 $body = 'body_example'; // string | Message text, UTF-8 or UTF-16 string with emoji
 $quoted_msg_id = 'quoted_msg_id_example'; // string | Message ID to quote/reply to (Cloud API wamid)
-$chat_id = 'chat_id_example'; // string | Chat ID in format: phone@c.us (individual) or phone@g.us (group)
+$chat_id = 'chat_id_example'; // string | Recipient chat ID: phone@c.us, group@g.us, or BSUID@lid
 $phone = 56; // int | Phone number starting with country code (alternative to chatId)
+$category = 'category_example'; // string | Optional Direct Send category. Direct Send is in beta: Meta has not enabled it on every business portfolio. `utility` or `authentication` enables it. `authentication` is part of that beta and is not recommended. Omit or `service` keeps a normal service message (and the marketing auto-template outside the 24-hour window). `marketing` is rejected.
+$direct_send = new \OneMsgSdk\Model\SendMessageRequestDirectSend(); // \OneMsgSdk\Model\SendMessageRequestDirectSend
 
 try {
-    $result = $apiInstance->sendMessage($token, $body, $quoted_msg_id, $chat_id, $phone);
+    $result = $apiInstance->sendMessage($token, $body, $quoted_msg_id, $chat_id, $phone, $category, $direct_send);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MessagingApi->sendMessage: ', $e->getMessage(), PHP_EOL;
@@ -1216,8 +1308,10 @@ try {
 | **token** | **string**| JWT token or API key for authorization | |
 | **body** | **string**| Message text, UTF-8 or UTF-16 string with emoji | |
 | **quoted_msg_id** | **string**| Message ID to quote/reply to (Cloud API wamid) | [optional] |
-| **chat_id** | **string**| Chat ID in format: phone@c.us (individual) or phone@g.us (group) | [optional] |
+| **chat_id** | **string**| Recipient chat ID: phone@c.us, group@g.us, or BSUID@lid | [optional] |
 | **phone** | **int**| Phone number starting with country code (alternative to chatId) | [optional] |
+| **category** | **string**| Optional Direct Send category. Direct Send is in beta: Meta has not enabled it on every business portfolio. &#x60;utility&#x60; or &#x60;authentication&#x60; enables it. &#x60;authentication&#x60; is part of that beta and is not recommended. Omit or &#x60;service&#x60; keeps a normal service message (and the marketing auto-template outside the 24-hour window). &#x60;marketing&#x60; is rejected. | [optional] |
+| **direct_send** | [**\OneMsgSdk\Model\SendMessageRequestDirectSend**](../Model/SendMessageRequestDirectSend.md)|  | [optional] |
 
 ### Return type
 
@@ -1367,10 +1461,12 @@ try {
 ## `sendProduct()`
 
 ```php
-sendProduct($token, $request_body): \OneMsgSdk\Model\MessageSentResponse
+sendProduct($token, $send_product_request): \OneMsgSdk\Model\MessageSentResponse
 ```
 
 Send a Product
+
+Send a single catalog product or a product list. Destination is `chatId` or `phone`. `action` is required: - single product: `{ \"catalog_id\": \"...\", \"product_retailer_id\": \"...\" }` - product list: `{ \"catalog_id\": \"...\", \"sections\": [{ \"title\": \"...\", \"product_items\": [{ \"product_retailer_id\": \"...\" }] }] }`
 
 ### Example
 
@@ -1392,10 +1488,10 @@ $apiInstance = new OneMsgSdk\Api\MessagingApi(
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
-$request_body = NULL; // array<string,mixed>
+$send_product_request = {"chatId":"12020721369@c.us","body":"Have a look","action":{"catalog_id":"448008021021719","product_retailer_id":"0001"}}; // \OneMsgSdk\Model\SendProductRequest
 
 try {
-    $result = $apiInstance->sendProduct($token, $request_body);
+    $result = $apiInstance->sendProduct($token, $send_product_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MessagingApi->sendProduct: ', $e->getMessage(), PHP_EOL;
@@ -1407,7 +1503,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
-| **request_body** | [**array<string,mixed>**](../Model/mixed.md)|  | [optional] |
+| **send_product_request** | [**\OneMsgSdk\Model\SendProductRequest**](../Model/SendProductRequest.md)|  | |
 
 ### Return type
 

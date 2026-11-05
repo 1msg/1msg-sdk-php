@@ -22,10 +22,12 @@ All URIs are relative to https://api.1msg.io, except if the operation defines an
 ## `createFlows()`
 
 ```php
-createFlows($token, $waba_account_id): \OneMsgSdk\Model\CreateGroups200Response
+createFlows($token, $create_flows_request, $waba_account_id): \OneMsgSdk\Model\CreateGroups200Response
 ```
 
 Create Flow
+
+Create a WhatsApp Flow (`name` + `categories` required). Currently returns HTTP 501 until the Meta Graph Flows rewrite is available.
 
 ### Example
 
@@ -47,10 +49,11 @@ $apiInstance = new OneMsgSdk\Api\FlowsApi(
     $config
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
+$create_flows_request = {"name":"lead_form","categories":["LEAD_GENERATION"],"publish":false}; // \OneMsgSdk\Model\CreateFlowsRequest
 $waba_account_id = {{wabaAccountId}}; // string
 
 try {
-    $result = $apiInstance->createFlows($token, $waba_account_id);
+    $result = $apiInstance->createFlows($token, $create_flows_request, $waba_account_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FlowsApi->createFlows: ', $e->getMessage(), PHP_EOL;
@@ -62,6 +65,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
+| **create_flows_request** | [**\OneMsgSdk\Model\CreateFlowsRequest**](../Model/CreateFlowsRequest.md)|  | |
 | **waba_account_id** | **string**|  | [optional] |
 
 ### Return type
@@ -74,7 +78,7 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -466,10 +470,12 @@ try {
 ## `listFlows()`
 
 ```php
-listFlows($token, $waba_account_id): \OneMsgSdk\Model\ListFlows200Response
+listFlows($token, $waba_account_id, $fields): \OneMsgSdk\Model\ListFlows200Response
 ```
 
 List Flows
+
+List WhatsApp Flows for the WABA. Currently returns HTTP 501 until the Meta Graph Flows rewrite is available.
 
 ### Example
 
@@ -492,9 +498,10 @@ $apiInstance = new OneMsgSdk\Api\FlowsApi(
 );
 $token = 'token_example'; // string | JWT token or API key for authorization
 $waba_account_id = {{wabaAccountId}}; // string
+$fields = 'fields_example'; // string | Comma-separated Flow fields to return
 
 try {
-    $result = $apiInstance->listFlows($token, $waba_account_id);
+    $result = $apiInstance->listFlows($token, $waba_account_id, $fields);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FlowsApi->listFlows: ', $e->getMessage(), PHP_EOL;
@@ -507,6 +514,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **token** | **string**| JWT token or API key for authorization | |
 | **waba_account_id** | **string**|  | [optional] |
+| **fields** | **string**| Comma-separated Flow fields to return | [optional] |
 
 ### Return type
 
@@ -528,10 +536,12 @@ try {
 ## `patchFlowsFlowIdAssets()`
 
 ```php
-patchFlowsFlowIdAssets($flow_id, $token, $waba_account_id): \OneMsgSdk\Model\PatchFlowsFlowIdAssets200Response
+patchFlowsFlowIdAssets($flow_id, $token, $patch_flows_flow_id_assets_request, $waba_account_id): \OneMsgSdk\Model\PatchFlowsFlowIdAssets200Response
 ```
 
 Update Flow Structure
+
+Replace the Flow JSON document (`flowJson`). Currently returns HTTP 501 until the Meta Graph Flows rewrite is available.
 
 ### Example
 
@@ -554,10 +564,11 @@ $apiInstance = new OneMsgSdk\Api\FlowsApi(
 );
 $flow_id = 'flow_id_example'; // string | Flow ID
 $token = 'token_example'; // string | JWT token or API key for authorization
+$patch_flows_flow_id_assets_request = new \OneMsgSdk\Model\PatchFlowsFlowIdAssetsRequest(); // \OneMsgSdk\Model\PatchFlowsFlowIdAssetsRequest
 $waba_account_id = {{wabaAccountId}}; // string
 
 try {
-    $result = $apiInstance->patchFlowsFlowIdAssets($flow_id, $token, $waba_account_id);
+    $result = $apiInstance->patchFlowsFlowIdAssets($flow_id, $token, $patch_flows_flow_id_assets_request, $waba_account_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FlowsApi->patchFlowsFlowIdAssets: ', $e->getMessage(), PHP_EOL;
@@ -570,6 +581,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **flow_id** | **string**| Flow ID | |
 | **token** | **string**| JWT token or API key for authorization | |
+| **patch_flows_flow_id_assets_request** | [**\OneMsgSdk\Model\PatchFlowsFlowIdAssetsRequest**](../Model/PatchFlowsFlowIdAssetsRequest.md)|  | |
 | **waba_account_id** | **string**|  | [optional] |
 
 ### Return type
@@ -582,7 +594,7 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -592,10 +604,12 @@ try {
 ## `patchFlowsFlowIdMetadata()`
 
 ```php
-patchFlowsFlowIdMetadata($flow_id, $token, $waba_account_id): array<string,mixed>
+patchFlowsFlowIdMetadata($flow_id, $token, $patch_flows_flow_id_metadata_request, $waba_account_id): array<string,mixed>
 ```
 
 Update Flow Metadata
+
+Update Flow `name`, `categories`, and/or `endpointUri`. Currently returns HTTP 501 until the Meta Graph Flows rewrite is available.
 
 ### Example
 
@@ -618,10 +632,11 @@ $apiInstance = new OneMsgSdk\Api\FlowsApi(
 );
 $flow_id = 'flow_id_example'; // string | Flow ID
 $token = 'token_example'; // string | JWT token or API key for authorization
+$patch_flows_flow_id_metadata_request = new \OneMsgSdk\Model\PatchFlowsFlowIdMetadataRequest(); // \OneMsgSdk\Model\PatchFlowsFlowIdMetadataRequest
 $waba_account_id = {{wabaAccountId}}; // string
 
 try {
-    $result = $apiInstance->patchFlowsFlowIdMetadata($flow_id, $token, $waba_account_id);
+    $result = $apiInstance->patchFlowsFlowIdMetadata($flow_id, $token, $patch_flows_flow_id_metadata_request, $waba_account_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FlowsApi->patchFlowsFlowIdMetadata: ', $e->getMessage(), PHP_EOL;
@@ -634,6 +649,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **flow_id** | **string**| Flow ID | |
 | **token** | **string**| JWT token or API key for authorization | |
+| **patch_flows_flow_id_metadata_request** | [**\OneMsgSdk\Model\PatchFlowsFlowIdMetadataRequest**](../Model/PatchFlowsFlowIdMetadataRequest.md)|  | |
 | **waba_account_id** | **string**|  | [optional] |
 
 ### Return type
@@ -646,7 +662,7 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
