@@ -1,8 +1,8 @@
 name: Quality
 on:
-  pull_request:
+  # Only repository writers may schedule code on the shared runner pool.
   push:
-    branches: [main]
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
@@ -10,11 +10,29 @@ concurrency:
   cancel-in-progress: true
 jobs:
   contract:
-    runs-on: ubuntu-24.04
+    runs-on: [self-hosted, 1msg-ci-heavy]
+    timeout-minutes: 45
+    env:
+      RUNNER_TOOL_CACHE: /tmp/sdk-tools-${{ github.run_id }}-${{ github.run_attempt }}
+      SDK_INSTALL_PREFIX: /tmp/sdk-install-${{ github.run_id }}-${{ github.run_attempt }}
+    # Native packages are installed only inside this disposable job container.
+    container:
+      image: ubuntu:24.04@sha256:2198e4c65076e9cb0b3d695219df667c0e3b0072da64ca3c2648aca17dcecaf5
+    defaults:
+      run:
+        shell: bash
     steps:
+      - name: Prepare the isolated native toolchain environment
+        run: |
+          echo "CI_WORKSPACE_OWNER=$(stat -c '%u:%g' "$GITHUB_WORKSPACE/..")" >> "$GITHUB_ENV"
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            build-essential ca-certificates curl git gzip lsb-release sudo tar unzip xz-utils
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: "26.13.1"
@@ -40,6 +58,8 @@ jobs:
       - run: node quality/generator/generate.mjs
       - run: node quality/generator/verify-negative.mjs
       - uses: shivammathur/setup-php@v2
+        env:
+          runner: self-hosted
         with:
           php-version: "8.5.11"
           extensions: curl, mbstring
@@ -56,11 +76,27 @@ jobs:
             quality/generator/provenance.json
             quality/generator/inventory.json
             quality/reports/
+      - name: Restore ownership of this job's mounted files
+        if: always()
+        env:
+          PNPM_INSTALL_DIR: ${{ runner.temp }}/pnpm-${{ github.run_id }}-${{ github.run_attempt }}-${{ github.job }}
+        run: |
+          if [ -n "${CI_WORKSPACE_OWNER:-}" ]; then
+            for directory in "$GITHUB_WORKSPACE" "$PNPM_INSTALL_DIR"; do
+              if [ -d "$directory" ]; then
+                chown -hR "$CI_WORKSPACE_OWNER" "$directory"
+              fi
+            done
+            # GitHub mounts only this job's temporary home at /github/home.
+            if [ "$HOME" = /github/home ]; then
+              chown -hR "$CI_WORKSPACE_OWNER" "$HOME"
+            fi
+          fi
   quality-required:
     if: always()
     needs: [contract]
-    runs-on: ubuntu-24.04
+    runs-on: [self-hosted, 1msg-ci]
     steps:
       - env:
-          RESULTS: ${{ toJSON(needs) }}
-        run: node -e 'const jobs=JSON.parse(process.env.RESULTS); if(!Object.values(jobs).every(job=>job.result==="success")) process.exit(1)'
+          CONTRACT_RESULT: ${{ needs.contract.result }}
+        run: test "$CONTRACT_RESULT" = success
