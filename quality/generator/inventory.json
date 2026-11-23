@@ -10,7 +10,7 @@
   "lib/Api/UsersApi.php": "04a108bbf3db96cea71dbdd6cf49d1b2afa17011813ffc7f0407f0134ed3419c",
   "lib/Api/WebhooksApi.php": "4ed3d75fd955cfbab5fda31309f2857492e152ee9e39f886699d2c743f09d63a",
   "lib/ApiException.php": "4586a40c43c44c783d33d43efff9a0b212e4c4deb8cbe126bcd1d3f4e98ab8f6",
-  "lib/Configuration.php": "d19948f0bf823f9982450d79e0c500e5d359a5968f294d494c8a9f63e7706e57",
+  "lib/Configuration.php": "cf2c95e6a144ad1fd52acd6997d407de42cf4865030f469511ff317d2cf911ea",
   "lib/FormDataProcessor.php": "ec2aae0cf64cfe23aba23a7f6d5b67c3912b4d38549267e0181711d04522bfba",
   "lib/HeaderSelector.php": "a351abd69cd149515af0c761fc8ccce84855dbbe11f2a0d570d6943f62f735ed",
   "lib/Model/AddTemplate200Response.php": "80dd19dd3ee8dad3c7e7066b5746623d6ca535201baaaa09d5bd6129a7643f83",
